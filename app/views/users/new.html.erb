@@ -1,0 +1,54 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+    <%= f.label "First Name" %>
+    <%= f.text_field :first_name %>
+
+    <%= f.label "Last Name" %>
+    <%= f.text_field :last_name %>
+
+    <%= f.label "Email" %>
+    <%= f.email_field :email %>
+
+    <%= f.label "Phone" %>
+    <%= f.text_field :phone %>
+
+    <%= f.label "Address" %>
+    <%= f.text_field :street_one %>
+
+    <%= f.label "Address (cont.)" %>
+    <%= f.text_field :street_two %>
+
+    <%= f.label "State" %>
+    <%= f.text_field :state %>
+
+    <%= f.label "Zip" %>
+    <%= f.text_field :zip %>
+
+    <%= f.label "Password" %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation%>
+
+    <%= f.label "Are you a company?" %>
+    <%= f.check_box :is_provider %>
+
+    <%= f.label "Company Name" %>
+    <%= f.text_field :company_name %>
+
+    <%= f.label "Company Description" %>
+    <%= f.text_field :company_desc %>
+
+    <%= f.submit "Create my account" , class: "btn btn-primary" %>
+
+    <%= link_to 'Already have an account?', login_path %>
+
+
+    <% end %>
+  </div>
+</div>

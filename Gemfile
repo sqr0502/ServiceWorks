@@ -7,7 +7,7 @@ gem 'pg'
 
 # gem 'bootstrap-sass', '~> 3.3.5'
 gem 'materialize-sass'
-
+gem 'jquery-turbolinks', '~> 2.1.0'
 
 
 # Use SCSS for stylesheets

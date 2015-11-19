@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118135833) do
+ActiveRecord::Schema.define(version: 20151119215658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "service_request_services", force: :cascade do |t|
+    t.integer  "service_request_id"
+    t.integer  "service_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "service_request_services", ["service_id"], name: "index_service_request_services_on_service_id", using: :btree
+  add_index "service_request_services", ["service_request_id"], name: "index_service_request_services_on_service_request_id", using: :btree
+
+  create_table "service_requests", force: :cascade do |t|
+    t.string   "additional_notes"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",                      null: false
@@ -36,4 +58,6 @@ ActiveRecord::Schema.define(version: 20151118135833) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
+  add_foreign_key "service_request_services", "service_requests"
+  add_foreign_key "service_request_services", "services"
 end

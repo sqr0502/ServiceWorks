@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
@@ -21,8 +22,12 @@
       </div>
     </div>
   </div>
-  
-<%= yield %>
+  <!-- <div class="parallax-container">
+    <div class="row">
+    </div>
+    <div class="parallax"><img src="grass.jpg"></div>
+  </div> -->
+  <%= yield %>
 
 
 </body>

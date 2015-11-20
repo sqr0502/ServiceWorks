@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119225732) do
+ActiveRecord::Schema.define(version: 20151120212754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,11 @@ ActiveRecord::Schema.define(version: 20151119225732) do
     t.string   "additional_notes"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
+    t.integer  "users_id"
   end
+
+  add_index "service_requests", ["users_id"], name: "index_service_requests_on_users_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -74,4 +78,5 @@ ActiveRecord::Schema.define(version: 20151119225732) do
   add_foreign_key "quotes", "users"
   add_foreign_key "service_request_services", "service_requests"
   add_foreign_key "service_request_services", "services"
+  add_foreign_key "service_requests", "users"
 end

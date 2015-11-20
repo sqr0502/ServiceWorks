@@ -4,7 +4,12 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests
   # GET /service_requests.json
   def index
-    @service_requests = ServiceRequest.all
+    if logged_in?
+      current_user.is_provider ? @service_requests = ServiceRequest.all : @service_requests = current_user.service_requests
+    else
+      flash[:danger] = "Please login to view this page"
+      redirect_to login_path
+    end
   end
 
   # GET /service_requests/1
@@ -14,7 +19,10 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/new
   def new
-    @service_request = ServiceRequest.new
+    @services = Service.order(:name)
+
+    @service_request = ServiceRequest.new if logged_in?
+
   end
 
   # GET /service_requests/1/edit

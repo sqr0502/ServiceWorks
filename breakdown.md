@@ -31,7 +31,7 @@ FRONT END
 3. Add company Logo
 4. Create and style home page
 5. Style the signup form
-6. Style the profile page.
+6. Style the profile page
 
 
 ## Feature Timeline

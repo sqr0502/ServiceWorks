@@ -33,8 +33,18 @@ FRONT END
 5. Style the signup form
 6. Style the profile page
 
+GEMS
+
+1. Carrerwave
+2. RMagic (Req ImageMagic, do brew install)
+3. Fog (for S3)
+4. Stripe
 
 ## Feature Timeline
+Sunday1 - MVP
+Wednesday - Stretch 1
+Sunday2 - Stretch 2
+Monday2 - Presentation Draft
 
 
 ## TODO

@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <header>
-  <nav class="lime">
+  <nav class="green">
    <div class="nav-wrapper">
      <%= link_to 'Service Works', root_path, id: "logo", class: "brand-logo" %>
      <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -21,4 +21,15 @@
      </ul>
    </div>
   </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </header>

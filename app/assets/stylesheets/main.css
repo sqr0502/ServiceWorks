@@ -1,3 +1,13 @@
+
+
 .parallax-container {
       height: auto;
     }
+
+.homedoor {
+  /*position: absolute;*/
+}
+
+.card {
+  display: inline;
+}

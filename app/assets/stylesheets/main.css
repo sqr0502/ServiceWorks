@@ -1,13 +1,28 @@
 
+@import url(https://fonts.googleapis.com/css?family=Sacramento);
 
-.parallax-container {
-      height: auto;
-    }
+.brand-logo {
 
-.homedoor {
-  /*position: absolute;*/
 }
+
+a#logo {
+  font-family: 'Sacramento', cursive;
+  padding-top: 1%;
+  font-size: 50px;
+}
+
+
+#homedoor {
+  height: 100vh;
+}
+
+
 
 .card {
   display: inline;
+  text-align: center;
+}
+
+h5 {
+  text-align: center;
 }

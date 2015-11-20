@@ -16,9 +16,10 @@
 
 <%= render 'layouts/header' %>
 
-  <!-- <div class="container">
+<% if flash.count > 0 %>
+  <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col s12">
         <% flash.each do |message_type, message| %>
           <div class="alert alert-<%= message_type %>">
             <%= message %>
@@ -26,9 +27,11 @@
           <% end %>
       </div>
     </div>
-  </div> -->
+  </div>
+<% end %>
+<%= yield %>
 
-  <%= yield %>
+<%= render 'layouts/footer' %>
 
   <!--Import jQuery before materialize.js-->
 

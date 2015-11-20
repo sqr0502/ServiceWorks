@@ -54,3 +54,4 @@ Monday2 - Presentation Draft
 ## Stretch Goals
 - Reviews for users and servicer.
 - On order form, user drops pin on map for address.
+- Recurring payments for monthly arrangements.

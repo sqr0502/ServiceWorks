@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :service_requests
+    resources :service_requests 
   end
 
 
+
+  post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"
+  delete "/users/:id/service_requests/:id/quote", to: "quotes#destroy"
 
   get 'static_pages/home'
   root 'static_pages#home'

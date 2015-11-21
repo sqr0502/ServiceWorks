@@ -19,6 +19,7 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests/1
   # GET /service_requests/1.json
   def show
+    @quote = Quote.new
   end
 
   # GET /service_requests/new

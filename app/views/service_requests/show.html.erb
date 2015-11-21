@@ -1,8 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Additional notes:</strong>
-  <%= @service_request.additional_notes %>
-</p>
+<p><%= @service_request.created_at.to_formatted_s(:long) %></p>
+<p>Services:</p>
+<ul>
+  <% @service_request.services.each do |s| %>
+  <li><%= s.name %></li>
+</ul>
+<% end %>
+<p>Notes:</p>
+<p><%= @service_request.additional_notes %></p>
+<ul>
+  <% @service_request.quotes.each do |q| %>
+  <div class="quote">
+    <%= q.user.company_name %>'s Quote:<br>
+    <%= q.user.company_name %> has offered a quote of <%= number_to_currency(q.amount) %><br>
+    <%= q.user.company_name %> says, "<%= q.note %>"<br>
+    <%= link_to "Delete", service_request_quote_path(q), method: :delete if current_user.id == q.user_id %>
+  </div>
+  <hr>
+  <% end %>
+</ul>
+</div>
+
+
+<%= form_for @quote, url: { controller: "quotes", action: "create" }, method: :post do %>
+<% if @quote.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this service_request from being saved:</h2>
+
+    <ul>
+    <% @quote.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  <%= label_tag :amount, "Quote" %>
+  <%= text_field_tag "quote[amount]"%>
+  <%= label_tag :note, "Note" %>
+  <%= text_area_tag "quote[note]"%>
+  <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
+  <%= submit_tag("Send Quote") %>
+<% end %>
 
 <%= link_to 'Back', user_service_requests_path(current_user) %>

@@ -28,6 +28,16 @@ a#logo {
   text-align: center;
 }
 
+.user-form{
+  background-color: white;
+  padding: 3% 0 3% 0 !important;
+
+}
+
+.profile-title{
+  text-align: center;
+}
+
 h5 {
   text-align: center;
 }

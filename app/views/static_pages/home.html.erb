@@ -1,86 +1,76 @@
 
-<div class="parallax-container">
+<div class="parallax-container" id="homedoor">
   <div class="row">
     <div class="">
         <!-- <h1>Join us today!</h1> -->
     </div>
    </div>
+   <!-- Parrallax Home Section 1 -->
     <div class="parallax"><%= image_tag "greendoor.jpg" %>  </div>
+
 </div>
 
+<!-- Homepage Card section-->
 <div class="container">
-  <section>
-
     <div class="row ">
-      <div class="col s4 m4">
+      <div class="col s12 m4">
         <div class="icon block">
             <h2 class="center brown-text"><i class="material-icons">location_on</i></h2>
-            <div class="card center">
-              <div class="card-image waves-effect waves-block waves-light">
+            <div class="card 300px">
+              <div class="card-image">
                 <%= image_tag("http://placehold.it/200x100")%>
+                <span class="card-title">Search 24/7</span>
               </div>
               <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                <p><a href="#">Search 24/7</a></p>
+                <p>Find service near you</p>
               </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4"><i> class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+              <div class="card-action">
               </div>
             </div>
         </div>
       </div>
-    </div>
 
-<div class="row">
-  <div class="col s4 m4">
-    <div class="icon block">
-        <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-      <div class="card center">
-        <div class="card-image waves-effect waves-block waves-light">
-          <%= image_tag("http://placehold.it/200x100")%>
+      <div class="row ">
+        <div class="col s12 m4">
+          <div class="icon block">
+              <h2 class="center brown-text"><i class="material-icons">dashboard</i></h2>
+              <div class="card 300px">
+                <div class="card-image">
+                  <%= image_tag("http://placehold.it/200x100")%>
+                  <span class="card-title">Home Repairs</span>
+                </div>
+                <div class="card-content">
+                  <p>Find repairs locally</p>
+                </div>
+                <div class="card-action">
+                </div>
+              </div>
+          </div>
         </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-          <p><a href="#">Home repairs</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col s4 m4">
-    <div class="icon block">
-        <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-      <div class="card center">
-        <div class="card-image waves-effect waves-block waves-light">
-
-          <%= image_tag("http://placehold.it/200x100")%>
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-          <p><a href="#">Every need</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        <div class="row ">
+          <div class="col s12 m4">
+            <div class="icon block">
+            <h2 class="center brown-text"><i class="material-icons">search</i></h2>
+              <div class="card 300px">
+                <div class="card-image">
+                  <%= image_tag("http://placehold.it/200x100")%>
+                  <span class="card-title">Find a Service</span>
+                </div>
+                <div class="card-content">
+                  <p>All services</p>
+                </div>
+                <div class="card-action">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
+   </div>
 </div>
 
-
-
-  </section>
-</div>
-
+<!-- Parrallax Home Section 2 -->
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
@@ -90,36 +80,34 @@
   </div>
   <div class="parallax"><%= image_tag "washing.jpg" %></div>
 </div>
+
+<!-- Information services section -->
 <div class="container">
   <section>
 
     <div class="row ">
-      <div class="col s12 m4">
+      <div class="col s4 m4">
         <div class="icon block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5>24/7 Service</h5>
+          <h2 class="center brown-text"><i class="material-icons">schedule</i></h2>
+          <h5 class="home-tag">24/7 Service</h5>
+        </div>
+      </div>
 
+      <div class="col s4 m4">
+        <div class="icon block">
+          <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+          <h5 class="home-tag">Home Repairs</h5>
+        </div>
+      </div>
+
+      <div class="col s4 m4">
+        <div class="icon block">
+          <h2 class="center brown-text"><i class="material-icons">perm_identity</i></h2>
+          <h5 class="home-tag">All Services</h5>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5>Home Repairs</h5>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5></h5>
-        </div>
-      </div>
-    </div>
   </section>
 </div>
 

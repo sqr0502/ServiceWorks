@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :service_requests
+  resources :users do
+    resources :service_requests
+  end
+
+
+
   get 'static_pages/home'
-
-  resources :users
-
   root 'static_pages#home'
-  
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

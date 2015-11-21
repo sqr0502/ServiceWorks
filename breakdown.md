@@ -3,15 +3,15 @@
 MODELS
 1. Users - Complete
 2. Login Logout - Complete
-3. ServiceRequest Model
-4. Service Model
-5. Quote Model
-6. Users create and have service_requests
-7. service_requests has_many services/service belongs_to service_request
-8. service_request has_many quotes
-9. quote belongs_to service_request
-10. quote belongs to user
-11. user has_many quotes
+3. ServiceRequest Model - complete
+4. Service Model - complete
+5. Quote Model - complete
+6. Users create and have service_requests - complete
+7. service_requests has_many services/service belongs_to service_request - complete
+8. service_request has_many quotes - complete
+9. quote belongs_to service_request - complete
+10. quote belongs to user -complete
+11. user has_many quotes -complete
 
 FUNCTIONALITY
 

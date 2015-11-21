@@ -1,14 +1,26 @@
 class QuotesController < ApplicationController
-  before_action :set_service_request, only: [:new, :create]
+  include ActionView::Helpers::NumberHelper
+  before_action :set_service_request, only: [:new, :create, :accept_quote]
 
   def new
     @quote = current_user.quotes.new
   end
 
+  def accept_quote
+    quote = Quote.find(params[:quote][:quote_id])
+    company_name = User.find(quote.user_id).company_name
+    quote_amount = number_to_currency(quote.amount)
+    
+    @service_request.update(service_request_params)
+
+    flash[:success] = "You have accepted #{company_name}'s quote for #{quote_amount}"
+    redirect_to user_service_request_path(quote.service_request.user_id, quote.service_request.id)
+  end
+
   def create
     @quote = current_user.quotes.new(quote_params)
     @quote.user_id = current_user.id
-    
+
     prev_quotes = []
 
     @service_request.quotes.each do |q|
@@ -51,5 +63,8 @@ class QuotesController < ApplicationController
     params.require(:quote).permit(:amount, :note, :service_request_id, :user_id)
   end
 
+  def service_request_params
+    params.require(:service_request).permit(:additional_notes, :user_id, :status)
+  end
 
 end

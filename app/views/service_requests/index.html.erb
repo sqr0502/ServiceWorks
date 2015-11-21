@@ -2,12 +2,15 @@
 
 <h1><%= current_user.first_name %>'s Service Requests</h1>
 
+<%= link_to 'New Service request', new_user_service_request_path %>
+
 <% @service_requests.order(created_at: :desc).each do |sr| %>
   <div class="additional-notes">
     <p>
       <%= link_to sr.created_at.to_formatted_s(:long),
       user_service_request_path(sr.user_id, sr) %>
     </p>
+    <p>Status: <%= sr.status %></p>
     <p>
       Services:
     </p>
@@ -30,4 +33,3 @@
 
   <hr>
 <% end %>
-<%= link_to 'New Service request', new_user_service_request_path %>

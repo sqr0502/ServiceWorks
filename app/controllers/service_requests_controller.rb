@@ -39,6 +39,7 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.new(service_request_params)
     @service_request.services << Service.find(service_request_service[:services].to_i)
     @service_request.user_id = current_user.id
+    @service_request.status = "Open"
 
     respond_to do |format|
       if @service_request.save
@@ -83,7 +84,7 @@ class ServiceRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_request_params
-      params.require(:service_request).permit(:additional_notes, :user_id)
+      params.require(:service_request).permit(:additional_notes, :user_id, :status)
     end
 
     def service_request_service

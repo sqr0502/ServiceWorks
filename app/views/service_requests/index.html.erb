@@ -5,7 +5,8 @@
 <% @service_requests.order(created_at: :desc).each do |sr| %>
   <div class="additional-notes">
     <p>
-      <%= sr.created_at.to_formatted_s(:long) %>
+      <%= link_to sr.created_at.to_formatted_s(:long),
+      user_service_request_path(sr.user_id, sr) %>
     </p>
     <p>
       Services:
@@ -21,7 +22,12 @@
     <p>
       <%= sr.additional_notes %>
     </p>
+    <p>
+      There are <%= link_to pluralize(sr.quotes.count, "quote"),
+      user_service_request_path(sr.user_id, sr) %>
+    </p>
   </div>
+
   <hr>
 <% end %>
 <%= link_to 'New Service request', new_user_service_request_path %>

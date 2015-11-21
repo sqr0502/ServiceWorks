@@ -8,7 +8,7 @@ class UserNotifier < ActionMailer::Base
     :subject => 'Thanks for signing up for our amazing app' )
   end
 
-  def send_new_quote_notification(user)
+  def new_quote_notification(user)
     @user = user
     mail( :to => @user.email,
         :subject => 'A new quote has been made for your service request!' )    

@@ -3,15 +3,10 @@ Rails.application.routes.draw do
     resources :service_requests
   end
 
-
-<<<<<<< HEAD
   resources :users
   resources :charges
-    
-=======
 
   get 'static_pages/home'
->>>>>>> master
   root 'static_pages#home'
 
   get '/login', to: 'sessions#new'

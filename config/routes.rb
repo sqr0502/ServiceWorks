@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :service_requests
+    resources :service_requests 
   end
 
   resources :users
   resources :charges
+
+  post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"
+  delete "/users/:id/service_requests/:id/quote", to: "quotes#destroy"
 
   get 'static_pages/home'
   root 'static_pages#home'
@@ -12,7 +15,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-
+#  get '/charges', to: 'charges#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

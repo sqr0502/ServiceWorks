@@ -12,6 +12,9 @@ gem 'pg'
 gem 'materialize-sass'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
+# Image Uploads
+gem 'carrierwave'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

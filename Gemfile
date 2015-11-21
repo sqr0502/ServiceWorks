@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Added Features
+gem 'stripe'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -7,8 +10,6 @@ gem 'pg'
 
 # gem 'bootstrap-sass', '~> 3.3.5'
 gem 'materialize-sass'
-
-
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

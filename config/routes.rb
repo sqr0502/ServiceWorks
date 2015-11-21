@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
 
   resources :users
-
+  resources :charges
+    
   root 'static_pages#home'
   
   get '/login', to: 'sessions#new'

@@ -55,3 +55,10 @@ Monday - Presentation Draft
 - Reviews for users and servicer.
 - On order form, user drops pin on map for address.
 - Recurring payments for monthly arrangements.
+
+## Notes
+Syntax for sending emails:
+UserNotifier.send_signup_email(@user).deliver
+      redirect_to(@user)  
+      
+Email template is located at app/views/user_notifier/send_signup_email.html.erb

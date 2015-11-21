@@ -16,7 +16,12 @@ a#logo {
   height: 100vh;
 }
 
+#map {
+  margin-top: 3%;
+  height: 400px;
+  width: 800px;
 
+}
 
 .card {
   display: inline;

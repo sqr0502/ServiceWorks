@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= current_user.first_name %>'s Service Requests</h1>
+
+<% @service_requests.order(created_at: :desc).each do |sr| %>
+  <div class="additional-notes">
+    <p>
+      <%= sr.created_at.to_formatted_s(:long) %>
+    </p>
+    <p>
+      Services:
+    </p>
+    <ul>
+      <% sr.services.each do |s| %>
+      <li><%= s.name %></li>
+    </ul>
+    <% end %>
+    <p>
+      Notes:
+    </p>
+    <p>
+      <%= sr.additional_notes %>
+    </p>
+  </div>
+  <hr>
+<% end %>
+<%= link_to 'New Service request', new_user_service_request_path %>

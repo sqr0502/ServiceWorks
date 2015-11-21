@@ -1,0 +1,30 @@
+<%= form_for [@user, @user.service_requests.build] do |f| %>
+  <% if @service_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service_request.errors.count, "error") %> prohibited this service_request from being saved:</h2>
+
+      <ul>
+      <% @service_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12">
+    <%= f.label :services %><br>
+    <%= f.collection_select :services, @services, :id, :name %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :additional_notes %><br>
+    <%= f.text_area :additional_notes %>
+  </div>
+
+  <div class="row">
+    <div class="actions" style="margin-top: 40px;">
+      <%= f.submit "Create Service Request" , class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

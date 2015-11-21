@@ -28,19 +28,29 @@ FRONT END
 
 1. Materialize framework
 2. ServiceWorks app name
-3. Add company Logo
+3. Add company logo
 4. Create and style home page
 5. Style the signup form
-6. Style the profile page.
+6. Style the profile page
 
+GEMS
+
+1. Carrierwave
+2. RMagic (Req ImageMagic, do brew install)
+3. Fog (for S3)
+4. Stripe - Done
 
 ## Feature Timeline
+Wednesday - MVP
+Sunday - Final
+Monday - Presentation Draft
 
 
 ## TODO
 - Add number of transactions marked as paid to user and servicer profile page.
--
+
 
 ## Stretch Goals
 - Reviews for users and servicer.
 - On order form, user drops pin on map for address.
+- Recurring payments for monthly arrangements.

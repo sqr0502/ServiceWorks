@@ -48,9 +48,17 @@ Monday - Presentation Draft
 
 ## TODO
 - Add number of transactions marked as paid to user and servicer profile page.
+- Clicking 'signup' launches signup form in a bootstrap modal window.
 
 
 ## Stretch Goals
 - Reviews for users and servicer.
 - On order form, user drops pin on map for address.
 - Recurring payments for monthly arrangements.
+
+## Notes
+Syntax for sending emails:
+UserNotifier.send_signup_email(@user).deliver
+      redirect_to(@user)  
+      
+Email template is located at app/views/user_notifier/send_signup_email.html.erb

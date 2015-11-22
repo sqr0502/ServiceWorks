@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Added Features
+gem 'stripe'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -9,6 +12,18 @@ gem 'pg'
 gem 'materialize-sass'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
+# Image Uploads
+gem 'carrierwave'
+
+gem 'carrierwave_direct', '~> 0.0.15'
+
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+
+gem "fog"
+
+gem "figaro"
+
+gem 'aws-sdk', '~> 2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -41,8 +56,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
+    gem 'rspec-core'#, '~> 3.4.0'
   gem 'capybara'
   gem 'launchy'
+
 end
 
 group :production do

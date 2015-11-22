@@ -5,35 +5,42 @@
 <!-- keeping it simple -->
 <h1 class="center-align">Service Requests</h1>
 
-<div class="">
-  <% @service_requests.order(created_at: :desc).each do |sr| %>
-    <div class="additional-notes">
-      <p>
-        <%= link_to sr.created_at.to_formatted_s(:long),
-        user_service_request_path(sr.user_id, sr) %>
-      </p>
-      <p>
-        Services:
-      </p>
-      <ul>
-        <% sr.services.each do |s| %>
-        <li><%= s.name %></li>
-      </ul>
-      <% end %>
-      <p>
-        Notes:
-      </p>
-      <p>
-        <%= sr.additional_notes %>
-      </p>
-      <p>
+<%= link_to 'New Service request', new_user_service_request_path %>
+
+<% @service_requests.order(created_at: :desc).each do |sr| %>
+  <div class="additional-notes">
+    <p>
+      <%= link_to sr.created_at.to_formatted_s(:long),
+      user_service_request_path(sr.user_id, sr) %>
+    </p>
+    <p>Status: <%= sr.status %></p>
+    <p>
+      Services:
+    </p>
+    <ul>
+      <% sr.services.each do |s| %>
+      <li><%= s.name %></li>
+    </ul>
+    <% end %>
+    <p>
+      Notes:
+    </p>
+    <p>
+      <%= sr.additional_notes %>
+    </p>
+    <p>
+      <% if sr.status == "Accepted"%>
+        <% sr.quotes.each do |q| %>
+          <% if q.status == "Accepted" %>
+            <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+          <% end %>
+        <% end %>
+      <% else %>
         There are <%= link_to pluralize(sr.quotes.count, "quote"),
         user_service_request_path(sr.user_id, sr) %>
-      </p>
-    </div>
+      <% end %>
+    </p>
+  </div>
 
-    <hr>
-  <% end %>
-  <%= link_to 'New Service request', new_user_service_request_path %>
-
-</div>
+  <hr>
+<% end %>

@@ -5,19 +5,24 @@
         <!-- <h1>Join us today!</h1> -->
     </div>
    </div>
-   <% %>
-   <form class="home-form row " action="index.html" method="post">
-    <div class="input-field col s4 offset-s4 white z-depth-2">
-      <input id="zipcode" type="text" name="zipcode">
-      <label for="zipcode">Zipcode</label>
-    </div>
 
-
-   </form>
-   <% %>
    <!-- Section 1 - Parrallax Home -->
-    <div class="parallax"><%= image_tag "teardown.jpg" %>  </div>
+   <div class="parallax overlay"><%= image_tag "teardown.jpg" %>  </div>
 
+   <!-- overlay  -->
+    <div class="overlay">
+      <% %>
+      <h1 class="home-title">Need home repair?</h1>
+      <form class="home-form row " action="index.html" method="post">
+       <div class="input-field col s4 offset-s4 white z-depth-2">
+         <input id="zipcode" type="text" name="zipcode">
+         <label for="zipcode">Zipcode</label>
+       </div>
+      </form>
+      <% %>
+
+
+    </div>
 </div>
 
 <!-- Section 2 - Homepage Card section-->
@@ -28,7 +33,6 @@
             <h2 class="center brown-text"><i class="material-icons">location_on</i></h2>
             <div class="card 300px">
               <div class="card-image">
-
                 <%= image_tag("http://placehold.it/200x100")%>
                 <span class="card-title">Search for Service</span>
               </div>
@@ -81,7 +85,7 @@
    </div>
 </div>
 
-<!-- Section 3 - Parrallax Home  -->
+<!-- Section 3 - Parallax Home  -->
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
@@ -90,6 +94,8 @@
     </div>
   </div>
   <div class="parallax"><%= image_tag "washing.jpg" %></div>
+
+  <div class="overlay"></div>
 </div>
 
 <!-- Section 4 - Information services section -->
@@ -122,6 +128,7 @@
   </section>
 </div>
 
+<!-- Section 5 -  parallax container -->
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
@@ -130,6 +137,7 @@
     </div>
   </div>
   <div class="parallax"><%= image_tag "dining.jpg" %></div>
+  <div class="overlay"></div>
 </div>
 
   <div class="container">

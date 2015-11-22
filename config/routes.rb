@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     resources :service_requests 
   end
 
-
+  resources :users
+  resources :charges
 
   post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"
   delete "/users/:id/service_requests/:id/quote", to: "quotes#destroy"

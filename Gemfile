@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Added Features
+gem 'stripe'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -43,8 +46,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
+    gem 'rspec-core'#, '~> 3.4.0'
   gem 'capybara'
   gem 'launchy'
+    
 end
 
 group :production do

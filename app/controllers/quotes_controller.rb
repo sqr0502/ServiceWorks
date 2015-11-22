@@ -16,14 +16,18 @@ class QuotesController < ApplicationController
     end
 
     if prev_quotes.include? current_user.id
-      flash[:danger] = "You can submit one quote per service request"
+      flash[:danger] = "You can only submit one quote per service request"
       redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
     else
       if @quote.save
-        flash[:sucess] = "Quote sucessfully submitted"
-        redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
+        flash[:success] = "Your quote was sucessfully submitted"
+        
+          #email  or current_user\
+          
+          UserNotifier.new_quote_notification(User.find(@quote.service_request.user_id)).deliver
+          redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
       else
-        flash[:danger] = "Error occurred when submitting quote"
+        flash[:danger] = "An error occurred when submitting quote"
         redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
       end
     end

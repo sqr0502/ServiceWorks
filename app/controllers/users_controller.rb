@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome #{@user.first_name}! Your account has been succesfully created."
-      redirect_to @user
+      redirect_to "/users/#{user[:id]}/service_requests"
     else
       render 'new'
     end

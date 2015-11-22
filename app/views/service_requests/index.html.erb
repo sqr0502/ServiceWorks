@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= current_user.first_name %>'s Service Requests</h1>
+<!-- old redundant -->
+<!-- <h1><%= current_user.first_name %>'s Service Requests</h1> -->
+<!-- keeping it simple -->
+<h1 class="center-align">Service Requests</h1>
 
 <div class="">
   <% @service_requests.order(created_at: :desc).each do |sr| %>

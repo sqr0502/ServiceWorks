@@ -1,28 +1,33 @@
 <% provide(:title, 'Sign up') %>
 <h1 class="profile-title">Sign up</h1>
 <div class="row">
-  <div class="col s6 offset-s3">
+  <div class="col m6 s12 offset-m3  z-depth-2 white signup-form">
     <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
+    <div class="col s12">
+        <div class="switch">
+          <label>
+          Customer
+            <%= f.check_box :is_provider, id:"company" %>
+            <span class="lever"></span>
+          Company
+          </label>
+        </div>
+    </div>
 
-    <div class="input-field col s6 ">
-      <p>
-        <%= f.check_box :is_provider, id:"company" %>
-        <%= f.label "Are you a company?", for:"company" %>
-      </p>
+    <div  id="company-info">
 
       <!-- if servicer display company fields  -->
-      <% if @user.is_provider %>
-      <div class="input-field col s6 ">
+      <div class="input-field col s6" id="company-name">
         <%= f.label "Company Name" %>
         <%= f.text_field :company_name %>
       </div>
 
-      <div class="input-field col s6 ">
+      <div class="input-field col s6" id="company-description">
         <%= f.label "Company Description" %>
         <%= f.text_field :company_desc %>
       </div>
-      <%end%>
+
     </div>
 
     <div class="input-field col s6 ">
@@ -30,56 +35,58 @@
       <%= f.text_field :first_name %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col s6">
       <%= f.label "Last Name" %>
       <%= f.text_field :last_name %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12">
     <%= f.label "Email" %>
     <%= f.email_field :email %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12">
       <%= f.label "Phone" %>
       <%= f.text_field :phone %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12">
       <%= f.label "Address" %>
       <%= f.text_field :street_one %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12 ">
       <%= f.label "Address \(cont\) " %>
       <%= f.text_field :street_two %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col s6">
       <%= f.label "State" %>
       <%= f.text_field :state %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col s6">
       <%= f.label "Zip" %>
       <%= f.text_field :zip %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12">
       <%= f.label "Password" %>
       <%= f.password_field :password %>
     </div>
 
-    <div class="input-field col s6 ">
+    <div class="input-field col m6 s12">
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation%>
     </div>
 
-    <div class="col s6">
-      <%= f.submit "Hammer Time" , class: "btn btn-primary" %>
-    </div>
-    <div class="col s6">
-      <%= link_to 'Already have an account?', login_path %>
+    <div class="valign-wrapper col s12">
+      <div class="col s6 valign">
+        <%= link_to 'Already have an account?', login_path%>
+      </div>
+      <div class="col s6 valign right-align">
+        <%= f.submit "Submit" , class: "btn btn-primary waves-effect waves-light indigo darken-4" %>
+      </div>
     </div>
     <% end %>
   </div>

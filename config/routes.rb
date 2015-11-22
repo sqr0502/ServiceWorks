@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :service_requests 
+    resources :service_requests
   end
 
 

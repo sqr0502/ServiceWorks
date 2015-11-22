@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
   include ActionView::Helpers::NumberHelper
   before_action :set_service_request, only: [:new, :create, :accept_quote]
+  after_action :set_status, only: [:destroy]
 
   def new
     @quote = current_user.quotes.new
@@ -29,7 +30,7 @@ class QuotesController < ApplicationController
       prev_quotes << q.user_id
     end
 
-
+    # Don't let a company add more than one quote per service request
     if prev_quotes.include? current_user.id
       flash[:danger] = "You can only submit one quote per service request"
       redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
@@ -72,6 +73,11 @@ class QuotesController < ApplicationController
 
   def service_request_params
     params.require(:service_request).permit(:additional_notes, :user_id, :status)
+  end
+
+  def set_status
+    service_request = ServiceRequest.find(@quote.service_request_id)
+    service_request.update(service_request_params) if service_request.quotes.empty?
   end
 
 end

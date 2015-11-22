@@ -1,28 +1,60 @@
 
 @import url(https://fonts.googleapis.com/css?family=Sacramento);
 
-.brand-logo {
-
-}
-
+/* Navbar logo*/
 a#logo {
   font-family: 'Sacramento', cursive;
   padding-top: 1%;
   font-size: 50px;
 }
 
-
+/***** HomePage *****/
+/* Section 1 */
+ /* First parrallax container */
 #homedoor {
   height: 100vh;
 }
 
+.home-form {
+  margin: 20% 0 0 0;
+  opacity: 10%;
+}
 
 
+
+
+/* Section 2 */
+/* Feature cards */
 .card {
   display: inline;
   text-align: center;
 }
 
+
+/* Section 4  */
+/* Subtitle headers */
 h5 {
   text-align: center;
+}
+
+
+/* Geo Map -*/
+#map {
+  margin-top: 3%;
+  height: 400px;
+  width: 800px;
+
+}
+
+
+/****** Profile page ******/
+/* profile header */
+.profile-title {
+  text-align: center;
+}
+
+/* Zip Search Form */
+.user-form{
+  background-color: white;
+  padding: 3% 0 3% 0 !important;
 }

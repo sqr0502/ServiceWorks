@@ -18,6 +18,11 @@
         <%= f.text_field :company_name %>
       </div>
 
+      <div class="input-field">
+        <%= f.label :business_logo, "Upload your logo" %><br>
+        <%= f.file_field :business_logo %>
+      </div>    
+        
       <div class="input-field col s6 ">
         <%= f.label "Company Description" %>
         <%= f.text_field :company_desc %>

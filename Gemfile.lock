@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 5b061c686ba8fc5fbf19ce3fecbf37e6410c1a0b
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,11 +66,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     carrierwave_direct (0.0.15)
       carrierwave
       fog
@@ -339,7 +344,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   capybara
-  carrierwave
+  carrierwave!
   carrierwave_direct (~> 0.0.15)
   coffee-rails (~> 4.1.0)
   figaro

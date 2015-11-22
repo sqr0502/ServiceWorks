@@ -10,7 +10,7 @@
   <% end %>
 <p>Notes:</p>
 <p><%= @service_request.additional_notes %></p>
-<%= image_tag @service_request.image %>
+<%= image_tag @service_request.image_url(:show) %>
 
 <!-- loop through all quotes on a service request. -->
 <% if @accepted_quote %>

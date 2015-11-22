@@ -13,7 +13,7 @@ gem 'materialize-sass'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Image Uploads
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'carrierwave_direct', '~> 0.0.15'
 

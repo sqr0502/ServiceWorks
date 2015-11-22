@@ -35,12 +35,12 @@ class QuotesController < ApplicationController
       redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
     else
       if @quote.save
+        @service_request.update(service_request_params)
         flash[:success] = "Your quote was sucessfully submitted"
 
-          #email  or current_user\
-
-          UserNotifier.new_quote_notification(User.find(@quote.service_request.user_id)).deliver
-          redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
+        #email user when a quote is submitted
+        UserNotifier.new_quote_notification(User.find(@quote.service_request.user_id)).deliver
+        redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
       else
         flash[:danger] = "An error occurred when submitting quote"
         redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)

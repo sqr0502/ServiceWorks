@@ -59,6 +59,7 @@
     <%= label_tag :note, "Note" %>
     <%= text_area_tag "quote[note]"%>
     <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
+    <%= hidden_field_tag("service_request[status]", "Quoted" ) %>
     <%= submit_tag("Send Quote") %>
   <% end %>
 <% end %>

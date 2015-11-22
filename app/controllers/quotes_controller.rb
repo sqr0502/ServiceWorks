@@ -22,11 +22,13 @@ class QuotesController < ApplicationController
     @quote = current_user.quotes.new(quote_params)
     @quote.user_id = current_user.id
 
+    # creat an array of user_id value from previous quotes, if any.  This array is used in a check to
+    # ensure that companies cannot quote the same service request more than once
     prev_quotes = []
-
     @service_request.quotes.each do |q|
       prev_quotes << q.user_id
     end
+
 
     if prev_quotes.include? current_user.id
       flash[:danger] = "You can only submit one quote per service request"
@@ -34,9 +36,9 @@ class QuotesController < ApplicationController
     else
       if @quote.save
         flash[:success] = "Your quote was sucessfully submitted"
-        
+
           #email  or current_user\
-          
+
           UserNotifier.new_quote_notification(User.find(@quote.service_request.user_id)).deliver
           redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
       else

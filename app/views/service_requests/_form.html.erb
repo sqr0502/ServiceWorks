@@ -21,6 +21,11 @@
     <%= f.text_area :additional_notes %>
   </div>
 
+  <div class="input-field">
+    <%= f.label :image, "Upload a Photo" %><br>
+    <%= f.file_field :image %>
+  </div>
+
   <div class="row">
     <div class="actions" style="margin-top: 40px;">
       <%= f.submit "Create Service Request" , class: "btn btn-primary" %>

@@ -15,6 +15,16 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 # Image Uploads
 gem 'carrierwave'
 
+gem 'carrierwave_direct', '~> 0.0.15'
+
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+
+gem "fog"
+
+gem "figaro"
+
+gem 'aws-sdk', '~> 2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,7 +59,7 @@ group :development, :test do
     gem 'rspec-core'#, '~> 3.4.0'
   gem 'capybara'
   gem 'launchy'
-    
+
 end
 
 group :production do

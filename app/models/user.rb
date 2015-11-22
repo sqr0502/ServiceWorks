@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  has_many :quotes
+  has_many :quotes, dependent: :destroy
   has_many :service_requests
 end

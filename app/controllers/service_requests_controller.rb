@@ -85,7 +85,7 @@ class ServiceRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_request_params
-        params.require(:service_request).permit(:additional_notes, :user_id, :status, {image: []})
+      params.require(:service_request).permit(:additional_notes, :user_id, :status, {image: []})
     end
 
     def service_request_service

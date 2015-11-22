@@ -36,7 +36,8 @@
                                                 service_request: {status: "Accepted"} ),
                                                 data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
       <% end %>
-      <%= link_to "Delete", service_request_quote_path(q), method: :delete if current_user.id == q.user_id %>
+      <%= link_to "Delete", service_request_quote_path(q, service_request: {status: "Open"}),
+          method: :delete if current_user.id == q.user_id %>
     </div>
     <hr>
   <% end %>
@@ -63,6 +64,7 @@
     <%= label_tag :note, "Note" %>
     <%= text_area_tag "quote[note]"%>
     <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
+    <%= hidden_field_tag("service_request[status]", "Quoted" ) %>
     <%= submit_tag("Send Quote") %>
   <% end %>
 <% end %>

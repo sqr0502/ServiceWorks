@@ -20,6 +20,7 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests/1.json
   def show
     @quote = Quote.new
+    @accepted_quote = @service_request.quotes.find_by(status: "Accepted")
   end
 
   # GET /service_requests/new

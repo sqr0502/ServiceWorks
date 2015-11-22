@@ -7,23 +7,36 @@
   <% @service_request.services.each do |s| %>
   <li><%= s.name %></li>
 </ul>
-<% end %>
+  <% end %>
 <p>Notes:</p>
 <p><%= @service_request.additional_notes %></p>
-<ul>
-  <% @service_request.quotes.each do |q| %>
-  <div class="quote">
-    <%= q.user.company_name %>'s Quote:<br>
-    <%= q.user.company_name %> has offered a quote of <%= number_to_currency(q.amount) %><br>
-    <%= q.user.company_name %> says, "<%= q.note %>"<br>
-    <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
-      <%= link_to "Accept", accept_quote_path(quote: { quote_id: q.id }, service_request: {status: "Accepted"}), data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
-    <% end %>
-    <%= link_to "Delete", service_request_quote_path(q), method: :delete if current_user.id == q.user_id %>
+
+<% if @accepted_quote %>
+  <div class="accepted-quote">
+    <%= @accepted_quote.user.company_name %>'s Quote:<br>
+    <%= @accepted_quote.user.company_name %> has offered a quote of <%= number_to_currency(@accepted_quote.amount) %><br>
+    <%= @accepted_quote.user.company_name %> says, "<%= @accepted_quote.note %>"<br>
+    Quote Status: <%= @accepted_quote.status %>
   </div>
-  <hr>
+<% else %>
+  <% @service_request.quotes.each do |q| %>
+    <div class="quote">
+      <%= q.user.company_name %>'s Quote:<br>
+      <%= q.user.company_name %> has offered a quote of <%= number_to_currency(q.amount) %><br>
+      <%= q.user.company_name %> says, "<%= q.note %>"<br>
+      <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
+        <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
+                                                quote: { status: "Accepted" },
+                                                service_request: {status: "Accepted"} ),
+                                                data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
+      <% end %>
+      <%= link_to "Delete", service_request_quote_path(q), method: :delete if current_user.id == q.user_id %>
+    </div>
+    <hr>
   <% end %>
-</ul>
+<% end %>
+
+
 </div>
 
 <% if current_user.is_provider %>

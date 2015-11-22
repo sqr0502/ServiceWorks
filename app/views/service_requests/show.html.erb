@@ -10,7 +10,9 @@
   <% end %>
 <p>Notes:</p>
 <p><%= @service_request.additional_notes %></p>
+<%= image_tag @service_request.image %>
 
+<!-- loop through all quotes on a service request. -->
 <% if @accepted_quote %>
   <div class="accepted-quote">
     <%= @accepted_quote.user.company_name %>'s Quote:<br>

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :service_requests 
+    resources :service_requests
   end
 
   resources :users
   resources :charges
 
+  get "/users/:id/service_requests/:id/quote/accept", to: "quotes#accept_quote", as: "accept_quote"
   post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"
   delete "/users/:id/service_requests/:id/quote", to: "quotes#destroy"
 

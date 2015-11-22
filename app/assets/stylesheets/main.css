@@ -22,6 +22,10 @@ a#logo {
   text-align: center;
   font-family: 'Raleway', sans-serif;
 }
+
+.home-tag{
+  text-align: center;
+}
  .overlay {
    position: absolute;
    top: 0;
@@ -74,8 +78,16 @@ h5 {
   text-align: center;
 }
 
+.form{
+  background-color: white;
+  padding: 3% 0 3% 0 !important;
+}
 /* Zip Search Form */
 .user-form{
   background-color: white;
   padding: 3% 0 3% 0 !important;
+}
+
+.signup-form{
+    padding: 3% 0 3% 0 !important;
 }

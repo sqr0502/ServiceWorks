@@ -2,32 +2,35 @@
 
 <h1><%= current_user.first_name %>'s Service Requests</h1>
 
-<% @service_requests.order(created_at: :desc).each do |sr| %>
-  <div class="additional-notes">
-    <p>
-      <%= link_to sr.created_at.to_formatted_s(:long),
-      user_service_request_path(sr.user_id, sr) %>
-    </p>
-    <p>
-      Services:
-    </p>
-    <ul>
-      <% sr.services.each do |s| %>
-      <li><%= s.name %></li>
-    </ul>
-    <% end %>
-    <p>
-      Notes:
-    </p>
-    <p>
-      <%= sr.additional_notes %>
-    </p>
-    <p>
-      There are <%= link_to pluralize(sr.quotes.count, "quote"),
-      user_service_request_path(sr.user_id, sr) %>
-    </p>
-  </div>
+<div class="">
+  <% @service_requests.order(created_at: :desc).each do |sr| %>
+    <div class="additional-notes">
+      <p>
+        <%= link_to sr.created_at.to_formatted_s(:long),
+        user_service_request_path(sr.user_id, sr) %>
+      </p>
+      <p>
+        Services:
+      </p>
+      <ul>
+        <% sr.services.each do |s| %>
+        <li><%= s.name %></li>
+      </ul>
+      <% end %>
+      <p>
+        Notes:
+      </p>
+      <p>
+        <%= sr.additional_notes %>
+      </p>
+      <p>
+        There are <%= link_to pluralize(sr.quotes.count, "quote"),
+        user_service_request_path(sr.user_id, sr) %>
+      </p>
+    </div>
 
-  <hr>
-<% end %>
-<%= link_to 'New Service request', new_user_service_request_path %>
+    <hr>
+  <% end %>
+  <%= link_to 'New Service request', new_user_service_request_path %>
+
+</div>

@@ -14,6 +14,8 @@ class QuotesController < ApplicationController
     quote.update(quote_params)
     @service_request.update(service_request_params)
 
+    UserNotifier.new_quote_notification(User.find(quote.user_id)).deliver      
+      
     flash[:success] = "You have accepted #{company_name}'s quote for #{quote_amount}"
     redirect_to user_service_request_path(quote.service_request.user_id, quote.service_request.id)
   end

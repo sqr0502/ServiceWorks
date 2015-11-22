@@ -1,6 +1,6 @@
 # Project Breakdown
 
-MODELS
+MODELS - complete
 1. Users - Complete
 2. Login Logout - Complete
 3. ServiceRequest Model - complete
@@ -15,29 +15,29 @@ MODELS
 
 FUNCTIONALITY
 
-1. Users create service_requests with services needed
+1. Users create service_requests with services needed - complete
 2. Business respond to service_request with quotes
-3. Users can accept quotes
+3. Users can accept quotes - complete
 4. Users can schedule service appointment
 5. Users can pay for service (reach goal)
 6. Users get notified with a business has quoted one of their service_requests
   a. Twilio (text message)
-  b. Sendgrid (email)
+  b. Sendgrid (email) - complete
 
 FRONT END
 
-1. Materialize framework
+1. Materialize framework - complete
 2. ServiceWorks app name
-3. Add company logo
+3. Add company logo - complete
 4. Create and style home page
 5. Style the signup form
 6. Style the profile page
 
 GEMS
 
-1. Carrierwave
-2. RMagic (Req ImageMagic, do brew install)
-3. Fog (for S3)
+1. Carrierwave - complete
+2. RMagic (Req ImageMagic, do brew install) - complete
+3. Fog (for S3) - complete
 4. Stripe - Done
 
 ## Feature Timeline

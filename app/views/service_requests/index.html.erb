@@ -10,9 +10,7 @@
   <div class="col s12">
     <ul class="tabs z-depth-2">
        <li class="tab col s3"><a class="active" href="#tab1">Dashboard</a></li>
-       <li class="tab col s3"><a href="#tab2">Services</a></li>
-       <li class="tab col s3"><a href="#tab3">Account Settings</a></li>
-       <li class="tab col s3"><a href="#tab4">New Service Request</a></li>
+       <li class="tab col s3"><%= link_to 'New Service Request', new_user_service_request_path %></li>
      </ul>
   </div>
 
@@ -23,9 +21,10 @@
       <table>
         <thead>
           <th>Services</th>
+          <th>Date</th>
           <th>Status</th>
           <th>Notes</th>
-          <th>Date</th>
+
         </thead>
         <tbody>
           <% @service_requests.order(created_at: :desc).each do |sr| %>
@@ -39,15 +38,16 @@
 
             </td>
             <td>
+              <%= link_to sr.created_at.to_formatted_s(:short),
+              user_service_request_path(sr.user_id, sr) %>
+            </td>  
+            <td>
               <%= sr.status %>
             </td>
             <td>
               <%= sr.additional_notes %>
             </td>
-            <td>
-              <%= link_to sr.created_at.to_formatted_s(:long),
-              user_service_request_path(sr.user_id, sr) %>
-             </td>
+            
              <td class="hidden">
                <!-- <p>
                  <% if sr.status == "Accepted"%>
@@ -67,7 +67,4 @@
         </tbody>
       </table>
     </div>
-    <div id="tab2" class="col s10 offset-s1 tab-content">2</div>
-    <div id="tab3" class="col s10 offset-s1 tab-content">3</div>
-    <div id="tab4" class="col s10 offset-s1 tab-content"><%= link_to 'New Service request', new_user_service_request_path %></div>
-  </div>
+</div>

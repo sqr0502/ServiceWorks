@@ -10,4 +10,7 @@ class ServiceRequest < ActiveRecord::Base
       self.order_number = number_array.join.to_i
     end
 
+    scope :search, ->(keyword) { where( "lower(additional_notes) LIKE ?",
+      "%#{keyword.downcase}%" ) if keyword.present? }
+
 end

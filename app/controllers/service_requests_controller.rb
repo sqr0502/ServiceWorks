@@ -6,9 +6,9 @@ class ServiceRequestsController < ApplicationController
   def index
     if logged_in?
       if current_user.is_provider
-        @service_requests = ServiceRequest.all
+        @service_requests = ServiceRequest.all.search(params[:keyword])
       else
-        @service_requests = current_user.service_requests
+        @service_requests = current_user.service_requests.search(params[:keyword])
       end
     else
       flash[:danger] = "Please login to view this page"

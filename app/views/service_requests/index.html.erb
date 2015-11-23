@@ -14,6 +14,21 @@
      </ul>
   </div>
 
+  <div id="search-box">
+    <p>
+      <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
+        <div class="input-append">
+          <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders" %>
+          <div>
+            <p>
+              <button class="btn-search" type="submit"><i class="icon-search"></i>Go</button>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </p>
+  </div>
+
       <!-- <div class="additional-notes"> -->
    <!-- <div class="row"> -->
      <!-- TAB ONE - DASHBOARD-->

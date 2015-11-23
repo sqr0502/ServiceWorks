@@ -1,6 +1,7 @@
 $(document).on("ready page:load", function(){
    $(".dropdown-button").dropdown();
     $('.parallax').parallax();
+     $(".button-collapse").sideNav();
 
     getLocation();
   });
@@ -44,7 +45,7 @@ addInfo(marker, response.results[0]);
 
 // add infowindow after marker has been added
 function addInfo(marker, data){
-  console.log(data);
+
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+

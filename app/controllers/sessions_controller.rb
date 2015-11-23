@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # log in the user after successful signup
       log_in user
-      # Redirect to user page on login.
-      redirect_to user
+      # Redirect to dashboard on login.
+      redirect_to "/users/#{user[:id]}/service_requests"
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
@@ -20,5 +20,5 @@ class SessionsController < ApplicationController
     flash[:success] = 'Succesfully logged out!'
     redirect_to root_url
   end
-  
+
 end

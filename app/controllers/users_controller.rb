@@ -13,11 +13,14 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome #{@user.first_name}! Your account has been succesfully created."
+
+      redirect_to user_service_requests_path(@user)
+
       UserNotifier.send_signup_email(@user).deliver
-      redirect_to(@user)        
+
     else
 #      render 'new'
-      render :action => 'new'        
+      render :action => 'new'
     end
   end
 

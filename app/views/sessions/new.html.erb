@@ -1,19 +1,31 @@
 <% provide(:title, "Log in") %>
 <div class="container">
-  <h1>Log In</h1>
+  <h1 class="center-align">Welcome Back!</h1>
 
   <div class="row">
-    <div class = "col-md-6 col-md-offset-3">
+
       <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label :email %>
-        <%= f.email_field :email, class:'form-control' %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password, class:'form-control' %>
-
-        <%= f.submit 'Log in', class: "btn btn-primary" %>
-        <%= link_to 'Sign up', new_user_path, class: "btn btn-primary" %>
+        <div class = "col m8 s12 offset-m2 z-depth-2 form">
+          <div class="col s4 offset-s4 center-align">
+             <i class="material-icons large">face</i>
+          </div>
+          <div class="input-field col s10 offset-s1">
+            <%= f.label :email %>
+            <%= f.email_field :email, class:'form-control' %>
+          </div>
+          <div class="input-field col s10 offset-s1">
+            <%= f.label :password %>
+            <%= f.password_field :password, class:'form-control' %>
+          </div>
+          <div class="input-field col m12 s10 offset-s1 valign-wrapper">
+            <div class="left-align col s7 valign">
+              <%= link_to 'Not a Memeber? Sign up today!', new_user_path, class: "" %>
+            </div>
+            <div class="col s5 valign">
+              <%= f.submit 'Log in', class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </div>
   </div>
 </div>

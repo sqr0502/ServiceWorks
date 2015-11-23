@@ -1,4 +1,5 @@
 json.array!(@service_requests) do |service_request|
-  json.extract! service_request, :id, :additional_notes
-  json.url service_request_url(service_request, format: :json)
+  json.extract! service_request, :created_at, :id, :additional_notes, :services, :updated_at
+  #when removing this we get the json object returned for its route
+  # json.url service_request_url(service_request, format: :json)
 end

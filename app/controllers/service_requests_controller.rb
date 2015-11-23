@@ -6,9 +6,9 @@ class ServiceRequestsController < ApplicationController
   def index
     if logged_in?
       if current_user.is_provider
-        @service_requests = ServiceRequest.all
+        @service_requests = ServiceRequest.all.search(params[:keyword])
       else
-        @service_requests = current_user.service_requests
+        @service_requests = current_user.service_requests.search(params[:keyword])
       end
     else
       flash[:danger] = "Please login to view this page"
@@ -41,6 +41,8 @@ class ServiceRequestsController < ApplicationController
     @service_request.services << Service.find(service_request_service[:services].to_i)
     @service_request.user_id = current_user.id
     @service_request.status = "Open"
+
+    @service_request.generate_order_number
 
     respond_to do |format|
       if @service_request.save

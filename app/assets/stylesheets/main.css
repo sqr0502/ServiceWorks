@@ -36,6 +36,14 @@ a#logo {
    background-color: rgba(150,150,150,0.3);
  }
 
+ .tab-content{
+   margin-top:3%;
+ }
+
+ .tabs .tab a{
+   /*color:black !important;*/
+ }
+
 
 
 #homedoor {

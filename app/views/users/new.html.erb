@@ -15,8 +15,7 @@
         </div>
     </div>
 
-    <div  id="company-info">
-
+    <div id="company-info">
       <!-- if servicer display company fields  -->
       <div class="input-field col s6" id="company-name">
         <%= f.label "Company Name" %>
@@ -27,7 +26,6 @@
         <%= f.label "Company Description" %>
         <%= f.text_field :company_desc %>
       </div>
-
     </div>
 
     <div class="input-field col s6 ">
@@ -41,8 +39,9 @@
     </div>
 
     <div class="input-field col m6 s12">
-    <%= f.label "Email" %>
-    <%= f.email_field :email %>
+      <%= f.label "Email" %>
+      <%= f.email_field :email %>
+    </div>
 
     <div class="input-field col m6 s12">
       <%= f.label "Phone" %>

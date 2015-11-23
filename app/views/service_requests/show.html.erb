@@ -10,9 +10,13 @@
   <% end %>
 <p>Notes:</p>
 <p><%= @service_request.additional_notes %></p>
-<%= image_tag @service_request.image_url(:show) %>
+<%= image_tag @service_request.image[0].url(:show) if @service_request.image[0] %>
+<%= image_tag @service_request.image[1].url(:show) if @service_request.image[1] %>
+<%= image_tag @service_request.image[2].url(:show) if @service_request.image[2] %>
+<%= image_tag @service_request.image[2].url(:show) if @service_request.image[3] %>
+<%= image_tag @service_request.image[2].url(:show) if @service_request.image[4] %>
 
-<!-- loop through all quotes on a service request. -->
+
 <% if @accepted_quote %>
   <div class="accepted-quote">
     <%= @accepted_quote.user.company_name %>'s Quote:<br>
@@ -32,7 +36,8 @@
                                                 service_request: {status: "Accepted"} ),
                                                 data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
       <% end %>
-      <%= link_to "Delete", service_request_quote_path(q), method: :delete if current_user.id == q.user_id %>
+      <%= link_to "Delete", service_request_quote_path(q, service_request: {status: "Open"}),
+          method: :delete if current_user.id == q.user_id %>
     </div>
     <hr>
   <% end %>
@@ -59,6 +64,7 @@
     <%= label_tag :note, "Note" %>
     <%= text_area_tag "quote[note]"%>
     <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
+    <%= hidden_field_tag("service_request[status]", "Quoted" ) %>
     <%= submit_tag("Send Quote") %>
   <% end %>
 <% end %>

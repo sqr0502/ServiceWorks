@@ -42,6 +42,8 @@ class ServiceRequestsController < ApplicationController
     @service_request.user_id = current_user.id
     @service_request.status = "Open"
 
+    @service_request.generate_order_number
+
     respond_to do |format|
       if @service_request.save
         format.html { redirect_to  user_service_requests_path, success: 'Service request was successfully created.' }

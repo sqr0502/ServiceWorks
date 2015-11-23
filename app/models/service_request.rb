@@ -5,4 +5,9 @@ class ServiceRequest < ActiveRecord::Base
 
     mount_uploaders :image, ImageUploader
 
+    def generate_order_number
+      number_array = rand(100..999).to_s.split << self.user_id
+      self.order_number = number_array.join.to_i
+    end
+
 end

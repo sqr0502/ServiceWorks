@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+
   resources :users do
     resources :service_requests
   end
 
   resources :users
   resources :charges
+
+  get 'reviews/new'
+  post '/users/:id/service_requests/:id/reviews/create', to: "reviews#create", as: "reviews_create"
+  get 'reviews/edit'
+  get 'reviews/destroy'
 
   get "/users/:id/service_requests/:id/quote/accept", to: "quotes#accept_quote", as: "accept_quote"
   post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"

@@ -8,12 +8,14 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.new(review_params)
     service_request = ServiceRequest.find(params[:service_request_id])
-
     if @review.save
       service_request.review = @review
 
       flash[:sucess] = "Review posted successfully"
-      redirect_to user_service_request_path(@review.user_id, @review.service_request_id)
+      redirect_to user_service_request_path(@review.user_id, service_request.id)
+    else
+      flash[:danger] = "Please select a rating"
+      redirect_to user_service_request_path(@review.user_id, service_request.id)
     end
   end
 

@@ -14,7 +14,7 @@
 
   <%= label_tag :rating, "Rating" %>
   <%= f.select(:rating) do %>
-    <% [[1,1], [2,2], [3,3], [4,4], [5,5]].each do |o| %>
+    <% [["Select Rating", ""],[1,1], [2,2], [3,3], [4,4], [5,5]].each do |o| %>
       <%= content_tag(:option, o.first, value: o.last) %>
     <% end %>
   <% end %>

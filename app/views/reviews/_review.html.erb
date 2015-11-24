@@ -21,6 +21,7 @@
 
   <%= label_tag :comment, "Leave a comment" %>
   <%= f.text_area :comment %><br>
+  <%= hidden_field_tag( :service_request_id, @service_request.id  ) %>
   <%= f.submit %>
 
 <% end %>

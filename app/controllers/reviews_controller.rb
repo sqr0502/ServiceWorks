@@ -1,14 +1,19 @@
 class ReviewsController < ApplicationController
+  before_action :logged_in?, only: [:create]
+
   def new
     @review = Review.new
   end
 
   def create
-    @review = Review.new(review_params)
+    @review = current_user.reviews.new(review_params)
+    service_request = ServiceRequest.find(params[:service_request_id])
 
     if @review.save
+      service_request.review = @review
+
       flash[:sucess] = "Review posted successfully"
-      redirect_to user_service_request.path(@review.user_id, @review.service_request_id)
+      redirect_to user_service_request_path(@review.user_id, @review.service_request_id)
     end
   end
 
@@ -21,6 +26,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :comment)
+    params.require(:review).permit(:rating, :comment, :user_id, :service_request_id)
   end
 end

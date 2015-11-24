@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :quotes, dependent: :destroy
   has_many :service_requests
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   mount_uploader :business_logo, LogoUploader
 end

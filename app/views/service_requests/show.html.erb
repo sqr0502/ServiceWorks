@@ -51,9 +51,7 @@
 <% end %>
 
 <% if @service_request.status == "Completed" &&  @service_request.review.nil? %>
-  <p>
-    Please leave a review
-  </p>
+  <p>Please leave a review</p>
   <%= render "reviews/review" %>
 <% end %>
 

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+
+  get 'reviews/create'
+
+  get 'reviews/edit'
+
+  get 'reviews/destroy'
+
   resources :users do
     resources :service_requests
   end

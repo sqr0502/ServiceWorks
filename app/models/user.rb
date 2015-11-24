@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
 
   mount_uploader :business_logo, LogoUploader
+
+  def self.company_review(company_id)
+  end
+  
 end

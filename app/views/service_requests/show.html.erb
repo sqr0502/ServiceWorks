@@ -29,7 +29,9 @@
     <div class="quote">
       <%= q.user.company_name %>'s Quote:<br>
       <%= q.user.company_name %> has offered a quote of <%= number_to_currency(q.amount) %><br>
-      <%= q.user.company_name %> says, "<%= q.note %>"<br>
+      <% if q.note %>
+        <%= q.user.company_name %> says, "<%= q.note %>"<br>
+      <% end %>
       <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
         <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
                                                 quote: { status: "Accepted" },
@@ -53,6 +55,14 @@
 <% if @service_request.status == "Completed" &&  @service_request.review.nil? %>
   <p>Please leave a review</p>
   <%= render "reviews/review" %>
+<% end %>
+
+<% if @service_request.status == "Completed" && @service_request.review %>
+  <p>
+    Review:
+  </p>
+  Rating: <%= @service_request.review.rating %><br>
+  <%= @service_request.review.comment %>
 <% end %>
 
 <br>

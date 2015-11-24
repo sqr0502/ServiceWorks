@@ -12,7 +12,7 @@
 
   <!-- TAB ONE - DASHBOARD-->
     <div id="tab1" class="col s10 offset-s1 tab-content">
-      <!-- Search Box -->    
+      <!-- Search Box -->
       <div id="search-box" class="col s6  tab-content">
         <p>
           <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
@@ -26,7 +26,7 @@
             </div>
           <% end %>
         </p>
-      </div>    
+      </div>
       <table>
         <thead>
           <th>Service</th>
@@ -35,7 +35,7 @@
           <th>Notes</th>
         </thead>
         <tbody>
-          <% @service_requests.order(created_at: :desc).each do |sr| %>    
+          <% @service_requests.order(created_at: :desc).each do |sr| %>
           <tr>
             <td>
               <ul>
@@ -48,24 +48,38 @@
             <td>
               <%= link_to sr.created_at.to_formatted_s(:short),
               user_service_request_path(sr.user_id, sr) %>
-            </td>  
+            </td>
             <td>
               <%= sr.status %>
             </td>
             <td>
               <%= sr.additional_notes %>
             </td>
+             <td class="hidden">
+               <!-- <p>
+                 <% if sr.status == "Accepted"%>
+                   <% sr.quotes.each do |q| %>
+                     <% if q.status == "Accepted" %>
+                       <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+                     <% end %>
+                   <% end %>
+                 <% else %>
+                   There are <%= link_to pluralize(sr.quotes.count, "quote"),
+                   user_service_request_path(sr.user_id, sr) %>
+                 <% end %>
+               </p> -->
+             </td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    
+
 
 
 <!-- TAB ONE - DASHBOARD-->
     <div id="tab2" class="col s10 offset-s1 tab-content">
-      <!-- Search Box -->    
+      <!-- Search Box -->
       <div id="search-box">
         <p>
           <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
@@ -79,7 +93,7 @@
             </div>
           <% end %>
         </p>
-      </div>    
+      </div>
       <table>
         <thead>
           <th>Service</th>
@@ -102,7 +116,7 @@
                 <td>
                   <%= link_to sr.created_at.to_formatted_s(:short),
                   user_service_request_path(sr.user_id, sr) %>
-                </td>  
+                </td>
                 <td>
                   <%= sr.status %>
                 </td>
@@ -144,4 +158,3 @@
         <%= render 'form' %>
     </div>
 </div>
-

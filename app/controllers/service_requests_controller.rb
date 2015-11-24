@@ -24,6 +24,7 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests/1.json
   def show
     @quote = Quote.new
+    @review = Review.new
     @accepted_quote = @service_request.quotes.find_by(status: "Accepted")
     @completed_quote = @service_request.quotes.find_by(status: "Completed")  
   end

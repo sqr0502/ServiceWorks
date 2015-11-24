@@ -78,20 +78,20 @@
 <% end %>
 
 
-
-
-
-</div>
-
-<% if current_user.is_provider %>
+<%# only show the quote form to Service Providers on service request that are NOT 'Accepted' or 'Completed' %>
+<% if current_user.is_provider && @service_request.status != "Accepted" && @service_request.status != "Completed" %>
+<%# the quote form is rendered from a partial %>
   <%= render "quotes/quote" %>
 <% end %>
 
-<% if @service_request.status == "Completed" &&  @service_request.review.nil? %>
+<%# only show the review form to the user's service requests, when the service request status is 'Completed
+and the service request does NOT have any reviews.%>
+<% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
   <p>Please leave a review</p>
   <%= render "reviews/review" %>
 <% end %>
 
+<%# Display the completed review when the service request is in status "Completed" AND a review exists %>
 <% if @service_request.status == "Completed" && @service_request.review %>
   <p>
     Review:
@@ -99,6 +99,8 @@
   Rating: <%= @service_request.review.rating %><br>
   <%= @service_request.review.comment %>
 <% end %>
+
+<%= button_to "Set to In Progress" %>
 
 <br>
 <%= link_to 'Back', user_service_requests_path(current_user) %>

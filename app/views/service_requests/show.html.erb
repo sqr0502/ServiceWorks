@@ -36,7 +36,7 @@
 
       <div id="review-modal" class="modal">
         <div class="modal-content">
-          <h4><%= q.user.company_name%>'s Review</h4>
+          <h4><%= q.user.company_name%>'s Reviews</h4>
 
           <table>
             <tr>
@@ -44,17 +44,23 @@
                 Reviewer
               </th>
               <th>
+                Rating
+              </th>
+              <th>
                 Comment
               </th>
             </tr>
             <% Review.where(company_id: q.user_id).each do |r| %>
             <tr>
-              <th>
+              <td>
                 <%= User.find(r.user_id).first_name %>
-              </th>
-              <th>
+              </td>
+              <td>
+                <%= r.rating %>
+              </td>
+              <td>
                 <%= r.comment %>
-              </th>
+              </td>
             </tr>
             <% end %>
           </table>

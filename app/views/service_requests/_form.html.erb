@@ -1,6 +1,5 @@
 <%= form_for [@user, @user.service_requests.build] do |f| %>
   <% if @service_request.errors.any? %>
-  <% if @service_request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@service_request.errors.count, "error") %> prohibited this service_request from being saved:</h2>
 
@@ -12,25 +11,28 @@
     </div>
   <% end %>
 
+  <div class="row col s12">
+    <h2>New Service Request</h2>  
+    <p>Need a hand? Please fill out this short form to get started on your service quote.</p>
+  </div>
+
   <div class="input-field col s12">
     <%= f.label :services %><br>
     <%= f.collection_select :services, @services, :id, :name %>
   </div>
 
-  <div class="input-field">
+  <div class="input-field col s12">
     <%= f.label :additional_notes %><br>
     <%= f.text_area :additional_notes %>
   </div>
 
-  <div class="input-field">
+  <div class="input-field col s12">
     <%= f.label :image, "Upload a Photo" %><br>
-      <%= f.file_field :image, multiple: true %>
+    <%= f.file_field :image, multiple: true %>
   </div>
 
-  <div class="row">
-    <div class="actions" style="margin-top: 40px;">
-      <%= f.submit "Create Service Request" , class: "btn btn-primary" %>
-    </div>
+  <div class="row col s12">
+    <%= f.submit "Create Service Request" , class: "btn btn-primary" %>
   </div>
 
 <% end %>

@@ -4,6 +4,10 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests
   # GET /service_requests.json
   def index
+    @user = User.find(session[:user_id])
+    @services = Service.order(:name) # probably needed whenever you show the edit/new form
+    @service_request = ServiceRequest.new if logged_in?
+      
     if logged_in?
       if current_user.is_provider
         @service_requests = ServiceRequest.all.search(params[:keyword])
@@ -21,6 +25,7 @@ class ServiceRequestsController < ApplicationController
   def show
     @quote = Quote.new
     @accepted_quote = @service_request.quotes.find_by(status: "Accepted")
+    @completed_quote = @service_request.quotes.find_by(status: "Completed")  
   end
 
   # GET /service_requests/new

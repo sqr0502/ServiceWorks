@@ -18,7 +18,4 @@ class User < ActiveRecord::Base
 
   mount_uploader :business_logo, LogoUploader
 
-  def self.company_review(company_id)
-  end
-  
 end

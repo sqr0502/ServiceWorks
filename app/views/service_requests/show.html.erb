@@ -32,6 +32,7 @@
       <% if q.note %>
         <%= q.user.company_name %> says, "<%= q.note %>"<br>
       <% end %>
+      Company Rating: <%= company_review(q.user_id) %><br>
       <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
         <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
                                                 quote: { status: "Accepted" },

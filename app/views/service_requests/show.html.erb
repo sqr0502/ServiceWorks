@@ -78,8 +78,8 @@
 <% end %>
 
 
-<%# only show the quote form to Service Providers on service request that are NOT 'Accepted' or 'Completed' %>
-<% if current_user.is_provider && @service_request.status != "Accepted" && @service_request.status != "Completed" %>
+<%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
+<% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>
 <%# the quote form is rendered from a partial %>
   <%= render "quotes/quote" %>
 <% end %>
@@ -100,7 +100,14 @@ and the service request does NOT have any reviews.%>
   <%= @service_request.review.comment %>
 <% end %>
 
-<%= button_to "Set to In Progress" %>
+<%# Let providers mark the service request as 'In Progress' or 'Completed' %>
+<% if @service_request.status == "Accepted" && current_user.is_provider %>
+  <%= button_to "Set to In Progress", set_status_user_service_request_path(@service_request.user_id, @service_request),
+  { method: :put, params: { type: "In Progress" } } %>
+<% elsif @service_request.status == "In Progress" && current_user.is_provider %>
+  <%= button_to "Set to Completed", set_status_user_service_request_path(@service_request.user_id, @service_request),
+  { method: :put, params: { type: "Completed" } }%>
+<% end %>
 
 <br>
 <%= link_to 'Back', user_service_requests_path(current_user) %>

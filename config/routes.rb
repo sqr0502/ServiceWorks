@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   post "/users/:id/service_requests/:id/quote", to: "quotes#create", as: "service_request_quote"
   delete "/users/:id/service_requests/:id/quote", to: "quotes#destroy"
 
-  get 'static_pages/home'
+  get '/about_us', to: 'static_pages#about_us'
+  get '/contact_us', to: 'static_pages#contact_us'
+  get '/services', to: 'static_pages#services'    
   root 'static_pages#home'
 
   get '/login', to: 'sessions#new'

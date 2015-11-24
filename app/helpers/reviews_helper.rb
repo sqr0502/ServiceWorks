@@ -6,7 +6,12 @@ module ReviewsHelper
     reviews.each do |r|
       total += r.rating
     end
-    total/reviews.count
+    score = total/reviews.count
+    if score == 0
+      "No Reviews"
+    else
+      score
+    end
   end
-  
+
 end

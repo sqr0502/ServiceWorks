@@ -1,4 +1,5 @@
-<%= form_for @review, url: { controller: "reviews", action: "create" }, method: :post do %>
+
+<%= form_for @review, url: { controller: "reviews", action: "create" }, method: :post do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> Could not save review:</h2>
@@ -10,4 +11,15 @@
       </ul>
     </div>
   <% end %>
+
+  <%= label_tag :rating, "Rating" %>
+  <%= f.select(:rating) do %>
+    <% [[1,1], [2,2], [3,3], [4,4], [5,5]].each do |o| %>
+      <%= content_tag(:option, o.first, value: o.last) %>
+    <% end %>
+  <% end %>
+
+  <%= label_tag :comment, "Leave a comment" %>
+  <%= f.text_area :comment %>
+
 <% end %>

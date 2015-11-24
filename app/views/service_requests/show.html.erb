@@ -50,7 +50,10 @@
   <%= render "quotes/quote" %>
 <% end %>
 
-<% if @service_request.status == "Completed" %>
+<% if @service_request.status == "Completed" &&  @service_request.review.nil? %>
+  <p>
+    Please leave a review
+  </p>
   <%= render "reviews/review" %>
 <% end %>
 

@@ -55,14 +55,14 @@
             <td>
               <%= link_to sr.created_at.to_formatted_s(:short),
               user_service_request_path(sr.user_id, sr) %>
-            </td>  
+            </td>
             <td>
               <%= sr.status %>
             </td>
             <td>
               <%= sr.additional_notes %>
             </td>
-            
+
              <td class="hidden">
                <!-- <p>
                  <% if sr.status == "Accepted"%>

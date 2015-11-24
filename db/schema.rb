@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123200101) do
+ActiveRecord::Schema.define(version: 20151124000957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20151123200101) do
 
   add_index "quotes", ["service_request_id"], name: "index_quotes_on_service_request_id", using: :btree
   add_index "quotes", ["user_id"], name: "index_quotes_on_user_id", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "service_request_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "reviews", ["service_request_id"], name: "index_reviews_on_service_request_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "service_request_services", force: :cascade do |t|
     t.integer  "service_request_id"
@@ -80,6 +92,8 @@ ActiveRecord::Schema.define(version: 20151123200101) do
 
   add_foreign_key "quotes", "service_requests"
   add_foreign_key "quotes", "users"
+  add_foreign_key "reviews", "service_requests"
+  add_foreign_key "reviews", "users"
   add_foreign_key "service_request_services", "service_requests"
   add_foreign_key "service_request_services", "services"
   add_foreign_key "service_requests", "users"

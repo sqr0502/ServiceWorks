@@ -32,7 +32,38 @@
       <% if q.note %>
         <%= q.user.company_name %> says, "<%= q.note %>"<br>
       <% end %>
-      Company Rating: <%= company_review(q.user_id) %><br>
+      Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
+
+      <div id="review-modal" class="modal">
+        <div class="modal-content">
+          <h4><%= q.user.company_name%>'s Review</h4>
+
+          <table>
+            <tr>
+              <th>
+                Reviewer
+              </th>
+              <th>
+                Comment
+              </th>
+            </tr>
+            <% Review.where(company_id: q.user_id).each do |r| %>
+            <tr>
+              <th>
+                <%= User.find(r.user_id).first_name %>
+              </th>
+              <th>
+                <%= r.comment %>
+              </th>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+
       <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
         <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
                                                 quote: { status: "Accepted" },
@@ -45,6 +76,9 @@
     <hr>
   <% end %>
 <% end %>
+
+
+
 
 
 </div>

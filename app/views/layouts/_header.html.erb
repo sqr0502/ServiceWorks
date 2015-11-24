@@ -9,10 +9,11 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
              
       <!-- links on desktop -->  
-         <ul class="right hide-on-med-and-down">
+         <ul id="nav-mobile" class="right hide-on-med-and-down">
              <li><%= link_to 'Home', root_path %></li>
              <li><%= link_to 'Services', root_path %></li>
              
+             <!-- Dropdown Trigger -->
              <% if logged_in? %>   
              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right"></i></a></li>
                 <ul id="dropdown1" class="dropdown-content">
@@ -20,9 +21,10 @@
                     <li><%= link_to 'Settings', user_service_requests_path(current_user.id)%></li>
                     <li class="divider"></li>    
                     <li><%= link_to 'Logout', logout_path, method: "delete" %></li>
-             <% else %>
+             </ul>
+                    <% else %>
                     <li><%= link_to 'Login', login_path %></li>     
-                </ul>
+                
              <% end %>
          </ul>
          

@@ -7,9 +7,9 @@ module ReviewsHelper
     reviews.each do |r|
       total += r.rating
     end
-    score = total/reviews.count
+    score = (total.to_f/reviews.count).round(2)
     if score == 0
-      "No Reviews" 
+      "No Reviews"
     else
       score
     end

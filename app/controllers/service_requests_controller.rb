@@ -10,8 +10,11 @@ class ServiceRequestsController < ApplicationController
 
     if logged_in?
       if current_user.is_provider
+        # Show all services requests if the user is a provider
+        # Search is a named scope in the ServiceRequest model
         @service_requests = ServiceRequest.all.search(params[:keyword])
       else
+        # If the user is a NOT a provider, only show the user's service requests
         @service_requests = current_user.service_requests.search(params[:keyword])
       end
     else
@@ -44,10 +47,13 @@ class ServiceRequestsController < ApplicationController
   # POST /service_requests.json
   def create
     @service_request = ServiceRequest.new(service_request_params)
+    # Add the selected services to the service request
     @service_request.services << Service.find(service_request_service[:services].to_i)
     @service_request.user_id = current_user.id
+    # When a service request is created, it's status is set to "Open"
     @service_request.status = "Open"
 
+    # Call generate_order_number method in the ServiceRequest model to get a value for the order number
     @service_request.generate_order_number
 
     respond_to do |format|
@@ -85,6 +91,7 @@ class ServiceRequestsController < ApplicationController
     end
   end
 
+  # Providers can update the status of the service request.  This is handled via a button in the view.
   def set_status
     type = params[:type]
     if type == "In Progress"

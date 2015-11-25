@@ -1,160 +1,139 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <div class="col s12">
-    <ul class="tabs z-depth-2">
-        <li class="tab col s3"><a class="active" href="#tab1">Current Orders</a></li>
-        <li class="tab col s3"><a class="active" href="#tab2">Order History</a></li>
-        <li class="tab col s3"><a class="active" href="#tab3">Account Settings</a></li>
-        <li class="tab col s3"><a class="active" href="#tab4">New Service Request</a></li>
-    </ul>
-  </div>
-
-  <!-- TAB ONE - DASHBOARD-->
-    <div id="tab1" class="col s10 offset-s1 tab-content">
-      <!-- Search Box -->
-      <div id="search-box" class="col s6  tab-content">
-        <p>
-          <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
-            <div class="input-append">
-              <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders" %>
-              <div>
-                <p>
-                  <button class="btn-search" type="submit"><i class="icon-search"></i>Go</button>
-                </p>
-              </div>
-            </div>
-          <% end %>
-        </p>
+  <div class="row">
+    <!-- Dahboard Profile Bio -->
+      <div class="col s2 offset-s1" id="dashboard-left">
+        <img src="http://placingbad.com/200/200/walter" />
+        <ul>
+          <li>Company Name</li>
+          <li>Add Photos/Videos</li>
+          <li>Edit/View Settings</li>
+          <li>My Reviews</li>
+          <li>Services</li>
+        </ul>
       </div>
-      <table>
-        <thead>
-          <th>Service</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Notes</th>
-        </thead>
-        <tbody>
-          <% @service_requests.order(created_at: :desc).each do |sr| %>
-          <tr>
-            <td>
-              <ul>
-                <% sr.services.each do |s| %>
-                <li><%= s.name %></li>
-              </ul>
-              <% end %>
 
-            </td>
-            <td>
-              <%= link_to sr.created_at.to_formatted_s(:short),
-              user_service_request_path(sr.user_id, sr) %>
-            </td>
-            <td>
-              <%= sr.status %>
-            </td>
-            <td>
-              <%= sr.additional_notes %>
-            </td>
-             <td class="hidden">
-               <!-- <p>
-                 <% if sr.status == "Accepted"%>
-                   <% sr.quotes.each do |q| %>
-                     <% if q.status == "Accepted" %>
-                       <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+    <!-- Dashboard -->
+    <div class="col s8 ">
+    <ul class="collapsible" data-collapsible="accordion">
+     <li>
+       <!-- Section ONE - DASHBOARD-->
+       <div class="collapsible-header active"><i class="material-icons">assignment</i>Orders</div>
+       <div class="collapsible-body">
+         <div class="row">
+           <div class="col s8 offset-s2">
+             <table>
+               <thead>
+                 <th>Date</th>
+                 <th>Status</th>
+                 <th>Service</th>
+                 <th>Notes</th>
+               </thead>
+               <tbody>
+                 <% @service_requests.order(created_at: :desc).each do |sr| %>
+                 <tr>
+                   <td>
+                     <%= link_to sr.created_at.to_formatted_s(:short),
+                     user_service_request_path(sr.user_id, sr) %>
+                   </td>
+                   <td>
+                     <%= sr.status %>
+                   </td>
+                   <td>
+                     <ul>
+                       <% sr.services.each do |s| %>
+                       <li><%= s.name %></li>
+                     </ul>
                      <% end %>
-                   <% end %>
-                 <% else %>
-                   There are <%= link_to pluralize(sr.quotes.count, "quote"),
-                   user_service_request_path(sr.user_id, sr) %>
+
+                   </td>
+                   <td>
+                     <%= sr.additional_notes %>
+                   </td>
+                    <td class="hidden">
+                      <!-- <p>
+                        <% if sr.status == "Accepted"%>
+                          <% sr.quotes.each do |q| %>
+                            <% if q.status == "Accepted" %>
+                              <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          There are <%= link_to pluralize(sr.quotes.count, "quote"),
+                          user_service_request_path(sr.user_id, sr) %>
+                        <% end %>
+                      </p> -->
+                    </td>
+                 </tr>
                  <% end %>
-               </p> -->
-             </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-
-
-<!-- TAB ONE - DASHBOARD-->
-    <div id="tab2" class="col s10 offset-s1 tab-content">
-      <!-- Search Box -->
-      <div id="search-box">
-        <p>
-          <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
-            <div class="input-append">
-              <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders" %>
-              <div>
-                <p>
-                  <button class="btn-search" type="submit"><i class="icon-search"></i>Go</button>
-                </p>
-              </div>
-            </div>
-          <% end %>
-        </p>
-      </div>
-      <table>
-        <thead>
-          <th>Service</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Notes</th>
-        </thead>
-        <tbody>
-          <% @service_requests.order(created_at: :desc).each do |sr| %>
-            <% if sr.status == "Completed" %>
-              <tr>
-                <td>
-                  <ul>
-                    <% sr.services.each do |s| %>
-                    <li><%= s.name %></li>
-                  </ul>
-                  <% end %>
-
-                </td>
-                <td>
-                  <%= link_to sr.created_at.to_formatted_s(:short),
-                  user_service_request_path(sr.user_id, sr) %>
-                </td>
-                <td>
-                  <%= sr.status %>
-                </td>
-                <td>
-                  <%= sr.additional_notes %>
-                </td>
-
-                 <td class="hidden">
-                   <!-- <p>
-                     <% if sr.status == "Accepted"%>
-                       <% sr.quotes.each do |q| %>
-                         <% if q.status == "Accepted" %>
-                           <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </li>
+     <li>
+       <!-- Section TWO - DASHBOARD-->
+       <div class="collapsible-header"><i class="material-icons">schedule</i>Order History</div>
+       <div class="collapsible-body">
+         <div class="row">
+           <div class="col s8 offset-s2">
+             <table>
+               <thead>
+                 <th>Date</th>
+                 <th>Status</th>
+                 <th>Service</th>
+                 <th>Notes</th>
+               </thead>
+               <tbody>
+                 <% @service_requests.order(created_at: :desc).each do |sr| %>
+                   <% if sr.status == "Completed" %>
+                     <tr>
+                       <td>
+                         <%= link_to sr.created_at.to_formatted_s(:short),
+                         user_service_request_path(sr.user_id, sr) %>
+                       </td>
+                       <td>
+                         <%= sr.status %>
+                       </td>
+                       <td>
+                         <ul>
+                           <% sr.services.each do |s| %>
+                           <li><%= s.name %></li>
+                         </ul>
                          <% end %>
-                       <% end %>
-                     <% else %>
-                       There are <%= link_to pluralize(sr.quotes.count, "quote"),
-                       user_service_request_path(sr.user_id, sr) %>
-                     <% end %>
-                   </p> -->
-                 </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-
-
-
-
-
-
-    <div id="tab3" class="col s10 offset-s1 tab-content">
-        <%= render '/users/user' %>
-    </div>
-    <div id="tab4" class="col s10 offset-s1 tab-content">
-        <%= render 'form' %>
-    </div>
-</div>
+                       </td>
+                       <td>
+                         <%= sr.additional_notes %>
+                       </td>
+                        <td class="hidden">
+                          <!-- <p>
+                            <% if sr.status == "Accepted"%>
+                              <% sr.quotes.each do |q| %>
+                                <% if q.status == "Accepted" %>
+                                  <%= User.find(q.user_id).company_name %>'s quote for <%= number_to_currency(q.amount) %> has been accepted for this service request.
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              There are <%= link_to pluralize(sr.quotes.count, "quote"),
+                              user_service_request_path(sr.user_id, sr) %>
+                            <% end %>
+                          </p> -->
+                        </td>
+                     </tr>
+                   <% end %>
+                 <% end %>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </li>
+     <li>
+       <!-- Section THREE- DASHBOARD-->
+       <div class="collapsible-header"><i class="material-icons">add_box</i>New Service Request</div>
+       <div class="collapsible-body"><%= render 'form' %></div>
+     </li>
+   </ul>
+  </div>
+  </div>

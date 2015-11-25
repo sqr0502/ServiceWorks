@@ -10,6 +10,13 @@ $(document).on("ready page:load", function(){
       $("#home-button").hide();
       }
 
+     if(window.location.pathname.indexOf('new') < 0){
+       $('#service-request').removeClass('z-depth-1');
+       $('#service-request .input-field').removeClass('col s6 offset-s3');
+       $('#service-request .input-field').addClass('col s8 offset-s2');
+
+     }
+
 
     //get locations for map icons
     getLocation();

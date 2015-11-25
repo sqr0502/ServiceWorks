@@ -1,47 +1,48 @@
 <!-- Navbar -->
 <header>
   <div class="navbar-fixed">
-    <nav class="#8bc34a light-green">
+    <ul id="dropdown1" class="dropdown-content">
+        <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li>
+        <li><%= link_to 'Settings', user_service_requests_path(current_user.id)%></li>
+        <li class="divider"></li>
+        <li><%= link_to 'Logout', logout_path, method: "delete" %></li>
+    </ul>
+    <nav class="light-green">
      <div class="nav-wrapper container">
-       <%= link_to 'Service Werks', root_path, id: "logo", class: "brand-logo" %>
+       <%= link_to 'Service Works', root_path, id: "logo", class: "brand-logo" %>
 
        <!-- for hamburger menu -->
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-             
-      <!-- links on desktop -->  
+
+      <!-- links on desktop -->
          <ul id="nav-mobile" class="right hide-on-med-and-down">
              <li><%= link_to 'Home', root_path %></li>
              <li><%= link_to 'Services', root_path %></li>
-             
+
              <!-- Dropdown Trigger -->
-             <% if logged_in? %>   
+             <% if logged_in? %>
              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right"></i></a></li>
-                <ul id="dropdown1" class="dropdown-content">
-                    <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li>
-                    <li><%= link_to 'Settings', user_service_requests_path(current_user.id)%></li>
-                    <li class="divider"></li>    
-                    <li><%= link_to 'Logout', logout_path, method: "delete" %></li>
-             </ul>
+
                     <% else %>
-                    <li><%= link_to 'Login', login_path %></li>     
-                
+                    <li><%= link_to 'Login', login_path %></li>
+
              <% end %>
          </ul>
-         
 
-         <!-- links on mobile -->  
+
+         <!-- links on mobile -->
          <ul class="side-nav" id="mobile-demo">
              <li><%= link_to 'Home', root_path %></li>
              <li><%= link_to 'Services', root_path %></li>
-             
-             <% if logged_in? %>   
+
+             <% if logged_in? %>
                 <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li>
                 <li><%= link_to 'Settings', user_service_requests_path(current_user.id)%></li>
-                <li class="divider"></li>    
+                <li class="divider"></li>
                 <li><%= link_to 'Logout', logout_path, method: "delete" %></li>
 
              <% else %>
-                <li><%= link_to 'Login', login_path %></li>     
+                <li><%= link_to 'Login', login_path %></li>
              <% end %>
          </ul>
      </div>

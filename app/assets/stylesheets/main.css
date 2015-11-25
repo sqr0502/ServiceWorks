@@ -5,8 +5,7 @@
 
 /* Navbar logo*/
 a#logo {
-  font-family: 'Lobster';
-  padding-top: 1%;
+  font-family: 'Signika';
   font-size: 50px;
 }
 
@@ -57,6 +56,10 @@ a#logo {
   opacity: 10%;
 }
 
+/* Navbar */
+.dropdown-content li a{
+  font-size: 1em !important;
+}
 
 /* Section 2 */
 /* Feature cards */
@@ -82,7 +85,7 @@ h5 {
 }
 
 
-/****** Profile page ******/
+/****** Dashboard page ******/
 /* profile header */
 .profile-title {
   text-align: center;
@@ -98,6 +101,7 @@ h5 {
   padding: 3% 0 3% 0 !important;
 }
 
+/* signup login*/
 .signup-form{
     padding: 3% 0 3% 0 !important;
 }

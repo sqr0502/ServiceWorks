@@ -12,10 +12,10 @@
   <% end %>
 
   <div class="row col s12">
-    <h2>New Service Request</h2>  
+    <h2>New Service Request</h2>
     <p>Need a hand? Please fill out this short form to get started on your service quote.</p>
   </div>
-
+  <%# drop down select is populated from the services table %>
   <div class="input-field col s12">
     <%= f.label :services %><br>
     <%= f.collection_select :services, @services, :id, :name %>
@@ -25,7 +25,7 @@
     <%= f.label :additional_notes %><br>
     <%= f.text_area :additional_notes %>
   </div>
-
+  <%# Use can upload multiple photos. 5 photos max will be displayed. %>
   <div class="input-field col s12">
     <%= f.label :image, "Upload a Photo" %><br>
     <%= f.file_field :image, multiple: true %>

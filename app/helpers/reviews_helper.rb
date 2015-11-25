@@ -7,6 +7,7 @@ module ReviewsHelper
     reviews.each do |r|
       total += r.rating
     end
+    # return an average rating accurate to 2 decimal places
     score = (total.to_f/reviews.count).round(2)
     if score == 0
       "No Reviews"

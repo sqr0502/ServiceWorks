@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+gem 'rails', '4.2.4'
 # Added Features
 gem 'stripe'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+
 gem 'pg'
 
 # gem 'bootstrap-sass', '~> 3.3.5'
@@ -56,7 +58,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
-    gem 'rspec-core'#, '~> 3.4.0'
+  gem 'rspec-core'#, '~> 3.4.0'
   gem 'capybara'
   gem 'launchy'
 
@@ -72,5 +74,5 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end

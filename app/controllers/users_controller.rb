@@ -16,10 +16,9 @@ class UsersController < ApplicationController
 
       redirect_to user_service_requests_path(@user)
 
+      # Send email to the user after the user signs up
       UserNotifier.send_signup_email(@user).deliver
-
     else
-#      render 'new'
       render :action => 'new'
     end
   end

@@ -1,13 +1,9 @@
 
-@import url(https://fonts.googleapis.com/css?family=Sacramento);
-@import url(https://fonts.googleapis.com/css?family=Architects+Daughter);
-@import url(https://fonts.googleapis.com/css?family=Lobster);
-
 /* Navbar logo*/
 a#logo {
-  font-family: 'Lobster';
-  padding-top: 1%;
+  font-family: 'Signika', sans-serif;
   font-size: 50px;
+  margin-left: 2%;
 }
 
 /***** HomePage *****/
@@ -29,11 +25,12 @@ a#logo {
 
 
 .home-title {
-  font-size: 64;
+  font-size: 4.8rem;
+  font-weight: 500;
   color: white;
   margin: 16% 0 0 0;
   text-align: center;
-  font-family: 'Architects Daughter', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .home-tag{
@@ -58,6 +55,9 @@ a#logo {
  }
 
 
+#wash{
+  height: 200px !important;
+}
 
 #homedoor {
   height: 100vh;
@@ -68,6 +68,10 @@ a#logo {
   opacity: 10%;
 }
 
+/* Navbar */
+.dropdown-content li a{
+  font-size: 1em !important;
+}
 
 /* Section 2 */
 /* Feature cards */
@@ -93,7 +97,7 @@ h5 {
 }
 
 
-/****** Profile page ******/
+/****** Dashboard page ******/
 /* profile header */
 .profile-title {
   text-align: center;
@@ -109,6 +113,15 @@ h5 {
   padding: 3% 0 3% 0 !important;
 }
 
+/* signup login*/
 .signup-form{
     padding: 3% 0 3% 0 !important;
+}
+
+#service-request{
+
+}
+
+#dashboard-left{
+  margin-top: 3%;
 }

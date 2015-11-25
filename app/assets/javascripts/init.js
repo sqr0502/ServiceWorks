@@ -3,16 +3,41 @@ $(document).on("ready page:load", function(){
     $('.parallax').parallax();
      $(".button-collapse").sideNav();
 
+     var currentLocation = window.location;
+     //check for location
+     if(window.location.pathname == "/"){
+       //hide home button when location is home
+      $("#home-button").hide();
+      }
+     // resize service request form
+     if(window.location.pathname.indexOf('new') < 0){
+       $('#service-request').removeClass('z-depth-1');
+       $('#service-request .input-field').removeClass('col s6 offset-s3');
+       $('#service-request .input-field').addClass('col s8 offset-s2');
+
+     }
+
+
+    //get locations for map icons
     getLocation();
   });
+
+
+
+
+
+
+
+
+///Map functions ===========================================
+
+// global map object
+var map;
 
 // getting location into an addrees TODO:implement address addition dynamic
 function getLocation(){
  $.get("https://maps.googleapis.com/maps/api/geocode/json?address=90210",loadMarkers);
 }
-
-// global map object
-var map;
 
 // initialize map, centered on US
 function initMap() {

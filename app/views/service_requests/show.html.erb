@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="container">
   <div class="row">
     <div class="col s12 z-depth-2">
@@ -31,6 +32,7 @@
       </div>
 
       <div class="col s4">
+        <%# Show up to 5 uploaded images %>
         <%= image_tag @service_request.image[0].url(:show) if @service_request.image[0] %>
         <%= image_tag @service_request.image[1].url(:show) if @service_request.image[1] %>
         <%= image_tag @service_request.image[2].url(:show) if @service_request.image[2] %>
@@ -39,6 +41,7 @@
       </div>
       <div class="row">
         <div class="col s6 ">
+          <%# Show only the accepted wuote %>
           <% if @accepted_quote %>
             <div class="accepted-quote">
               <%= @accepted_quote.user.company_name %>'s Quote:<br>
@@ -47,6 +50,7 @@
               Quote Status: <%= @accepted_quote.status %>
             </div>
           <% else %>
+          <%# if no accepted quote, show the user all open quotes %>
             <% @service_request.quotes.each do |q| %>
               <div class="quote">
                 <%= q.user.company_name %>'s Quote:<br>
@@ -54,6 +58,7 @@
                 <% if q.note %>
                   <%= q.user.company_name %> says, "<%= q.note %>"<br>
                 <% end %>
+                <%# Company rating value opens a company review modal %>
                 Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
 
                 <div id="review-modal" class="modal">
@@ -91,26 +96,24 @@
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                   </div>
                 </div>
-
+                <%# Accept quote link %>
                 <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
                   <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
                                                           quote: { status: "Accepted" },
                                                           service_request: {status: "Accepted"} ),
                                                           data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
                 <% end %>
+                <%# Company can delete their own quotes only %>
                 <%= link_to "Delete", service_request_quote_path(q, service_request: {status: "Open"}),
                     method: :delete if current_user.id == q.user_id %>
               </div>
               <hr>
+
+
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-
-      </div>
-
-
-
-
 
       <%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
       <% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>

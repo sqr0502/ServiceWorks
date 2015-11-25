@@ -13,6 +13,17 @@ a#logo {
   position: relative;
  }
 
+/*STYLE FOR MAIN PARAGRAPH ON HOME PAGE*/
+#main-paragraph {
+    background-color: #8bc34a;
+}
+
+#main-paragraph p {
+    font-size: 1.6em;
+    color: white;
+}
+
+
 .home-title {
   font-size: 4.8rem;
   font-weight: 500;

@@ -1,20 +1,23 @@
 <%= form_for @quote, url: { controller: "quotes", action: "create" }, method: :post do %>
-<% if @quote.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this service_request from being saved:</h2>
+  <%# show validation errors %>
+  <% if @quote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@quote.errors.count, "error") %> prohibited this service_request from being saved:</h2>
 
-    <ul>
-    <% @quote.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+      <ul>
+      <% @quote.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= label_tag :amount, "Quote" %>
   <%= text_field_tag "quote[amount]"%>
   <%= label_tag :note, "Note" %>
   <%= text_area_tag "quote[note]"%>
+  <%# Add service request ID to the params %>
   <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
+  <%# Update the service request status to "Quoted" %>
   <%= hidden_field_tag("service_request[status]", "Quoted" ) %>
   <%= submit_tag("Send Quote") %>
 <% end %>

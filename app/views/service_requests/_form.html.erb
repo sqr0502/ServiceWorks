@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+<<<<<<< HEAD
   <div class="row ">
     <div class="col s10 offset-s1 z-depth-1 form" id="service-request">
       <div class="col s12 center-align">
@@ -19,6 +20,7 @@
       </div>
 
       <div class="input-field col s6 offset-s3">
+        <%# drop down select is populated from the services table %>
         <%= f.label :services %><br>
         <%= f.collection_select :services, @services, :id, :name %>
       </div>
@@ -26,6 +28,7 @@
       <div class="input-field file-field col s6 offset-s3">
         <div class="btn right-align green">
           <span> Upload Photo </span>
+          <%# Use can upload multiple photos. 5 photos max will be displayed. %>
           <%= f.file_field :image, multiple: true %>
         </div>
         <div class="file-path-wrapper">

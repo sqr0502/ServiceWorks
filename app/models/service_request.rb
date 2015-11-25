@@ -6,11 +6,13 @@ class ServiceRequest < ActiveRecord::Base
 
     mount_uploaders :image, ImageUploader
 
+    # An order number is a random number 100 - 999 prepended to the user ID.
     def generate_order_number
       number_array = rand(100..999).to_s.split << self.user_id
       self.order_number = number_array.join.to_i
     end
 
+    # Fuzzy search in order notes and exact match in order number
     scope :search, ->(keyword) { where( "lower(additional_notes) LIKE ? OR order_number = ?",
       "%#{keyword.downcase}%", keyword.to_i ) if keyword.present? }
 

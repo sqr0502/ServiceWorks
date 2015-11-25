@@ -1,5 +1,6 @@
 
 <%= form_for @review, url: { controller: "reviews", action: "create" }, method: :post do |f| %>
+  <%# Show validation errors  %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> Could not save review:</h2>
@@ -13,6 +14,7 @@
   <% end %>
 
   <%= label_tag :rating, "Rating" %>
+  <%# Select a rating 1 - 5 %>
   <%= f.select(:rating) do %>
     <% [["Select Rating", ""],[1,1], [2,2], [3,3], [4,4], [5,5]].each do |o| %>
       <%= content_tag(:option, o.first, value: o.last) %>
@@ -21,7 +23,9 @@
 
   <%= label_tag :comment, "Leave a comment" %>
   <%= f.text_area :comment %><br>
+  <%# Add service request ID to params %>
   <%= hidden_field_tag( :service_request_id, @service_request.id  ) %>
+  <%# Add company (user) ID to params %>
   <%= hidden_field_tag("review[company_id]", @accepted_quote.user_id ) %>
   <%= f.submit %>
 

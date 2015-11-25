@@ -16,8 +16,9 @@
     <p>Getting started on your home improvement or repair project is easy with Service Works. Our mission is to connect local service companies with individuals looking to get started on a home improvement or repair project.</p>
 
     <p>To begin, simply fill-in the following form and be sure to include any relevant details and photos. A local company will respond to your request and provide an estimate.</p>
-  </div>
 
+  </div>
+  <%# drop down select is populated from the services table %>
   <div class="input-field col s12">
     <%= f.label :services %><br>
     <%= f.collection_select :services, @services, :id, :name %>
@@ -27,7 +28,7 @@
     <%= f.label :additional_notes %><br>
     <%= f.text_area :additional_notes %>
   </div>
-
+  <%# Use can upload multiple photos. 5 photos max will be displayed. %>
   <div class="input-field col s12">
     <%= f.label :image, "Upload a Photo" %><br>
     <%= f.file_field :image, multiple: true %>

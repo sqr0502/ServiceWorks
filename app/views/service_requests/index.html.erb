@@ -10,10 +10,10 @@
     </ul>
   </div>
 
-  <!-- TAB ONE - DASHBOARD-->
+  <!-- TAB ONE - DASH/CURRENT ORDERS-->
     <div id="tab1" class="col s10 offset-s1 tab-content">
       <!-- Search Box -->
-      <div id="search-box" class="col s6  tab-content">
+      <div id="search-box" class="col s6 tab-content">
         <p>
           <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
             <div class="input-append">
@@ -77,10 +77,10 @@
 
 
 
-<!-- TAB ONE - DASHBOARD-->
+<!-- TAB TWO - DASH/ORDER HISTORY -->
     <div id="tab2" class="col s10 offset-s1 tab-content">
       <!-- Search Box -->
-      <div id="search-box">
+      <div id="search-box" class="col s6 tab-content">
         <p>
           <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
             <div class="input-append">

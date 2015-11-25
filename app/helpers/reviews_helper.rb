@@ -1,5 +1,6 @@
 module ReviewsHelper
 
+  # Collect all of a company's reviews and return an average rating.
   def company_review(company_id)
     reviews = Review.where(company_id: company_id)
     total = 0
@@ -8,7 +9,7 @@ module ReviewsHelper
     end
     score = total/reviews.count
     if score == 0
-      "No Reviews"
+      "No Reviews" 
     else
       score
     end

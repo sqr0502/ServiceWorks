@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :users do
-    resources :service_requests
+    resources :service_requests do
+      put "set_status", on: :member, as: "set_status"
+    end
   end
 
   resources :users
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
 
   get '/about_us', to: 'static_pages#about_us'
   get '/contact_us', to: 'static_pages#contact_us'
-  get '/services', to: 'static_pages#services'    
+  get '/services', to: 'static_pages#services'
   root 'static_pages#home'
 
   get '/login', to: 'sessions#new'

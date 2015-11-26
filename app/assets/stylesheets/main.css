@@ -23,6 +23,11 @@ a#logo {
     color: white;
 }
 
+nav{
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
 
 .home-title {
   font-size: 4.8rem;
@@ -61,6 +66,7 @@ a#logo {
 
 #homedoor {
   height: 100vh;
+  margin-top: -5%;
 }
 
 .home-form {

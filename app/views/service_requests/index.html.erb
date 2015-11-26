@@ -2,16 +2,17 @@
 
   <div class="row">
     <!-- Dahboard Profile Bio -->
+    <%# Only show this Profile Bio for servie providers %>
+    <%# if current_user.is_provider %>
       <div class="col s2 offset-s1" id="dashboard-left">
         <img src="http://placingbad.com/200/200/walter" />
         <ul>
-          <li>Company Name</li>
-          <li>Add Photos/Videos</li>
+          <li><%= current_user.company_name %></li>
           <li>Edit/View Settings</li>
-          <li>My Reviews</li>
-          <li>Services</li>
+          <li>Rating: <%= link_to company_review(current_user.id), "#review-modal", class: "review-modal-trigger" %></li>
         </ul>
       </div>
+    <%# end %>
 
     <!-- Dashboard -->
     <div class="col s8 ">
@@ -138,9 +139,12 @@
   </div>
 </div>
 
-<%# Google Map rendered from a partial %>
-<script type="text/javascript">
-  <%= render partial: 'map', formats: [:js], locals: {time_now: Time.now} %>
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOgqVNxAhwzQfqDZ-rSVYAiLNadN6iqQ&callback=initMap"></script>
+<%# Only show the map to service providers. %>
+<% if current_user.is_provider %>
+  <div id="map"></div>
+  <%# Google Map JS rendered from a partial %>
+  <script type="text/javascript">
+    <%= render partial: 'map', formats: [:js], locals: {time_now: Time.now} %>
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOgqVNxAhwzQfqDZ-rSVYAiLNadN6iqQ&callback=initMap"></script>
+<% end %>

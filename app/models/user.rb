@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   mount_uploader :business_logo, LogoUploader
 
   def full_address
-    [street_one, city, state].compact.join(", ")
+    [street_one, city, state, zip].compact.join(", ")
   end
 
 end

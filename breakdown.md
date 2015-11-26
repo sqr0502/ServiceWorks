@@ -16,7 +16,7 @@ MODELS - complete
 FUNCTIONALITY
 
 1. Users create service_requests with services needed - complete
-2. Business respond to service_request with quotes
+2. Business respond to service_request with quotes - complete
 3. Users can accept quotes - complete
 4. Users can schedule service appointment
 5. Users can pay for service (reach goal)
@@ -60,5 +60,5 @@ Monday - Presentation Draft
 Syntax for sending emails:
 UserNotifier.send_signup_email(@user).deliver
       redirect_to(@user)  
-      
+
 Email template is located at app/views/user_notifier/send_signup_email.html.erb

@@ -22,11 +22,11 @@ function initMap() {
 
   // Interate to produce multiple markers array
   <% if @service_requests.count > 0 %>
-    var markerArray = [<% map_markers.each do |p| %>["<%= p.first_name %>", <%= p.latitude %>, <%= p.longitude %>],<% end %>];
+    var markerArray = [<% ServiceRequest.map_markers.each do |p| %>["<%= p.first_name %>", <%= p.latitude %>, <%= p.longitude %>],<% end %>];
   <% end %>
 
   // custom icon for the marker
-  var image = "assets/wrench38x38.png"
+  var image = "../../assets/wrench38x38.png"
 
     // Loop through our array of markers & place each one on the map
   for( i = 0; i < markerArray.length; i++ ) {

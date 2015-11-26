@@ -3,16 +3,16 @@
   <div class="row">
     <!-- Dahboard Profile Bio -->
     <%# Only show this Profile Bio for servie providers %>
-    <%# if current_user.is_provider %>
+    <% if current_user.is_provider %>
       <div class="col s2 offset-s1" id="dashboard-left">
-        <img src="http://placingbad.com/200/200/walter" />
+        <%= link_to image_tag(current_user.business_logo_url(:small)), user_path(current_user) %>
         <ul>
-          <li><%= current_user.company_name %></li>
-          <li>Edit/View Settings</li>
+          <li><%= link_to current_user.company_name, user_path(current_user) %></li>
+          <%# TODO: add company review modal %>
           <li>Rating: <%= link_to company_review(current_user.id), "#review-modal", class: "review-modal-trigger" %></li>
         </ul>
       </div>
-    <%# end %>
+    <% end %>
 
     <!-- Dashboard -->
     <div class="col s8 ">

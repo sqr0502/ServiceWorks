@@ -15,13 +15,24 @@
 
     <!-- Dashboard -->
     <div class="col s8 ">
+
+
     <ul class="collapsible" data-collapsible="accordion">
      <li>
        <!-- Section ONE - DASHBOARD-->
-       <div class="collapsible-header active"><i class="material-icons">assignment</i>Orders</div>
+       <div class="collapsible-header active"><i class="material-icons">assignment</i>Active Orders</div>
        <div class="collapsible-body">
          <div class="row">
-           <div class="col s8 offset-s2">
+           <div id="col s4 offset-s4">
+             <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
+             <div class="input-append valign-wrapper">
+               <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders", class:"valign col s4 offset-s4" %>
+             <button class="btn valign col s1 offset-s1" type="submit"><i class="material-icons">search</i></button>
+             </div>
+             <% end %>
+           </div>
+           <div class="col s12">
+               <div id="map"></div>
              <table>
                <thead>
                  <th>Date</th>
@@ -30,6 +41,7 @@
                  <th>Notes</th>
                </thead>
                <tbody>
+
                  <% @service_requests.order(created_at: :desc).each do |sr| %>
                  <tr>
                    <td>
@@ -131,8 +143,30 @@
      </li>
      <li>
        <!-- Section THREE- DASHBOARD-->
+       <div class="collapsible-header"><i class="material-icons">map</i>Job Locations</div>
+         <div class="collapsible-body">
+             <div class="row">
+               <div id="col s4 offset-s4">
+                 <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
+                 <div class="input-append valign-wrapper">
+                   <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders", class:"valign col s4 offset-s4" %>
+                 <button class="btn valign col s1 offset-s1" type="submit"><i class="material-icons">search</i></button>
+                 </div>
+                 <% end %>
+               </div>
+               <div id="map"></div>
+             </div>
+
+
+
+      </div>
+     </li>
+     <li>
+
+       <!-- Section FOUR- DASHBOARD-->
        <div class="collapsible-header"><i class="material-icons">add_box</i>New Service Request</div>
        <div class="collapsible-body"><%= render 'form' %></div>
+
      </li>
    </ul>
   </div>

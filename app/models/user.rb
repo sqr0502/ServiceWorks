@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  before_save { self.email = email.downcase }
   has_secure_password
+  geocoded_by :full_address
+  before_save { self.email = email.downcase }
+  after_validation :geocode
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -17,5 +19,9 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
 
   mount_uploader :business_logo, LogoUploader
+
+  def full_address
+    [street_one, city, state].compact.join(", ")
+  end
 
 end

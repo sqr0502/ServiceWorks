@@ -22,7 +22,9 @@ function initMap() {
 
   // Interate to produce multiple markers array
   <% if @service_requests.count > 0 %>
-    var markerArray = [<% ServiceRequest.map_markers.each do |p| %>["<%= p.first_name %>", <%= p.latitude %>, <%= p.longitude %>],<% end %>];
+    var markerArray = [<% ServiceRequest.map_markers.each do |sr| %>
+      ["Customer: <%= sr.user.first_name %> <%= sr.user.last_name %><br>",
+      <%= sr.user.latitude %>, <%= sr.user.longitude %>],<% end %>];
   <% end %>
 
   // custom icon for the marker

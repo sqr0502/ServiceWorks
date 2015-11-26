@@ -3,6 +3,7 @@ class ServiceRequest < ActiveRecord::Base
     has_many :services, through: :service_request_services
     has_many :quotes, dependent: :destroy
     has_one :review, dependent: :destroy
+    belongs_to :user
 
     mount_uploaders :image, ImageUploader
 
@@ -12,16 +13,10 @@ class ServiceRequest < ActiveRecord::Base
       self.order_number = number_array.join.to_i
     end
 
+    # Return the users in need of fullfilling service requests. Use this method in map.js.erb to gernerate
+    # a JS array of map markers
     def self.map_markers
-      open_requests = ServiceRequest.where("status = ? OR status = ?", "Open", "Quoted")
-      waiting_users = []
-
-      open_requests.each do |r|
-        waiting_users << User.find(r.user_id)
-      end
-
-      waiting_users
-
+      ServiceRequest.where("status = ? OR status = ?", "Open", "Quoted")
     end
 
     # Fuzzy search in order notes and exact match in order number

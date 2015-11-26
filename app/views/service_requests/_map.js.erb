@@ -2,7 +2,7 @@ var map;
 
 function initMap() {
   // set the center point of the map
-  var focus = {lat: <%= @person.latitude %>, lng: <%= @person.longitude %>};
+  var focus = {lat: <%= current_user.latitude %>, lng: <%= current_user.longitude %>};
 
   // Generate a map
   map = new google.maps.Map(document.getElementById('map'), {
@@ -21,7 +21,7 @@ function initMap() {
   providerLocation.setMap(map);
 
   // Interate to produce multiple markers array
-  <% if @people.count > 0 %>
+  <% if @service_requests.count > 0 %>
     var markerArray = [<% @people.each do |p| %>["<%= p.name %>", <%= p.latitude %>, <%= p.longitude %>],<% end %>];
   <% end %>
 

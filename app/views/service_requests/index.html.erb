@@ -136,4 +136,11 @@
      </li>
    </ul>
   </div>
-  </div>
+</div>
+
+<%# Google Map rendered from a partial %>
+<script type="text/javascript">
+  <%= render partial: 'map', formats: [:js], locals: {time_now: Time.now} %>
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOgqVNxAhwzQfqDZ-rSVYAiLNadN6iqQ&callback=initMap"></script>

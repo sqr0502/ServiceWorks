@@ -12,6 +12,18 @@ class ServiceRequest < ActiveRecord::Base
       self.order_number = number_array.join.to_i
     end
 
+    def self.map_markers
+      open_requests = ServiceRequest.where("status = ? OR status = ?", "Open", "Quoted")
+      waiting_users = []
+
+      open_requests.each do |r|
+        waiting_users << User.find(r.user_id)
+      end
+
+      waiting_users
+
+    end
+
     # Fuzzy search in order notes and exact match in order number
     scope :search, ->(keyword) { where( "lower(additional_notes) LIKE ? OR order_number = ?",
       "%#{keyword.downcase}%", keyword.to_i ) if keyword.present? }

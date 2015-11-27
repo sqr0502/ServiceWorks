@@ -62,3 +62,11 @@ UserNotifier.send_signup_email(@user).deliver
       redirect_to(@user)  
 
 Email template is located at app/views/user_notifier/send_signup_email.html.erb
+
+## Services
+
+services = [ "Kitchen Installation and Repair",'Bathroom Installation and Repair', "Painting Services", "Electrical Services", "HVAC Repair and Installation", "Landscaping Services", "Driveway Installation and Repair",  "Flooring Installation", "Carpentry Services", "Plumbing Services", "Drywall Service", "Power Washing", "Roof Repair", "Fence and Desk Installation and Repair"]
+
+services.each do |s|
+  Service.create(name: s)
+end

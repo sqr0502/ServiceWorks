@@ -29,8 +29,8 @@ body {
   padding:5% 0 5% 0;
 }
 
-nav{
-  /*background-color: transparent !important;*/
+.nav{
+  background-color: transparent !important;
   box-shadow: none !important;
 }
 

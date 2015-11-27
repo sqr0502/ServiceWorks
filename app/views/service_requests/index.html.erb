@@ -2,25 +2,30 @@
 
   <div class="row">
     <!-- Dahboard Profile Bio -->
-      <div class="col s2 offset-s1" id="dashboard-left">
-        <img src="http://placingbad.com/200/200/walter" />
-        <ul>
-          <li>Company Name</li>
-          <li>Add Photos/Videos</li>
-          <li>Edit/View Settings</li>
-          <li>My Reviews</li>
-          <li>Services</li>
-        </ul>
+      <div class="col m2 s12 offset-m1 center-align" id="dashboard-left">
+        <div class="col s12">
+            <img src="http://placehold.it/200x200" />
+        </div>
+        <div class="col s12">
+          <ul>
+            <li>Company Name</li>
+            <li>Add Photos/Videos</li>
+            <li>Edit/View Settings</li>
+            <li>My Reviews</li>
+            <li>Services</li>
+          </ul>
+        </div>
+
       </div>
 
     <!-- Dashboard -->
-    <div class="col s8 ">
+    <div class="col m8 s12">
 
 
     <ul class="collapsible" data-collapsible="accordion">
      <li>
        <!-- Section ONE - DASHBOARD-->
-       <div class="collapsible-header active"><i class="material-icons">assignment</i>Active Orders</div>
+       <div class="collapsible-header active" id="active-orders"><i class="material-icons">assignment</i>Active Orders</div>
        <div class="collapsible-body">
          <div class="row">
            <div id="col s4 offset-s4">
@@ -33,37 +38,32 @@
            </div>
            <div class="col s12">
                <div id="map"></div>
-             <table>
+             <table class="">
                <thead>
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
                  <th>Notes</th>
+                 <!-- <th>Quotes</th> -->
                </thead>
                <tbody>
-
                  <% @service_requests.order(created_at: :desc).each do |sr| %>
                  <tr>
                    <td>
-                     <%= link_to sr.created_at.to_formatted_s(:short),
+                     <%= link_to sr.created_at.strftime("%m/%d/%Y"),
                      user_service_request_path(sr.user_id, sr) %>
                    </td>
-                   <td>
-                     <%= sr.status %>
-                   </td>
+                   <td><%= sr.status %></td>
                    <td>
                      <ul>
                        <% sr.services.each do |s| %>
                        <li><%= s.name %></li>
                      </ul>
                      <% end %>
-
                    </td>
-                   <td>
-                     <%= sr.additional_notes %>
-                   </td>
-                    <td class="hidden">
-                      <!-- <p>
+                   <td><%= sr.additional_notes %> </td>
+                    <!-- <td class="hidden">
+                      <p>
                         <% if sr.status == "Accepted"%>
                           <% sr.quotes.each do |q| %>
                             <% if q.status == "Accepted" %>
@@ -71,11 +71,11 @@
                             <% end %>
                           <% end %>
                         <% else %>
-                          There are <%= link_to pluralize(sr.quotes.count, "quote"),
+                         <%= link_to pluralize(sr.quotes.count, "quote"),
                           user_service_request_path(sr.user_id, sr) %>
                         <% end %>
-                      </p> -->
-                    </td>
+                      </p>
+                    </td> -->
                  </tr>
                  <% end %>
                </tbody>
@@ -143,7 +143,7 @@
      </li>
      <li>
        <!-- Section THREE- DASHBOARD-->
-       <div class="collapsible-header"><i class="material-icons">map</i>Job Locations</div>
+       <!-- <div class="collapsible-header"><i class="material-icons">map</i>Job Locations</div>
          <div class="collapsible-body">
              <div class="row">
                <div id="col s4 offset-s4">
@@ -156,17 +156,14 @@
                </div>
                <div id="map"></div>
              </div>
-
-
-
       </div>
-     </li>
+     </li>-->
+    <% if !current_user.is_provider? %>
      <li>
-
        <!-- Section FOUR- DASHBOARD-->
        <div class="collapsible-header"><i class="material-icons">add_box</i>New Service Request</div>
        <div class="collapsible-body"><%= render 'form' %></div>
-
+       <%end%>
      </li>
    </ul>
   </div>

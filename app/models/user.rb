@@ -23,5 +23,23 @@ class User < ActiveRecord::Base
   def full_address
     [street_one, city, state, zip].compact.join(", ")
   end
+    
+    # Twilio Integration
+    def self.send_text_message(user, type)
 
+        account_sid = ENV["TWILIO_SID"]
+        auth_token = ENV["TWILIO_TOKEN"]
+        client = Twilio::REST::Client.new account_sid, auth_token
+
+        #@user = User.find_by(params[:id])
+        def signup
+        end
+        
+        client.account.messages.create(
+        from: "+14073262661",
+        to: "+1#{user.phone}",
+        body: type
+        )
+        puts "Sent message to #{user.first_name}"
+    end
 end

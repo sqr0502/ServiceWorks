@@ -150,7 +150,7 @@
       <br>
       <% if @service_request.status == "Completed" %>
       <%= render "charges/charge" %>     
-        <% end %>
+      <% end %>
       <%= link_to 'Back', user_service_requests_path(current_user) %>
     </div>
   </div>

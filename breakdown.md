@@ -1,4 +1,10 @@
 # Project Breakdown
+## TODO
+- Add number of transactions marked as paid to user and servicer profile page.
+- Clicking 'signup' launches signup form in a bootstrap modal window.
+- Further stripe config, user name, description.
+- Users can schedule service appointment
+- Twilio
 
 MODELS - complete
 1. Users - Complete
@@ -18,9 +24,8 @@ FUNCTIONALITY
 1. Users create service_requests with services needed - complete
 2. Business respond to service_request with quotes - complete
 3. Users can accept quotes - complete
-4. Users can schedule service appointment
-5. Users can pay for service (reach goal)
-6. Users get notified with a business has quoted one of their service_requests
+5. Users can pay for service (reach goal) - complete
+6. Users get notified with a business has quoted one of their service_requests - complete
   a. Twilio (text message)
   b. Sendgrid (email) - complete
 
@@ -29,30 +34,13 @@ FRONT END
 1. Materialize framework - complete
 2. ServiceWorks app name
 3. Add company logo - complete
-4. Create and style home page
-5. Style the signup form
-6. Style the profile page
-
-GEMS
-
-1. Carrierwave - complete
-2. RMagic (Req ImageMagic, do brew install) - complete
-3. Fog (for S3) - complete
-4. Stripe - Done
-
-## Feature Timeline
-Wednesday - MVP
-Sunday - Final
-Monday - Presentation Draft
-
-
-## TODO
-- Add number of transactions marked as paid to user and servicer profile page.
-- Clicking 'signup' launches signup form in a bootstrap modal window.
+4. Create and style home page - complete
+5. Style the signup form - complete
+6. Style the profile page - complete
 
 
 ## Stretch Goals
-- Reviews for users and servicer.
+- Reviews for users and servicer. - complete
 - On order form, user drops pin on map for address.
 - Recurring payments for monthly arrangements.
 

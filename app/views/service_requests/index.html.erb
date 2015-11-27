@@ -43,6 +43,7 @@
 
              <table class="">
                <thead>
+                 <th>Order Number</th>
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
@@ -53,8 +54,10 @@
                  <% @service_requests.order(created_at: :desc).each do |sr| %>
                  <tr>
                    <td>
-                     <%= link_to sr.created_at.strftime("%m/%d/%Y"),
-                     user_service_request_path(sr.user_id, sr) %>
+                     <%= link_to sr.order_number, user_service_request_path(sr.user_id, sr) %>
+                   </td>
+                   <td>
+                     <%= sr.created_at.strftime("%m/%d/%Y")%>
                    </td>
                    <td><%= sr.status %></td>
                    <td>

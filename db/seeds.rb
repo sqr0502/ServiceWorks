@@ -12,20 +12,6 @@ Service.create!([
   {name: "Drywall Service"},
   {name: "Power Washing"},
   {name: "Roof Repair"},
-  {name: "Fence and Desk Installation and Repair"},
-  {name: "Kitchen Installation and Repair"},
-  {name: "Bathroom Installation and Repair"},
-  {name: "Painting Services"},
-  {name: "Electrical Services"},
-  {name: "HVAC Repair and Installation"},
-  {name: "Landscaping Services"},
-  {name: "Driveway Installation and Repair"},
-  {name: "Flooring Installation"},
-  {name: "Carpentry Services"},
-  {name: "Plumbing Services"},
-  {name: "Drywall Service"},
-  {name: "Power Washing"},
-  {name: "Roof Repair"},
   {name: "Fence and Desk Installation and Repair"}
 ])
 User.create!([

@@ -1,0 +1,58 @@
+var map;
+
+function initMap() {
+  // set the center point of the map
+  var focus = {lat: <%= current_user.latitude %>, lng: <%= current_user.longitude %>};
+
+  // Generate a map
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: focus,
+    zoom: 11
+  });
+
+  // Set the marker for the provider with attributes
+  var providerLocation = new google.maps.Marker({
+    position: focus,
+    title: '<%= @current_user.company_name %>',
+    animation: google.maps.Animation.DROP,
+  });
+
+  // Plot the provider marker on the map
+  providerLocation.setMap(map);
+
+  // Interate to produce multiple markers array
+  <% if @service_requests.count > 0 %>
+    var markerArray = [<% ServiceRequest.map_markers.each do |sr| %>
+      ["Customer: " + "<%= sr.user.first_name %>" + " " + "<%= sr.user.last_name %>" + "<br>\
+      Service Needed: " + "<a href=" + "/users/" + "<%= sr.user_id %>" + "/service_requests/" + "<%= sr.id %>" +
+      ">" + "<%= sr.services.first.name %>" + "</a>",
+      <%= sr.user.latitude %>, <%= sr.user.longitude %>],<% end %>];
+  <% end %>
+
+  // custom icon for the marker
+  var image = "../../assets/wrench38x38.png"
+
+    // Loop through our array of markers & place each one on the map
+  for( i = 0; i < markerArray.length; i++ ) {
+      var position = new google.maps.LatLng(markerArray[i][1], markerArray[i][2]);
+
+      marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: markerArray[i][0],
+          icon: image,
+          animation: google.maps.Animation.DROP
+      });
+
+      // Loop through the array create and add content to the infowindow
+      var content = markerArray[i][0];
+      var infowindow = new google.maps.InfoWindow();
+
+      google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+        return function() {
+          infowindow.setContent(content);
+          infowindow.open(map,marker);
+        };
+      })(marker,content,infowindow));
+    };
+}

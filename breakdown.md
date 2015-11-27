@@ -16,7 +16,7 @@ MODELS - complete
 FUNCTIONALITY
 
 1. Users create service_requests with services needed - complete
-2. Business respond to service_request with quotes
+2. Business respond to service_request with quotes - complete
 3. Users can accept quotes - complete
 4. Users can schedule service appointment
 5. Users can pay for service (reach goal)
@@ -60,5 +60,13 @@ Monday - Presentation Draft
 Syntax for sending emails:
 UserNotifier.send_signup_email(@user).deliver
       redirect_to(@user)  
-      
+
 Email template is located at app/views/user_notifier/send_signup_email.html.erb
+
+## Services
+
+services = [ "Kitchen Installation and Repair",'Bathroom Installation and Repair', "Painting Services", "Electrical Services", "HVAC Repair and Installation", "Landscaping Services", "Driveway Installation and Repair",  "Flooring Installation", "Carpentry Services", "Plumbing Services", "Drywall Service", "Power Washing", "Roof Repair", "Fence and Desk Installation and Repair"]
+
+services.each do |s|
+  Service.create(name: s)
+end

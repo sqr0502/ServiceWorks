@@ -29,6 +29,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password,
                                  :password_confirmation, :street_one, :street_two,
                                  :state, :zip, :phone, :is_provider, :company_name,
-                                 :company_desc, :business_logo)
+                                 :company_desc, :business_logo, :city)
   end
 end

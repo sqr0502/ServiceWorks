@@ -59,12 +59,13 @@
                   <%= q.user.company_name %> says, "<%= q.note %>"<br>
                 <% end %>
                 <%# Company rating value opens a company review modal %>
-                Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
+                Company Rating: <%= link_to company_review(q.user_id), "#review-modal#{q.user_id}", class: "review-modal-trigger" %><br>
 
-                <div id="review-modal" class="modal">
+                <div id="review-modal<%= q.user_id %>" class="modal">
                   <div class="modal-content">
                     <h4><%= q.user.company_name%>'s Reviews</h4>
-
+                    <%= image_tag q.user.business_logo_url(:small) %>
+                    <%= content_tag(:p, q.user.company_desc) %>
                     <table>
                       <tr>
                         <th>
@@ -147,6 +148,9 @@
       <% end %>
 
       <br>
+      <% if @service_request.status == "Completed" %>
+      <%= render "charges/charge" %>     
+        <% end %>
       <%= link_to 'Back', user_service_requests_path(current_user) %>
     </div>
   </div>

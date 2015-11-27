@@ -64,7 +64,8 @@
                 <div id="review-modal" class="modal">
                   <div class="modal-content">
                     <h4><%= q.user.company_name%>'s Reviews</h4>
-
+                    <%= image_tag q.user.business_logo_url(:small) %>
+                    <%= content_tag(:p, q.user.company_desc) %>
                     <table>
                       <tr>
                         <th>

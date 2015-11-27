@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
 
   mount_uploader :business_logo, LogoUploader
+  mount_uploader :avatar, AvatarUploader
 
+  # Concatonate the address fields for use by geocode to get longitude and latitude
   def full_address
     [street_one, city, state, zip].compact.join(", ")
   end

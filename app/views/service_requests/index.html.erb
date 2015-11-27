@@ -38,7 +38,9 @@
              <% end %>
            </div>
            <div class="col s12">
-               <div id="map"></div>
+
+             <div id="map"></div>
+
              <table class="">
                <thead>
                  <th>Date</th>
@@ -172,7 +174,7 @@
 
 <%# Only show the map to service providers. %>
 <% if current_user.is_provider %>
-  <div id="map"></div>
+  <!-- <div id="map"></div> -->
   <%# Google Map JS rendered from a partial %>
   <script type="text/javascript">
     <%= render partial: 'map', formats: [:js], locals: {time_now: Time.now} %>

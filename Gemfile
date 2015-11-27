@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'rails', '4.2.4'
+gem 'twilio-ruby', '~> 4.1.0'
 gem 'stripe'
 gem 'seed_dump'
 gem 'pg'
@@ -10,7 +11,6 @@ gem 'materialize-sass'
 gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'carrierwave_direct', '~> 0.0.15'
-gem 'twilio-ruby', '~> 4.1.0'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem "fog"
 gem "figaro"

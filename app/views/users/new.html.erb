@@ -1,19 +1,34 @@
 <% provide(:title, 'Sign up') %>
-<h1 class="profile-title">Sign up</h1>
-<div class="row">
-  <div class="col m6 s12 offset-m3  z-depth-2 white signup-form">
+<div class="container">
+<div class="row z-depth-2">
+<h3 class="profile-title big-title cyan darken-4 white-text">Sign up</h3>
+  <div class="col m10 s12 offset-m1 white signup-form">
     <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
-    <div class="col s12">
-        <div class="switch">
-          <label>
-          Customer
-            <%= f.check_box :is_provider, id:"company" %>
-            <span class="lever"></span>
-          Company
-          </label>
+    <!-- switch and profile -->
+    <div class="valign-wrapper">
+      <div class="col s6 valign">
+          <div class="switch">
+            <label>
+            Customer
+              <%= f.check_box :is_provider, id:"company" %>
+              <span class="lever"></span>
+            Company
+            </label>
+          </div>
+      </div>
+      <div class="file-field input-field col s6 valign" id="image-upload">
+        <!-- <%= f.label :business_logo, "Upload your logo" %><br> -->
+        <div class="btn">
+          <span>Upload</span>
+          <%= f.file_field :business_logo %>
         </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Profile Picture">
+        </div>
+      </div>
     </div>
+
 
     <div id="company-info">
       <!-- if servicer display company fields  -->
@@ -25,11 +40,6 @@
       <div class="input-field col s6" id="company-description">
         <%= f.label "Company Description" %>
         <%= f.text_field :company_desc %>
-      </div>
-
-      <div class="input-field">
-        <%= f.label :business_logo, "Upload your logo" %><br>
-        <%= f.file_field :business_logo %>
       </div>
     </div>
 
@@ -88,7 +98,7 @@
       <%= f.password_field :password_confirmation%>
     </div>
 
-    <div class="valign-wrapper col s12">
+    <div class="valign-wrapper col s6 offset-s6">
       <div class="col s6 valign">
         <%= link_to 'Already have an account?', login_path %>
       </div>
@@ -98,4 +108,5 @@
     </div>
     <% end %>
   </div>
+</div>
 </div>

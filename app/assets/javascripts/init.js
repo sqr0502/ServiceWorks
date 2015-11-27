@@ -17,6 +17,23 @@ $(document).on("ready page:load", function(){
 
      }
 
+     if(currentLocation.pathname.indexOf('users') > 0 && currentLocation.pathname.indexOf('service_requests') > 0 ){
+      $.get(currentLocation.pathname + '.json', function(data){
+        console.log(data);
+        var open = data.filter(function(r) {return r.status == "Open"});
+        var quoted = data.filter(function(r){return r.status == "Quoted"});
+        $("#active-orders").append('<span class="badge green black-text">'+open.length+' Open</span>');
+        $("#active-orders").append('<span class="badge yellow black-text">'+quoted.length+' Quoted</span>');
+      })
+
+      //set delete links for quote details
+
+     }
+
+     // image slider for customer uploaded images
+    $('.slider').slider({full_width: true});
+
+
 
     //get locations for map icons
     // getLocation();

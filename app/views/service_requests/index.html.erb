@@ -4,55 +4,67 @@
     <!-- Dahboard Profile Bio -->
     <%# Only show this Profile Bio for servie providers %>
     <% if current_user.is_provider %>
-      <div class="col s2 offset-s1" id="dashboard-left">
-        <%= link_to image_tag(current_user.business_logo_url(:small)), user_path(current_user) %>
-        <ul>
-          <li><%= link_to current_user.company_name, user_path(current_user) %></li>
-          <%# TODO: add company review modal %>
-          <li>Rating: <%= link_to company_review(current_user.id), "#review-modal", class: "review-modal-trigger" %></li>
-        </ul>
+      <div class="col m2 s12 offset-m1 center-align z-depth-1" id="dashboard-left">
+        <h5 class="big-title center-align"><%= current_user.company_name %></h5>
+        <div class="col s12">
+          <%= link_to image_tag(current_user.business_logo_url(:small)), user_path(current_user) %>
+        </div>
+        <div class="col s12">
+          <ul>
+            <li><%= link_to current_user.company_name, user_path(current_user) %></li>
+            <%# TODO: add company review modal %>
+            <li>Rating: <%= link_to company_review(current_user.id), "#review-modal", class: "review-modal-trigger" %></li>
+          </ul>
+        </div>
       </div>
     <% end %>
 
     <!-- Dashboard -->
-    <div class="col s8 ">
+    <div class="col m8 s12 ">
+
+    <h5 class="big-title center-align cyan darken-4 white-text">Dashboard</h5>
     <ul class="collapsible" data-collapsible="accordion">
      <li>
        <!-- Section ONE - DASHBOARD-->
-       <div class="collapsible-header active"><i class="material-icons">assignment</i>Orders</div>
+       <div class="collapsible-header active" id="active-orders"><i class="material-icons">assignment</i>Active Orders</div>
        <div class="collapsible-body">
          <div class="row">
-           <div class="col s8 offset-s2">
-             <table>
+           <div id="col s4 offset-s4">
+             <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
+             <div class="input-append valign-wrapper">
+               <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders", class:"valign col s4 offset-s4" %>
+             <button class="btn valign col s1 offset-s1" type="submit"><i class="material-icons">search</i></button>
+             </div>
+             <% end %>
+           </div>
+           <div class="col s12">
+               <div id="map"></div>
+             <table class="">
                <thead>
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
                  <th>Notes</th>
+                 <!-- <th>Quotes</th> -->
                </thead>
                <tbody>
                  <% @service_requests.order(created_at: :desc).each do |sr| %>
                  <tr>
                    <td>
-                     <%= link_to sr.created_at.to_formatted_s(:short),
+                     <%= link_to sr.created_at.strftime("%m/%d/%Y"),
                      user_service_request_path(sr.user_id, sr) %>
                    </td>
-                   <td>
-                     <%= sr.status %>
-                   </td>
+                   <td><%= sr.status %></td>
                    <td>
                      <ul>
                        <% sr.services.each do |s| %>
                        <li><%= s.name %></li>
                      </ul>
                      <% end %>
-
                    </td>
-                   <td>
-                     <%= sr.additional_notes %>
-                   </td>
-                    <td class="hidden">
-                      <!-- <p>
+                   <td><%= sr.additional_notes %> </td>
+                    <!-- <td class="hidden">
+                      <p>
                         <% if sr.status == "Accepted"%>
                           <% sr.quotes.each do |q| %>
                             <% if q.status == "Accepted" %>
@@ -60,11 +72,11 @@
                             <% end %>
                           <% end %>
                         <% else %>
-                          There are <%= link_to pluralize(sr.quotes.count, "quote"),
+                         <%= link_to pluralize(sr.quotes.count, "quote"),
                           user_service_request_path(sr.user_id, sr) %>
                         <% end %>
-                      </p> -->
-                    </td>
+                      </p>
+                    </td> -->
                  </tr>
                  <% end %>
                </tbody>
@@ -132,8 +144,27 @@
      </li>
      <li>
        <!-- Section THREE- DASHBOARD-->
+       <!-- <div class="collapsible-header"><i class="material-icons">map</i>Job Locations</div>
+         <div class="collapsible-body">
+             <div class="row">
+               <div id="col s4 offset-s4">
+                 <%= form_tag(user_service_requests_path(current_user), method: :get) do %>
+                 <div class="input-append valign-wrapper">
+                   <%= text_field_tag :keyword, params[:keyword], placeholder: "Search Orders", class:"valign col s4 offset-s4" %>
+                 <button class="btn valign col s1 offset-s1" type="submit"><i class="material-icons">search</i></button>
+                 </div>
+                 <% end %>
+               </div>
+               <div id="map"></div>
+             </div>
+      </div>
+     </li>-->
+    <% if !current_user.is_provider? %>
+     <li>
+       <!-- Section FOUR- DASHBOARD-->
        <div class="collapsible-header"><i class="material-icons">add_box</i>New Service Request</div>
        <div class="collapsible-body"><%= render 'form' %></div>
+       <%end%>
      </li>
    </ul>
   </div>

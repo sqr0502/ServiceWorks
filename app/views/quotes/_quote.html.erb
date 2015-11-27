@@ -11,13 +11,24 @@
       </ul>
     </div>
   <% end %>
-  <%= label_tag :amount, "Quote" %>
-  <%= text_field_tag "quote[amount]"%>
-  <%= label_tag :note, "Note" %>
-  <%= text_area_tag "quote[note]"%>
+  <div class="input-field">
+    <%= label_tag :amount, "Quote" %>
+    <%= text_field_tag "quote[amount]"%>
+  </div>
+  <div class="input-field">
+    <%= label_tag :note, "Note" %>
+    <%= text_area_tag "quote[note]", nil, id:"quote-notes", class:"materialize-textarea"%>
+  </div>
+
   <%# Add service request ID to the params %>
   <%= hidden_field_tag("quote[service_request_id]", @service_request.id ) %>
   <%# Update the service request status to "Quoted" %>
   <%= hidden_field_tag("service_request[status]", "Quoted" ) %>
-  <%= submit_tag("Send Quote") %>
+  <div class="input-field right-align">
+    <button type="submit" class="btn green waves-effect waves-light">
+      Submit<i class="material-icons right">send</i>
+    </button>
+  </div>
+
+
 <% end %>

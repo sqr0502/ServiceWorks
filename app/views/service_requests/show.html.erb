@@ -2,125 +2,80 @@
 
 
 <div class="container">
-  <div class="row">
-    <div class="col s12 z-depth-2">
-      <h1>Details:</h1>
-      <div class="col s8">
-        <table>
-        <tbody>
-          <tr>
-            <td><%= @service_request.created_at.to_formatted_s(:long) %></td>
-          </tr>
-          <tr>
-            <td>Status:</td>
-            <td><%= @service_request.status %></td>
-          </tr>
-          <tr>
-            <td>Services:</td>
-            <td>
-              <% @service_request.services.each do |s| %>
-              <%= s.name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>Notes:</td>
-            <td><%= @service_request.additional_notes %></td>
-          </tr>
-        </tbody>
-        </table>
-      </div>
-
-      <div class="col s4">
-        <%# Show up to 5 uploaded images %>
-        <%= image_tag @service_request.image[0].url(:show) if @service_request.image[0] %>
-        <%= image_tag @service_request.image[1].url(:show) if @service_request.image[1] %>
-        <%= image_tag @service_request.image[2].url(:show) if @service_request.image[2] %>
-        <%= image_tag @service_request.image[2].url(:show) if @service_request.image[3] %>
-        <%= image_tag @service_request.image[2].url(:show) if @service_request.image[4] %>
-      </div>
-      <div class="row">
-        <div class="col s6 ">
-          <%# Show only the accepted wuote %>
-          <% if @accepted_quote %>
-            <div class="accepted-quote">
-              <%= @accepted_quote.user.company_name %>'s Quote:<br>
-              <%= @accepted_quote.user.company_name %> has offered a quote of <%= number_to_currency(@accepted_quote.amount) %><br>
-              <%= @accepted_quote.user.company_name %> says, "<%= @accepted_quote.note %>"<br>
-              Quote Status: <%= @accepted_quote.status %>
-            </div>
-          <% else %>
-          <%# if no accepted quote, show the user all open quotes %>
-            <% @service_request.quotes.each do |q| %>
-              <div class="quote">
-                <%= q.user.company_name %>'s Quote:<br>
-                <%= q.user.company_name %> has offered a quote of <%= number_to_currency(q.amount) %><br>
-                <% if q.note %>
-                  <%= q.user.company_name %> says, "<%= q.note %>"<br>
-                <% end %>
-                <%# Company rating value opens a company review modal %>
-                Company Rating: <%= link_to company_review(q.user_id), "#review-modal#{q.user_id}", class: "review-modal-trigger" %><br>
-
-                <div id="review-modal<%= q.user_id %>" class="modal">
-                  <div class="modal-content">
-                    <h4><%= q.user.company_name%>'s Reviews</h4>
-                    <%= image_tag q.user.business_logo_url(:small) %>
-                    <%= content_tag(:p, q.user.company_desc) %>
-                    <table>
-                      <tr>
-                        <th>
-                          Reviewer
-                        </th>
-                        <th>
-                          Rating
-                        </th>
-                        <th>
-                          Comment
-                        </th>
-                      </tr>
-                      <% Review.where(company_id: q.user_id).each do |r| %>
-                      <tr>
-                        <td>
-                          <%= User.find(r.user_id).first_name %>
-                        </td>
-                        <td>
-                          <%= r.rating %>
-                        </td>
-                        <td>
-                          <%= r.comment %>
-                        </td>
-                      </tr>
-                      <% end %>
-                    </table>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-                  </div>
-                </div>
-                <%# Accept quote link %>
-                <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
-                  <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
-                                                          quote: { status: "Accepted" },
-                                                          service_request: {status: "Accepted"} ),
-                                                          data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."} %>
-                <% end %>
-                <%# Company can delete their own quotes only %>
-                <%= link_to "Delete", service_request_quote_path(q, service_request: {status: "Open"}),
-                    method: :delete if current_user.id == q.user_id %>
-              </div>
-              <hr>
-
-
-              <% end %>
-            <% end %>
-          </div>
+  <!-- quote details row -->
+  <div class="row z-depth-2">
+    <h5 class="big-title cyan darken-4 white-text center-align"> Quote</h5>
+    <div class="col s12 ">
+      <div class="col m6 s12" id="quote">
+        <!-- table -->
+        <div class="col s12">
+          <!-- quote details -->
+            <table class="striped bordered">
+              <thead>
+                <th colspan="2" class="center-align table-title">Details</th>
+              </thead>
+            <tbody>
+              <tr>
+                <td> Date: </td>
+                <td><%= @service_request.created_at.strftime("%m/%d/%y") %></td>
+              </tr>
+              <tr class="">
+                <td>Status:</td>
+                <td><%= @service_request.status %></td>
+              </tr>
+              <tr>
+                <td>Services:</td>
+                <td>
+                  <% @service_request.services.each do |s| %>
+                  <%= s.name %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr class="">
+                <td >Notes:</td>
+                <td><%= @service_request.additional_notes %></td>
+              </tr>
+            </tbody>
+            </table>
         </div>
-
-      <%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
-      <% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>
-      <%# the quote form is rendered from a partial %>
-        <%= render "quotes/quote" %>
-      <% end %>
+        <!-- slider wrapper -->
+        <div class="slider col s12">
+          <!-- slider -->
+          <ul class="slides">
+              <%# Show up to 5 uploaded images %>
+              <li>
+              <%= image_tag @service_request.image[0].url(:show) if @service_request.image[0] %>
+              </li>
+              <li>
+              <%= image_tag @service_request.image[1].url(:show) if @service_request.image[1] %>
+              </li>
+              <li>
+              <%= image_tag @service_request.image[2].url(:show) if @service_request.image[2] %>
+              </li>
+              <li>
+              <%= image_tag @service_request.image[2].url(:show) if @service_request.image[3] %>
+              </li>
+              <li>
+              <%= image_tag @service_request.image[2].url(:show) if @service_request.image[4] %>
+              </li>
+          </ul>
+        </div>
+          <div class="left-align">
+            <%= link_to user_service_requests_path(current_user) do%>
+              <i class="material-icons">arrow_back</i>
+            <%end%>
+          </div>
+      </div>
+      <div class="col m6 s12" id="new-quote">
+        <h5 class="center-align">Submit a Quote</h5>
+        <!-- Slider of Customer images -->
+        <%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
+        <% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>
+        <%# the quote form is rendered from a partial %>
+            <%= render "quotes/quote" %>
+        <% end %>
+      </div>
+    </div>
 
       <%# only show the review form to the user's service requests, when the service request status is 'Completed
       and the service request does NOT have any reviews.%>
@@ -148,7 +103,93 @@
       <% end %>
 
       <br>
+
+      <% if @service_request.status == "Completed" %>
+      <%= render "charges/charge" %>
+        <% end %>
       <%= link_to 'Back', user_service_requests_path(current_user) %>
+
+
+    </div>
+  <!-- Company quotes -->
+  <!-- check for quotes or accpeted quotes -->
+  <% if @accepted_quote || @service_request.quotes.length > 0%>
+  <div class="row z-depth-2">
+    <!-- quotes heading -->
+    <h5 class="center-align  cyan darken-4 white-text big-title">Other Servicers Quoted</h5>
+    <div class="col s12 ">
+      <!-- show quotes -->
+      <ul class="collection">
+       <% if @accepted_quote %>
+       <li class="collection-item avatar">
+            <!-- TODO place company image/logo  here -->
+           <img src="https://placehold.it/200x200" alt="placehold it" class="circle">
+           <!-- end todo -->
+           <%= @accepted_quote.user.company_name %>'s Quote:<br>
+           <%= @accepted_quote.user.company_name %> has offered a quote of <%= number_to_currency(@accepted_quote.amount) %><br>
+           <%= @accepted_quote.user.company_name %> says, "<%= @accepted_quote.note %>"<br>
+           Quote Status: <%= @accepted_quote.status %>
+       </li>
+         <%else%>
+           <% @service_request.quotes.each do |q| %>
+           <li class="collection-item avatar">
+               <!-- TODO place company image/logo  here -->
+              <img src="https://placehold.it/200x200" alt="placehold it" class="circle">
+              <!-- end todo -->
+             <span class="title"><%= q.user.company_name %></span>
+             <p>
+               Quoted: <%= number_to_currency(q.amount) %><br>
+               <% if q.note %>
+                 <%= q.user.company_name %> says, "<%= q.note %>"<br>
+               <% end %>
+               <a href="#review-modal" class="secondary-content review-modal-trigger"><i class="material-icons yellow-text small">grade</i></a>
+               <%# Company rating value opens a company review modal %>
+               Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
+             </p>
+                <!-- links for providers and user either accept or delete -->
+                <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
+                <%= link_to "Accept", accept_quote_path(quote_id: { quote_id: q.id },
+                                                          quote: { status: "Accepted" },
+                                                          service_request: {status: "Accepted"} ),
+                                                          data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."}%>
+                <% end %>
+                <%# Company can delete their own quotes only %>
+                <%= link_to "Delete",service_request_quote_path(q, service_request: {status: "Open"}),
+                    method: :delete if current_user.id == q.user_id%>
+
+               <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+            <!-- review modal -->
+            <div id="review-modal" class="modal">
+              <div class="modal-content">
+                <h4><%= q.user.company_name%>'s Reviews</h4>
+                <table>
+                  <tr>
+                    <th>Reviewer</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                  </tr>
+                  <% Review.where(company_id: q.user_id).each do |r| %>
+                  <tr>
+                    <td><%= User.find(r.user_id).first_name %></td>
+                    <td><%= r.rating %></td>
+                    <td><%= r.comment %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+              </div>
+            </div>
+           </li>
+          <%end%>
+        <%end%>
+      </ul>
+
     </div>
   </div>
-</div>
+  <%else%>
+    <!-- do something here if no quotes -->
+  <%end%>
+
+</div> <!-- end container -->

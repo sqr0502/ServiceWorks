@@ -59,9 +59,9 @@
                   <%= q.user.company_name %> says, "<%= q.note %>"<br>
                 <% end %>
                 <%# Company rating value opens a company review modal %>
-                Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
+                Company Rating: <%= link_to company_review(q.user_id), "#review-modal#{q.user_id}", class: "review-modal-trigger" %><br>
 
-                <div id="review-modal" class="modal">
+                <div id="review-modal<%= q.user_id %>" class="modal">
                   <div class="modal-content">
                     <h4><%= q.user.company_name%>'s Reviews</h4>
                     <%= image_tag q.user.business_logo_url(:small) %>

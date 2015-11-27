@@ -40,6 +40,6 @@ class User < ActiveRecord::Base
         to: "+1#{user.phone}",
         body: type
         )
-        puts "Sent message to #{user.first_name}"
+#        puts "Sent message to #{user.first_name}"
     end
 end

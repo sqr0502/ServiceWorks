@@ -16,10 +16,12 @@ $(document).ready(function(){
       // console.log(checked);
       if(checked){
         $("#company-info").show();
-        $('#image-upload .file-path-wrapper input').attr('placeholder', 'Company logo');
+        $('#image-upload .file-path-wrapper input').attr({ placeholder: 'Company Logo', name: "user[business_logo]", id: "user_business_logo" });
+        $("#image-upload").find("span").text("Upload Business Logo");
       }else{
         $("#company-info").hide();
-        $('#image-upload .file-path-wrapper input').attr('placeholder', 'Profile Picture');
+        $('#image-upload .file-path-wrapper input').attr({ placeholder: 'Avatar', name: "user[avatar]", id: "user_avatar" });
+        $("#image-upload").find("span").text("Upload Avatar");
       }
-    })
-})
+    });
+});

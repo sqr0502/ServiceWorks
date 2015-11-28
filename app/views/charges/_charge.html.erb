@@ -7,7 +7,7 @@
     <% end %>
     <label class="amount">
         <%= hidden_field_tag("amount", @accepted_quote.amount) %>
-    
+
       <span>Amount: <%= number_to_currency(@accepted_quote.amount) %></span>
     </label>
   </article>
@@ -15,6 +15,6 @@
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
-          data-amount="<%= @accepted_quote.amount %>"
+          data-amount="<%= @accepted_quote.amount * 100 %>"
           data-locale="auto"></script>
 <% end %>

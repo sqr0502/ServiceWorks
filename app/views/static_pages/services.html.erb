@@ -1,140 +1,76 @@
+<style>
 
-<div class="parallax-container" id="homedoor">
-  <div class="row">
-    <div class="">
-        <!-- <h1>Join us today!</h1> -->
-    </div>
-   </div>
+    .gallery {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
 
-   <!-- Section 1 - Parrallax Home -->
-    <div class="parallax overlay"><%= image_tag "brokenhouse.png" %>  </div>
+    }
+    .gallery li {
+        display: inline-block;
+        width: 20%;
+        margin: 0;
+        position: relative;
 
-   <!-- overlay  -->
-    <div class="overlay">
-      <% %>
-      <h1 class="home-title">Does your home need repairing?</h1>
-      <form class="home-form row " action="index.html" method="post">
-       <div class="input-field col s10 m4 offset-m4 offset-s1 white z-depth-2">
-         <input id="zipcode" type="text" name="zipcode">
-         <label for="zipcode">Zipcode</label>
-       </div>
-      </form>
-      <% %>
+    }
+    .gallery li img {
+        width: 100%;
+        height: 100%;
+    }
+    .gallery li span {
+        background: rgba(0,0,0,0.5);
+        color: white;
+        cursor: pointer;
+        display: table;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        -webkit-transition: opacity 500ms;
+        -moz-transition: opacity 500ms;
+        -o-transition: opacity 500ms;
+        transition: opacity 500ms;
+    }
+    .gallery li:hover span {
+        opacity: 1;
+    }
+    .gallery li p {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.6em;
+    }
 
+</style>
 
-    </div>
-</div>
+<!-- <%= images = [
+    ["assets/services/roof.jpg", "Roof Repair"],
+    ["assets/services/walltile.jpg", "Tile Installation"],
+    ["assets/services/planning.jpg", "Project Consulting"],
+    ["assets/services/powerwashing.jpg", "Power Washing"],
+    ["assets/services/floor.jpg", "Flooring Installation"],
+    ["assets/services/drywall.jpg", "Drywall Repair"],
+    ["assets/services/kitchen.jpg", "Kitchen Installation"],
+    ["assets/services/paving.jpg", "Driveway Paving"],
+    ["assets/services/hvac.jpg", "HVAC Servicing"],
+    ["assets/services/plumbing.jpg", "Plumbing Services"],
+    ["assets/services/landscaping.jpg", "Lawn Maintenance"],
+    ["assets/services/tools.jpg", "Artisan Services"],
+    ["assets/services/electrician.jpg", "Electrical Services"],
+    ["assets/services/painting.jpg", "Interior/Exterior Painting"],
+    ["assets/services/carpenter.jpg", "Carpentry"],
+    ["assets/services/fence.jpg", "Fence Installation"]
+    ] %> -->
 
-<!-- Section 2 - Homepage Card section-->
-<div class="container">
-    <div class="row ">
-      <div class="col s12 m4">
-        <div class="icon block">
-            <h2 class="center brown-text"><i class="material-icons">location_on</i></h2>
-            <div class="card 300px">
-              <div class="card-image">
-                <%= image_tag("http://placehold.it/200x100")%>
-                <span class="card-title">Search for Service</span>
-              </div>
-              <div class="card-content">
-                <p>Find service near you</p>
-              </div>
-              <div class="card-action">
-              </div>
-            </div>
-        </div>
-      </div>
-
-        <div class="col s12 m4">
-          <div class="icon block">
-              <h2 class="center brown-text"><i class="material-icons">dashboard</i></h2>
-              <div class="card 300px">
-                <div class="card-image">
-                  <%= image_tag("http://placehold.it/200x100")%>
-                  <span class="card-title">Reviews</span>
-                </div>
-                <div class="card-content">
-                  <p>Find local service providers sorted by review.</p>
-                </div>
-                <div class="card-action">
-                </div>
-              </div>
-          </div>
-        </div>
-          <div class="col s12 m4">
-            <div class="icon block">
-            <h2 class="center brown-text"><i class="material-icons">search</i></h2>
-              <div class="card 300px">
-                <div class="card-image">
-                  <%= image_tag("http://placehold.it/200x100")%>
-                  <span class="card-title">View Services</span>
-                </div>
-                <div class="card-content">
-                  <p>View all of our services.</p>
-                </div>
-                <div class="card-action">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-<!-- Section 4 - Information services section 
-<div class="container">
-  <section>
-
-    <div class="row ">
-      <div class="col s4 m4">
-        <div class="icon block">
-          <h2 class="center brown-text"><i class="material-icons">schedule</i></h2>
-          <h5 class="home-tag">24/7 Service</h5>
-        </div>
-      </div>
-
-      <div class="col s4 m4">
-        <div class="icon block">
-          <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5 class="home-tag">Home Repairs</h5>
-        </div>
-      </div>
-
-      <div class="col s4 m4">
-        <div class="icon block">
-          <h2 class="center brown-text"><i class="material-icons">perm_identity</i></h2>
-          <h5 class="home-tag">All Services</h5>
-        </div>
-      </div>
-    </div>
-
-  </section>
-</div>
--->
-
-<!--
- Section 5 -  parallax container 
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-      </div>
-    </div>
-  </div>
-  <div class="parallax"><%= image_tag "dining.jpg" %></div>
-  <div class="overlay"></div>
-</div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col s8 offset-s1">
-        <div id="map">
-
-        </div>
-      </div>
-    </div>
-  </div>
--->
-
+<ul class="gallery">
+    <% images.each do |x, y| %>
+        <li>
+            <img src="<%= x %>" />
+            <span><p><%= y %></p></span>
+        </li>
+    <% end %>
+</ul>
+<br>

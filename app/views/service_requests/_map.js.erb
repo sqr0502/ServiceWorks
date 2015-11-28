@@ -4,11 +4,25 @@ function initMap() {
   // set the center point of the map
   var focus = {lat: <%= current_user.latitude %>, lng: <%= current_user.longitude %>};
 
-  // Generate a map
-  map = new google.maps.Map(document.getElementById('map'), {
+  // detect the screen width and height
+  var width = $(window).width();
+  var height = $(window).height();
+
+  // determine if the draggable map attribute should false
+  function toDrag() {
+    if(width <= 600) { return false }
+    else { return true }
+  };
+
+  // Set the map options
+  var mapOptions = {
     center: focus,
-    zoom: 11
-  });
+    zoom: 10,
+    draggable: toDrag()
+  };
+
+  // Generate a map
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
   // Set the marker for the provider with attributes
   var providerLocation = new google.maps.Marker({
@@ -20,7 +34,7 @@ function initMap() {
   // Plot the provider marker on the map
   providerLocation.setMap(map);
 
-  // Interate to produce multiple markers array
+  // Interate to produce multiple markers array with info window content
   <% if @service_requests.count > 0 %>
     var markerArray = [<% ServiceRequest.map_markers.each do |sr| %>
       ["Customer: " + "<%= sr.user.first_name %>" + " " + "<%= sr.user.last_name %>" + "<br>\
@@ -29,7 +43,7 @@ function initMap() {
       <%= sr.user.latitude %>, <%= sr.user.longitude %>],<% end %>];
   <% end %>
 
-  // custom icon for the marker
+  // custom icon for the service request marker
   var image = "../../assets/wrench38x38.png"
 
     // Loop through our array of markers & place each one on the map

@@ -23,4 +23,6 @@ class ServiceRequest < ActiveRecord::Base
     scope :search, ->(keyword) { where( "lower(additional_notes) LIKE ? OR order_number = ?",
       "%#{keyword.downcase}%", keyword.to_i ) if keyword.present? }
 
+    scope :open_orders, -> { where( "status = ? OR status = ?", "Open", "Quoted") }
+    
 end

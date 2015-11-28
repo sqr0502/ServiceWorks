@@ -18,6 +18,11 @@ class UsersController < ApplicationController
 
       # Send email to the user after the user signs up
       UserNotifier.send_signup_email(@user).deliver
+
+
+      # Send Twilio SMS to the user after signup
+      signup = "Thanks for signing up for Service Works, #{@user.first_name}!"
+      User.send_text_message(@user, signup)
     else
       render :action => 'new'
     end
@@ -29,6 +34,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password,
                                  :password_confirmation, :street_one, :street_two,
                                  :state, :zip, :phone, :is_provider, :company_name,
-                                 :company_desc, :business_logo, :city)
+                                 :company_desc, :business_logo, :city, :avatar)
   end
 end

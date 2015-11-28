@@ -152,29 +152,26 @@
       <ul class="collection">
        <% if @accepted_quote %>
        <li class="collection-item avatar">
-            <!-- TODO place company image/logo  here -->
-           <img src="https://placehold.it/200x200" alt="placehold it" class="circle">
-           <!-- end todo -->
-           <%= @accepted_quote.user.company_name %>'s Quote:<br>
-           <%= @accepted_quote.user.company_name %> has offered a quote of <%= number_to_currency(@accepted_quote.amount) %><br>
-           <%= @accepted_quote.user.company_name %> says, "<%= @accepted_quote.note %>"<br>
-           Quote Status: <%= @accepted_quote.status %>
+          <%= image_tag @accepted_quote.user.business_logo_url(:thumb), class: "circle" %>
+          <!-- <img src="https://placehold.it/200x200" alt="placehold it" class="circle"> -->
+          <%= @accepted_quote.user.company_name %>'s Quote:<br>
+          <%= @accepted_quote.user.company_name %> has offered a quote of <%= number_to_currency(@accepted_quote.amount) %><br>
+          <%= @accepted_quote.user.company_name %> says, "<%= @accepted_quote.note %>"<br>
+          Quote Status: <%= @accepted_quote.status %>
        </li>
          <%else%>
            <% @service_request.quotes.each do |q| %>
            <li class="collection-item avatar">
-               <!-- TODO place company image/logo  here -->
-              <img src="https://placehold.it/200x200" alt="placehold it" class="circle">
-              <!-- end todo -->
+              <%= image_tag q.user.business_logo_url(:thumb), class: "circle" %>
              <span class="title"><%= q.user.company_name %></span>
              <p>
                Quoted: <%= number_to_currency(q.amount) %><br>
                <% if q.note %>
                  <%= q.user.company_name %> says, "<%= q.note %>"<br>
                <% end %>
-               <a href="#review-modal" class="secondary-content review-modal-trigger"><i class="material-icons yellow-text small">grade</i></a>
+               <a href="#review-modal<%= q.user_id %>" class="secondary-content review-modal-trigger"><i class="material-icons yellow-text small">grade</i></a>
                <%# Company rating value opens a company review modal %>
-               Company Rating: <%= link_to company_review(q.user_id), "#review-modal", class: "review-modal-trigger" %><br>
+               Company Rating: <%= link_to company_review(q.user_id), "#review-modal#{q.user_id}", class: "review-modal-trigger" %><br>
              </p>
                 <!-- links for providers and user either accept or delete -->
                 <% if @service_request.user_id == current_user.id && !current_user.is_provider %>
@@ -190,9 +187,11 @@
 
                <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
             <!-- review modal -->
-            <div id="review-modal" class="modal">
+            <div id="review-modal<%= q.user_id %>" class="modal">
               <div class="modal-content">
                 <h4><%= q.user.company_name%>'s Reviews</h4>
+                <%= image_tag q.user.business_logo_url(:small) %>
+                <%= q.user.company_desc %>
                 <table>
                   <tr>
                     <th>Reviewer</th>

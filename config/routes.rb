@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users
   resources :charges
 
+  post 'twilio/voice' => 'twilio#voice'    
+    
   get 'reviews/new'
   post '/users/:id/service_requests/:id/reviews/create', to: "reviews#create", as: "reviews_create"
   get 'reviews/edit'

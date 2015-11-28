@@ -20,11 +20,11 @@
       <div class="file-field input-field col m6 s12 valign" id="image-upload">
         <!-- <%= f.label :business_logo, "Upload your logo" %><br> -->
         <div class="btn">
-          <span>Upload</span>
-          <%= f.file_field :business_logo %>
+          <span>Upload Avatar</span>
         </div>
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Profile Picture">
+          <%= f.file_field :avatar, class: "file-path validate",
+          placeholder: "Avatar", id: "user_avatar" %>
         </div>
       </div>
     </div>

@@ -12,10 +12,13 @@ class ServiceRequestsController < ApplicationController
       if current_user.is_provider
         # Show all services requests if the user is a provider
         # Search is a named scope in the ServiceRequest model
-        @service_requests = ServiceRequest.all.search(params[:keyword])
+        @service_requests = ServiceRequest.includes(:services, :quotes).all.search(params[:keyword])
+        # returns accepted quotes for the current_user
+        @open_job_quotes = Quote.open_jobs(current_user.id)
+
       else
         # If the user is a NOT a provider, only show the user's service requests
-        @service_requests = current_user.service_requests.search(params[:keyword])
+        @service_requests = current_user.service_requests.includes(:services, :quotes).search(params[:keyword])
       end
     else
       flash[:danger] = "Please login to view this page"

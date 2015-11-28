@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   def full_address
     [street_one, city, state, zip].compact.join(", ")
   end
-    
+
     # Twilio Integration
     def self.send_text_message(user, type)
 
@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
         #@user = User.find_by(params[:id])
         def signup
         end
-        
+
         client.account.messages.create(
         from: "+14073262661",
-        to: "+1#{user.phone}",
+        to: "+1#{user.phone.gsub('-','')}",
         body: type
         )
 #        puts "Sent message to #{user.first_name}"

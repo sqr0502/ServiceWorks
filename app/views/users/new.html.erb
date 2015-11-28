@@ -7,7 +7,7 @@
     <%= render 'shared/error_messages' %>
     <!-- switch and profile -->
     <div class="valign-wrapper">
-      <div class="col s6 valign">
+      <div class="col m6 s12 valign">
           <div class="switch">
             <label>
             Customer
@@ -17,7 +17,7 @@
             </label>
           </div>
       </div>
-      <div class="file-field input-field col s6 valign" id="image-upload">
+      <div class="file-field input-field col m6 s12 valign" id="image-upload">
         <!-- <%= f.label :business_logo, "Upload your logo" %><br> -->
         <div class="btn">
           <span>Upload Avatar</span>
@@ -73,7 +73,7 @@
       <%= f.text_field :street_two %>
     </div>
 
-    <div class="input-field col s6">
+    <div class="input-field col s12">
       <%= f.label "City" %>
       <%= f.text_field :city %>
     </div>
@@ -98,7 +98,7 @@
       <%= f.password_field :password_confirmation%>
     </div>
 
-    <div class="valign-wrapper col s6 offset-s6">
+    <div class="valign-wrapper col m6 s12 offset-m6">
       <div class="col s6 valign">
         <%= link_to 'Already have an account?', login_path %>
       </div>

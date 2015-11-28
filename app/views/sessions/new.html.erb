@@ -1,11 +1,12 @@
 <% provide(:title, "Log in") %>
 <div class="container">
-  <h1 class="center-align">Welcome Back!</h1>
 
   <div class="row">
 
       <%= form_for(:session, url: login_path) do |f| %>
-        <div class = "col m8 s12 offset-m2  form">
+        <div class = "col m8 s12 offset-m2  form z-depth-2">
+          <h1 class="center-align">Welcome Back!</h1>
+
           <div class="col s4 offset-s4 center-align">
              <i class="material-icons large">face</i>
           </div>

@@ -2,9 +2,10 @@
 <header>
   <div class="navbar-fixed">
 
-    <nav class="light green">
+    <nav>
      <div class="nav-wrapper">
-       <%= link_to 'Service Works', root_path, id: "logo", class: "brand-logo" %>
+
+       <%= link_to '<span><i class="material-icons nav-icon large white-text">home</i>Service Works</span> '.html_safe, root_path, id: "logo", class: "brand-logo" %>
 
        <!-- for hamburger menu -->
       <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -12,7 +13,7 @@
       <!-- links on desktop -->
          <ul id="nav-mobile" class="right hide-on-med-and-down">
              <li><%= link_to 'Home', root_path, id: "home-button" %></li>
-             <li><%= link_to 'Services', root_path %></li>
+             <li><%= link_to 'About Us', root_path %></li>
 
              <!-- Dropdown Trigger -->
              <% if logged_in? %>
@@ -32,8 +33,9 @@
 
          <!-- links on mobile -->
          <ul class="side-nav" id="mobile">
+           <li><%= link_to 'About Us', root_path %></li>
              <li><%= link_to 'Home', root_path %></li>
-             <li><%= link_to 'Services', root_path %></li>
+
 
              <% if logged_in? %>
                 <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li>

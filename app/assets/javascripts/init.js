@@ -14,9 +14,9 @@ $(document).on("ready page:load", function(){
        $('#service-request').removeClass('z-depth-1');
        $('#service-request .input-field').removeClass('col s6 offset-s3');
        $('#service-request .input-field').addClass('col s8 offset-s2');
-
      }
 
+     //get quote count based on type
      if(currentLocation.pathname.indexOf('users') > 0 && currentLocation.pathname.indexOf('service_requests') > 0 ){
       $.get(currentLocation.pathname + '.json', function(data){
         console.log(data);
@@ -25,13 +25,37 @@ $(document).on("ready page:load", function(){
         $("#active-orders").append('<span class="badge green black-text">'+open.length+' Open</span>');
         $("#active-orders").append('<span class="badge yellow black-text">'+quoted.length+' Quoted</span>');
       })
+     }
 
-      //set delete links for quote details
+     //navbar color change
+     var path = currentLocation.pathname;
+     var navbarPos = 600;
+     //check for mobile
+     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      navbarPos = 400;
+     }
 
+     // check path is home
+     if(path == "/"){
+       $(window).scroll(function (event) {
+            var scroll = $(window).scrollTop();
+            // check window position
+            if(scroll > navbarPos){
+                $('nav').addClass('light-green');
+            }else{
+                $('nav').removeClass('light-green');
+            }
+            // Do something
+       });
+
+     }else{
+      //simply set the color of the navbar
+      $('nav').addClass('light-green');
      }
 
      // image slider for customer uploaded images
     $('.slider').slider({full_width: true});
+
 
 
 

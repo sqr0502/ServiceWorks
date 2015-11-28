@@ -30,13 +30,22 @@ $(document).on("ready page:load", function(){
      //navbar color change
      var path = currentLocation.pathname;
      var navbarPos = 600;
+     var mobile = false;
      //check for mobile
      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       navbarPos = 400;
+      mobile = true;
+      //remove parallax
+      $('.parallax img').css('width', '100%');
+      $('.parallax img').removeClass('parallax');
+      $('nav').addClass('light-green');
+      $('.valign-wrapper').addClass('center-align');
+      $('.valign-wrapper').removeClass('valign-wrapper');
+
      }
 
      // check path is home
-     if(path == "/"){
+     if(path == "/" && !mobile){
        $(window).scroll(function (event) {
             var scroll = $(window).scrollTop();
             // check window position

@@ -1,45 +1,76 @@
-We need a contact form of any kind, even if we host it elsewhere.
 <style>
-    .gallery img {
-        width: 100%;
-        height: 100%;
-        
+
+    .gallery {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
     }
-    .gallery div {
+    .gallery li {
         display: inline-block;
         width: 20%;
-        height: 20%;
-        padding: 0;
         margin: 0;
+        position: relative;
+        
     }
+    .gallery li img {
+        width: 100%;
+        height: 100%;       
+    }
+    .gallery li span {
+        background: rgba(0,0,0,0.5);
+        color: white;
+        cursor: pointer;
+        display: table;
+        width: 100%;
+        height: 100%;         
+        position: absolute;
+        left: 0;        
+        top: 0;
+        opacity: 0;
+        -webkit-transition: opacity 500ms;
+        -moz-transition: opacity 500ms;
+        -o-transition: opacity 500ms;
+        transition: opacity 500ms;
+    }
+    .gallery li:hover span {
+        opacity: 1;
+    }
+    .gallery li p {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.6em;
+    }
+    
 </style>
 
-<%= images = [
-    "assets/services/tools.jpg",
-    "assets/services/roof.jpg",
-    "assets/services/walltile.jpg",
-    "assets/services/powerwashing.jpg",
-    "assets/services/floortile.jpg",
-    "assets/services/drywall.jpg",
-    "assets/services/kitchen.jpg",
-    "assets/services/paving.jpg",
-    "assets/services/hvac.jpg",
-    "assets/services/plumbing.jpg",
-    "assets/services/landscaping.jpg",
-    "assets/services/tools.jpg",
-    "assets/services/electrician.jpg",
-    "assets/services/painting.jpg",
-    "assets/services/grass.jpg",
-    "assets/services/carpenter.jpg",
-    "assets/services/roof.jpg",
-    "assets/services/fence.jpg",
-    
-    ] %>
+<!-- <%= images = [
+    ["assets/services/roof.jpg", "Roof Repair"],
+    ["assets/services/walltile.jpg", "Tile Installation"],
+    ["assets/services/planning.jpg", "Project Consulting"],
+    ["assets/services/powerwashing.jpg", "Power Washing"],
+    ["assets/services/floor.jpg", "Flooring Installation"],
+    ["assets/services/drywall.jpg", "Drywall Repair"],
+    ["assets/services/kitchen.jpg", "Kitchen Installation"],
+    ["assets/services/paving.jpg", "Driveway Paving"],
+    ["assets/services/hvac.jpg", "HVAC Servicing"],
+    ["assets/services/plumbing.jpg", "Plumbing Services"],
+    ["assets/services/landscaping.jpg", "Lawn Maintenance"],
+    ["assets/services/tools.jpg", "Artisan Services"],
+    ["assets/services/electrician.jpg", "Electrical Services"],
+    ["assets/services/painting.jpg", "Interior/Exterior Painting"],
+    ["assets/services/carpenter.jpg", "Carpentry"],
+    ["assets/services/fence.jpg", "Fence Installation"]
+    ] %> -->
 
-<div class="gallery row">
-    <%= images.each do |i| %>
-        <div class="">
-            <img src="<%= i %>" />
-        </div>
+<ul class="gallery">
+    <%= images.each do |x, y| %>
+        <li>
+            <img src="<%= x %>" />
+            <span><p><%= y %></p></span>
+        </li>
     <% end %>
-</div>
+</ul>
+<br>

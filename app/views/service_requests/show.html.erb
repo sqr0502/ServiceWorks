@@ -8,11 +8,11 @@
     <div class="col s12 ">
       <div class="col m6 s12" id="quote">
         <!-- table -->
-        <div class="col s12">
+        <div class="col s12" id="details">
           <!-- quote details -->
             <table class="striped bordered">
               <thead>
-                <th colspan="2" class="center-align table-title">Details</th>
+                <th colspan="2" class="left-align table-title">Details</th>
               </thead>
             <tbody>
               <tr>
@@ -53,10 +53,10 @@
               <%= image_tag @service_request.image[2].url(:show) if @service_request.image[2] %>
               </li>
               <li>
-              <%= image_tag @service_request.image[2].url(:show) if @service_request.image[3] %>
+              <%= image_tag @service_request.image[3].url(:show) if @service_request.image[3] %>
               </li>
               <li>
-              <%= image_tag @service_request.image[2].url(:show) if @service_request.image[4] %>
+              <%= image_tag @service_request.image[4].url(:show) if @service_request.image[4] %>
               </li>
           </ul>
         </div>
@@ -66,16 +66,50 @@
             <%end%>
           </div>
       </div>
-      <div class="col m6 s12" id="new-quote">
+      <%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
+      <% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>
+      <div class="col m6 s12 z-depth-1" id="new-quote">
         <h5 class="center-align">Submit a Quote</h5>
         <!-- Slider of Customer images -->
-        <%# only show the quote form to Service Providers on service request that are 'Open' or 'Quoted' %>
-        <% if current_user.is_provider && (@service_request.status == "Open" || @service_request.status == "Quoted") %>
         <%# the quote form is rendered from a partial %>
             <%= render "quotes/quote" %>
+
+      </div>
+      <% end %>
+      <!-- write a review user view-->
+      <div class="col m6 s12" id="review">
+        <% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
+          <p>Please leave a review</p>
+          <%= render "reviews/review" %>
+        <% end %>
+      </div>
+      <!-- list reviews -->
+      <div class="center-align" id="reviews">
+        <% if @service_request.status == "Completed" && @service_request.review %>
+          <!-- <h5 class="center-align">Job Review</h5> -->
+          <table class="striped bordered">
+            <thead>
+              <th colspan="2" class="left-align table-title">Reviews</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Date</td>
+                <td><%= @service_request.review.created_at.strftime("%m/%d/%y") %></td>
+              </tr>
+              <tr>
+                <td>Rating</td>
+                <td> <%= @service_request.review.rating %></td>
+              </tr>
+              <tr>
+                <td>Comment</td>
+                <td><%= @service_request.review.comment %></td>
+              </tr>
+            </tbody>
+          </table>
         <% end %>
       </div>
     </div>
+
 
       <%# only show the review form to the user's service requests, when the service request status is 'Completed
       and the service request does NOT have any reviews.%>
@@ -84,32 +118,28 @@
         <%= render "reviews/review" %>
       <% end %>
 
-      <%# Display the completed review when the service request is in status "Completed" AND a review exists %>
-      <% if @service_request.status == "Completed" && @service_request.review %>
-        <p>
-          Review:
-        </p>
-        Rating: <%= @service_request.review.rating %><br>
-        <%= @service_request.review.comment %>
-      <% end %>
-
       <%# Let providers mark the service request as 'In Progress' or 'Completed' %>
-      <% if @service_request.status == "Accepted" && current_user.is_provider %>
-        <%= button_to "Set to In Progress", set_status_user_service_request_path(@service_request.user_id, @service_request),
-        { method: :put, params: { type: "In Progress" } } %>
-      <% elsif @service_request.status == "In Progress" && current_user.is_provider %>
-        <%= button_to "Set to Completed", set_status_user_service_request_path(@service_request.user_id, @service_request),
-        { method: :put, params: { type: "Completed" } }%>
-      <% end %>
-
-      <br>
-
-      <% if @service_request.status == "Completed" %>
-      <%= render "charges/charge" %>
-        <% end %>
-      <%= link_to 'Back', user_service_requests_path(current_user) %>
-
-
+      <div class="center-align" id="actions">
+        <% if current_user.is_provider %>
+            <% if  @service_request.status == "Accepted" %>
+              <!-- button to set in progress for servicer -->
+              <%= button_to "Set to In Progress",
+                  set_status_user_service_request_path(@service_request.user_id, @service_request),
+                  { method: :put, params: { type: "In Progress" }, class:"btn light-green" }
+              %>
+            <%end%>
+            <% if @service_request.status == "In Progress" %>
+              <%= button_to "Set to Completed",
+                  set_status_user_service_request_path(@service_request.user_id, @service_request),
+                  { method: :put, params: { type: "Completed"}, class:"btn"}
+              %>
+            <%end%>
+        <% else %> <!-- not a provider -->
+          <% if @service_request.status == "Completed" %>
+            <%= render "charges/charge" %>
+          <% end %>
+        <%end%>
+      </div>
     </div>
   <!-- Company quotes -->
   <!-- check for quotes or accpeted quotes -->
@@ -154,8 +184,9 @@
                                                           data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."}%>
                 <% end %>
                 <%# Company can delete their own quotes only %>
-                <%= link_to "Delete",service_request_quote_path(q, service_request: {status: "Open"}),
-                    method: :delete if current_user.id == q.user_id%>
+                <%= link_to "delete",service_request_quote_path(q, service_request: {status: "Open"}),
+                    method: :delete, class:"material-icons",
+                    data: { confirm: "Are you sure you want to delete this quote?" } if current_user.id == q.user_id%>
 
                <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
             <!-- review modal -->

@@ -24,10 +24,6 @@ Service.create!([
   {name: "Fence and Desk Installation and Repair"}
 ])
 ServiceRequest.create!([
-  {additional_notes: "I need a power washing estimate.  There are oil stains on my driveway that I need removed.", user_id: 1, users_id: nil, status: "Open", image: [open("db/seedimages/dirty-driveway.jpg"), open("db/seedimages/dirty-driveway2.jpg"), open("db/seedimages/dirty-driveway3.jpg"), open("db/seedimages/dirty-driveway4.jpg"), open("db/seedimages/dirty-driveway5.jpg")], order_number: 3265},
-  {additional_notes: "Last night's storm damaged my roof.  I need an estimate to repair it.  Trust fund migas pop-up austin slow-carb lomo. Pop-up small batch ugh, iPhone helvetica blog put a bird on it raw denim tacos kickstarter skateboard marfa freegan echo park. ", user_id: 5, users_id: nil, status: "Open", image: [open("db/seedimages/roof-damage.jpg"), open("db/seedimages/roof-damage2.jpg"), open("db/seedimages/roof-damage3.jpg"), open("db/seedimages/roof-damage4.jpg"), open("db/seedimages/roof-damage5.jpg")], order_number: 67010},
-  {additional_notes: "I have an old, dirty bathtub that needs to be resurfaced.  ", user_id: 6, users_id: nil, status: "Open", image: [open("db/seedimages/dirty-bathtub.jpg")], order_number: 68511},
-  {additional_notes: "Due to water damage, a section of drywall is damaged.  I need this fixed ASAP!", user_id: 7, users_id: nil, status: "Quoted", image: [open("db/seedimages/Water-Damaged-Ceiling-photo.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo2.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo3.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo4.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo5.jpg")], order_number: 2579},
   {additional_notes: "I need an outlet replaced in my kitchen.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 3771},
   {additional_notes: "I need a new outlet installed in my spare bedroom", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 9291},
   {additional_notes: "I need an AC checkup.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 1231},
@@ -36,7 +32,11 @@ ServiceRequest.create!([
   {additional_notes: "I need to run a cable connection to my spare bedroom.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 4971},
   {additional_notes: "I need to have someone power wash my driveway.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 8031},
   {additional_notes: "I have a new Toto toilet.  Please send me estimates to install.  Thanks.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 2721},
-  {additional_notes: "We need a 4 x 4 foot section of drywall replaced.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 6701}
+  {additional_notes: "We need a 4 x 4 foot section of drywall replaced.", user_id: 1, users_id: nil, status: "Completed", image: nil, order_number: 6701},
+  {additional_notes: "I need a power washing estimate.  There are oil stains on my driveway that I need removed.", user_id: 1, users_id: nil, status: "Open", image: [open("db/seedimages/dirty-driveway.jpg"), open("db/seedimages/dirty-driveway2.jpg"), open("db/seedimages/dirty-driveway3.jpg"), open("db/seedimages/dirty-driveway4.jpg"), open("db/seedimages/dirty-driveway5.jpg")], order_number: 3265},
+  {additional_notes: "Last night's storm damaged my roof.  I need an estimate to repair it.  Trust fund migas pop-up austin slow-carb lomo. Pop-up small batch ugh, iPhone helvetica blog put a bird on it raw denim tacos kickstarter skateboard marfa freegan echo park. ", user_id: 5, users_id: nil, status: "Open", image: [open("db/seedimages/roof-damage.jpg"), open("db/seedimages/roof-damage2.jpg"), open("db/seedimages/roof-damage3.jpg"), open("db/seedimages/roof-damage4.jpg"), open("db/seedimages/roof-damage5.jpg")], order_number: 67010},
+  {additional_notes: "I have an old, dirty bathtub that needs to be resurfaced.  ", user_id: 6, users_id: nil, status: "Open", image: [open("db/seedimages/dirty-bathtub.jpg")], order_number: 68511},
+  {additional_notes: "Due to water damage, a section of drywall is damaged.  I need this fixed ASAP!", user_id: 7, users_id: nil, status: "Quoted", image: [open("db/seedimages/Water-Damaged-Ceiling-photo.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo2.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo3.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo4.jpg"), open("db/seedimages/Water-Damaged-Ceiling-photo5.jpg")], order_number: 2579}
 ])
 ServiceRequestService.create!([
   {service_request_id: 1, service_id: 7},

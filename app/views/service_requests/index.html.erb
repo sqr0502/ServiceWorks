@@ -22,7 +22,7 @@
       <div class="col m2 s12 offset-m1 center-align z-depth-1" id="dashboard-left">
         <h5 class="big-title center-align">Welcome <%= current_user.first_name %>!</h5>
         <div class="col s12">
-          <%= link_to image_tag(current_user.business_logo_url(:small)), user_path(current_user) %>
+          <%= link_to image_tag(current_user.avatar_url(:small)), user_path(current_user) %>
         </div>
         <div class="col s12">
           <ul>

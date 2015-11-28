@@ -151,8 +151,9 @@
                                                           data: { confirm: "Are you sure you want to accept #{q.user.company_name}'s quote for #{number_to_currency(q.amount)}."}%>
                 <% end %>
                 <%# Company can delete their own quotes only %>
-                <%= link_to "Delete",service_request_quote_path(q, service_request: {status: "Open"}),
-                    method: :delete if current_user.id == q.user_id%>
+                <%= link_to "delete",service_request_quote_path(q, service_request: {status: "Open"}),
+                    method: :delete, class: "material-icons",
+                    data: { confirm: "Are you sure you want to delete this quote?" } if current_user.id == q.user_id%>
 
                <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
             <!-- review modal -->

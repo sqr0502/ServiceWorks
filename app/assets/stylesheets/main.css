@@ -30,7 +30,7 @@ body {
 }
 
 nav{
-  background-color: transparent !important;
+  background-color: rgba(139, 195, 74, 0.67) !important;
   box-shadow: none !important;
 }
 .nav-icon{
@@ -246,8 +246,10 @@ span.badge{
       margin-bottom:20%;
     }
     .plain-div i{
-
       color: white !important;
+    }
+    .content {
+      padding-top: 35%;
     }
 }
 /*iphone 5 and smaller*/
@@ -273,7 +275,7 @@ span.badge{
   .home-title {
     margin:50% 0 0 0;
     font-weight: bold;
-  
+
   }
   .overlay{
     background-color: rgba(0,0,0,0.5);
@@ -285,9 +287,20 @@ span.badge{
     margin-top:20%;
     margin-bottom:20%;
   }
-  .plain-div i{
+  .plain-div i {
 
     color: white !important;
+  }
+
+  .content {
+    padding-top: 20%;
+  }
+  .icon-wrapper i{
+    margin-top: 5%;
+  }
+
+  #about span{
+    font-size:1.5rem;
   }
 
 }

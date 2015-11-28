@@ -45,7 +45,8 @@ function initMap() {
   <% end %>
 
   // custom icon for the service request marker
-  var image = "../../assets/wrench38x38.png"
+  // var image = "../../assets/wrench38x38.png"
+  var image = "<%= asset_url('wrench38x38.png') %>"
 
     // Loop through our array of markers & place each one on the map
   for( i = 0; i < markerArray.length; i++ ) {

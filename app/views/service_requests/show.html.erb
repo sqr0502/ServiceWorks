@@ -139,7 +139,7 @@
                <% if q.note %>
                  <%= q.user.company_name %> says, "<%= q.note %>"<br>
                <% end %>
-               <a href="#review-modal" class="secondary-content review-modal-trigger"><i class="material-icons yellow-text small">grade</i></a>
+               <a href="#review-modal<%= q.user_id %>" class="secondary-content review-modal-trigger"><i class="material-icons yellow-text small">grade</i></a>
                <%# Company rating value opens a company review modal %>
                Company Rating: <%= link_to company_review(q.user_id), "#review-modal#{q.user_id}", class: "review-modal-trigger" %><br>
              </p>

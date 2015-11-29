@@ -5,12 +5,11 @@ Rails.application.routes.draw do
       put "set_status", on: :member, as: "set_status"
     end
   end
-
-  resources :users
+  
   resources :charges
 
-  post 'twilio/voice' => 'twilio#voice'    
-    
+  post 'twilio/voice' => 'twilio#voice'
+
   get 'reviews/new'
   post '/users/:id/service_requests/:id/reviews/create', to: "reviews#create", as: "reviews_create"
   get 'reviews/edit'

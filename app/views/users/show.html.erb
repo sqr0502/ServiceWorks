@@ -7,7 +7,7 @@
     <div class="col s12 user-form">
       <div class="col s12">
         <h3 class="center-align ">Personal Info</h3>
-        <%= form_for(@user) url: { controller: "users", action: "update" }, method: :put do |f| %>
+        <%= form_for @user do |f| %>
           <%= render 'shared/error_messages' %>
           <div class="input-field col m6 s12">
             <%= f.label "First Name" %>
@@ -30,11 +30,10 @@
               <%= f.text_field :company_desc %>
             </div>
           <% end %>
-      </div>
 
-      <!-- Address and contact -->
-      <div class="col s12">
+        <!-- Address and contact -->
         <h3 class="center-align">Address &amp; Contact</h3>
+
           <div class="input-field col m6 s12">
             <%= f.label "Email" %>
             <%= f.email_field :email %>
@@ -60,16 +59,13 @@
             <%= f.text_field :state %>
           </div>
 
-
           <div class="input-field col m6 s12">
             <%= f.label "Zip" %>
             <%= f.text_field :zip %>
           </div>
 
-      </div>
-      <!-- Security settings -->
-      <div class="col s12">
-          <h3 class="center-align ">Security</h3>
+        <!-- Security settings -->
+        <h3 class="center-align ">Security</h3>
 
           <div class="input-field col m6 s12">
             <%= f.label "Password" %>
@@ -80,10 +76,8 @@
             <%= f.label :password_confirmation, "Confirmation" %>
             <%= f.password_field :password_confirmation%>
           </div>
-      </div>
-      <div class="col s12 valign right-align">
-        <%= f.submit "Update" , class: "btn btn-primary waves-effect waves-light indigo darken-4" %>
-      </div>
+
+          <%= f.submit "Update", class: "btn btn-primary waves-effect waves-light indigo darken-4" %>
     </div>
   </div>
 </div>

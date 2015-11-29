@@ -29,9 +29,9 @@ $(document).on("ready page:load", function(){
         var open = data.filter(function(r) {return r.status == "Open"});
         var quoted = data.filter(function(r){return r.status == "Quoted"});
         var progress = data.filter(function(r){return r.status == "In Progress"});
-        // var completed = data.filter(function(r){return r.status == "Completed"})
+        var completed = data.filter(function(r){return r.status == "Completed"})
 
-        // $("#active-orders").append('<span class="badge green black-text">'+completed.length+' Completed</span>');
+        $("#active-orders").append('<span class="badge green black-text">'+completed.length+' Completed</span>');
         $("#active-orders").append('<span class="badge blue black-text">'+open.length+' Open</span>');
         $("#active-orders").append('<span class="badge yellow black-text">'+quoted.length+' Quoted</span>');
         $("#active-orders").append('<span class="badge orange black-text">'+progress.length+' In Progress</span>');
@@ -42,31 +42,51 @@ $(document).on("ready page:load", function(){
 
     //check path for service request number
     if(location.indexOf('service_requests') && parseInt(location[location.length - 1]) > 0 ){
-      var reviews = $('#reviews'); //if there is reviews
-      var reviewBox=$('#review'); //for user to write a review
+      var reviews = $('#reviews')[0]; //if there is reviews
+      var reviewBox=$('#review')[0]; //for user to write a review
       var slider=$('.slider');
       var details=$('#details');
-      var actions=$('#actions');
+      var actions=$('#actions')[0];
+      var newQuote=$('#new-quote')[0];
       var quote = $('#quote'); //for svcr to submit quote
-
+      // console.log(actions)
 
       //set size of review box and reviews list accordingly
       //checking to see if reviews exist and then modify layout
-      if(reviews[0].children.length > 0){
-        reviews.addClass('col s12');
-        // reviews.removeClass('m6');
-        details.append(reviews);
-        details.addClass('m6');
-        slider.addClass('m6');
-        quote.removeClass('m6');
-      }
-      if(actions[0].children.length > 0){
-        console.log(actions[0].children);
-         actions.addClass("row")
-        //  actions[0].children.addClass("col m6 s12");
+
+
+      if(actions){
+         actions = $('#actions');
+         actions.addClass("row");
+         details.removeClass('m6');
+        // actions[0].children.addClass("col m6 s12");
          quote.removeClass('m6')
          quote.prepend(actions);
+         //check for stage
+        if(reviewBox.children > 0){
+          details.before(reviewBox);
+          details.addClass('m6');
+          quote.removeClass('m6');
+          $('#textarea1').val('Write a review');
+          $('#textarea1').trigger('autoresize')
+        }
+        if(reviews){
+          console.log('this was called')
+          // reviews.addClass('col s12');
+          // reviews.removeClass('m6');
+          details.append(reviews);
+          details.addClass('m6');
+          slider.addClass('m6');
+          quote.removeClass('m6');
+        }
       }
+
+
+      // if(reviewBox.length > 0){
+      //   reviewBox = $('#review');
+      //   console.log('this was called')
+      //
+      // }
     }
 
      //navbar color change

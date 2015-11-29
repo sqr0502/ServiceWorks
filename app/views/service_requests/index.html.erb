@@ -57,13 +57,13 @@
              </div>
              <%end%>
 
-             <table class="">
+             <table>
                <thead>
                  <th>Order Number</th>
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
-                 <th>Notes</th>
+                 <th class="hide-on-small-only">Notes</th>
                  <!-- <th>Quotes</th> -->
                </thead>
                <tbody>
@@ -83,7 +83,7 @@
                      </ul>
                      <% end %>
                    </td>
-                   <td><%= sr.additional_notes %> </td>
+                   <td class="hide-on-small-only"><%= sr.additional_notes %> </td>
                     <!-- <td class="hidden">
                       <p>
                         <% if sr.status == "Accepted"%>

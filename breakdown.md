@@ -18,10 +18,10 @@ FUNCTIONALITY
 1. Users create service_requests with services needed - complete
 2. Business respond to service_request with quotes - complete
 3. Users can accept quotes - complete
-4. Users can schedule service appointment
-5. Users can pay for service (reach goal)
-6. Users get notified with a business has quoted one of their service_requests
-  a. Twilio (text message)
+                        4. Users can schedule service appointment
+5. Users can pay for service - complete
+6. Users get notified with a business has quoted one of their service_requests - complete
+  a. Twilio (text message) - complete
   b. Sendgrid (email) - complete
 
 FRONT END
@@ -29,19 +29,19 @@ FRONT END
 1. Materialize framework - complete
 2. ServiceWorks app name
 3. Add company logo - complete
-4. Create and style home page
-5. Style the signup form
-6. Style the profile page
+4. Create and style home page - complete
+5. Style the signup form - complete
+6. Style the profile page - complete
 
 GEMS
 
 1. Carrierwave - complete
 2. RMagic (Req ImageMagic, do brew install) - complete
 3. Fog (for S3) - complete
-4. Stripe - Done
+4. Stripe - complete
 
 ## Feature Timeline
-Wednesday - MVP
+Wednesday - MVP - complete
 Sunday - Final
 Monday - Presentation Draft
 
@@ -52,7 +52,7 @@ Monday - Presentation Draft
 
 
 ## Stretch Goals
-- Reviews for users and servicer.
+- Reviews for users and servicer. - complete
 - On order form, user drops pin on map for address.
 - Recurring payments for monthly arrangements.
 
@@ -62,11 +62,3 @@ UserNotifier.send_signup_email(@user).deliver
       redirect_to(@user)  
 
 Email template is located at app/views/user_notifier/send_signup_email.html.erb
-
-## Services
-
-services = [ "Kitchen Installation and Repair",'Bathroom Installation and Repair', "Painting Services", "Electrical Services", "HVAC Repair and Installation", "Landscaping Services", "Driveway Installation and Repair",  "Flooring Installation", "Carpentry Services", "Plumbing Services", "Drywall Service", "Power Washing", "Roof Repair", "Fence and Desk Installation and Repair"]
-
-services.each do |s|
-  Service.create(name: s)
-end

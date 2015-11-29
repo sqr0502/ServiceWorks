@@ -330,3 +330,13 @@ span.badge{
   }
 
 }
+
+
+.contact-img {
+  height: 225px;
+  z-index: -1;
+
+}
+.icon-block{
+  padding: 20px;
+}

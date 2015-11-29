@@ -12,7 +12,6 @@
         <div class="col s12">
           <ul>
             <li><%= link_to current_user.company_name, user_path(current_user) %></li>
-            <%# TODO: add company review modal %>
             <li>Rating: <%= link_to company_review(current_user.id), "#review-modal", class: "review-modal-trigger" %></li>
           </ul>
         </div>
@@ -51,16 +50,20 @@
              <% end %>
            </div>
            <div class="col s12">
+             <!-- display map if and only if provider -->
+             <%if current_user.is_provider? %>
+             <div id="map">
 
-             <div id="map"></div>
+             </div>
+             <%end%>
 
-             <table class="">
+             <table>
                <thead>
                  <th>Order Number</th>
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
-                 <th>Notes</th>
+                 <th class="hide-on-small-only">Notes</th>
                  <!-- <th>Quotes</th> -->
                </thead>
                <tbody>
@@ -80,7 +83,7 @@
                      </ul>
                      <% end %>
                    </td>
-                   <td><%= sr.additional_notes %> </td>
+                   <td class="hide-on-small-only"><%= sr.additional_notes %> </td>
                     <!-- <td class="hidden">
                       <p>
                         <% if sr.status == "Accepted"%>
@@ -195,4 +198,32 @@
     <%= render partial: 'map', formats: [:js], locals: {time_now: Time.now} %>
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOgqVNxAhwzQfqDZ-rSVYAiLNadN6iqQ&callback=initMap"></script>
+<% end %>
+
+<%# The review modal %>
+<% if current_user.is_provider %>
+  <div id="review-modal" class="modal">
+    <div class="modal-content">
+      <h4><%= current_user.company_name%>'s Reviews</h4>
+      <%= image_tag current_user.business_logo_url(:small) %>
+      <%= current_user.company_desc %>
+      <table>
+        <tr>
+          <th>Reviewer</th>
+          <th>Rating</th>
+          <th>Comment</th>
+        </tr>
+        <% Review.where(company_id: current_user.id).each do |r| %>
+        <tr>
+          <td><%= User.find(r.user_id).first_name %></td>
+          <td><%= r.rating %></td>
+          <td><%= r.comment %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 <% end %>

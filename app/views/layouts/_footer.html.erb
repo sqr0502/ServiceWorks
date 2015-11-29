@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
           <div class="col s12 white-text">
-            <div class="col m4 s12">
-              <h5 class="white-text"><i class="material-icons">home</i> Service Works</h5>
+            <div class="col m5">
+                <h5 class="white-text"><%= link_to 'Service Works', root_path, class:"grey-text text-lighten-3" %></h5>
               <ul>
                 <li><%= link_to 'About Us', about_us_path, class:"grey-text text-lighten-3" %></li>
                 <li><%= link_to 'Services', services_path, class:"grey-text text-lighten-3" %></li>
@@ -11,9 +11,9 @@
                 <li><%= link_to 'Servicer Login', login_path, class:"grey-text text-lighten-3" %></li>
               </ul>
             </div>
-            <div class="col m8 s12" id="footer-logo">
+            <div class="col m6 hide-on-small-only" id="footer-logo">
               <h5 class="white-text">More Information</h5>
-              <p>Getting started on your home improvement or repair project is easy with Service Works. Our mission is to connect local service companies with individuals looking to get started on a home improvement or repair project.</p>
+              <p>At Service Works, our mission is to connect local service companies with individuals looking to get started on a home improvement or repair project.</p>
               <p><%= link_to 'Click Here to Request a Quote', login_path, class:"grey-text text-lighten-3" %> and begin your home improvement journey.</p>
             </div>
           </div>
@@ -22,7 +22,7 @@
 
     <div class="footer-copyright">
       <div class="container">
-        &copy; 2015 by Wyncode.
+        &copy; 2015 by Service Works, a team of Wyncode students.
       </div>
     </div>
 </footer>

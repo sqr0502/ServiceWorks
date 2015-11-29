@@ -113,4 +113,8 @@ $(document).on("ready page:load", function(){
      // image slider for customer uploaded images
      $('.slider').slider({full_width: true});
 
+     $(".field_with_errors").on("click", function() {
+       $(this).find("input").unwrap().focus();
+     });
+
   });

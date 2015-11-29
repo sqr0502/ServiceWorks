@@ -231,6 +231,9 @@ span.badge{
     /*body {
         background-color: lightgreen;
     }*/
+    .button-collapse {
+      margin-left:5%;
+    }
     #homedoor {
       height: 100vh;
       margin-top: -15%;

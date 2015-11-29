@@ -16,8 +16,8 @@
               </thead>
             <tbody>
               <tr>
-                <td> Date: </td>
-                <td><%= @service_request.created_at.strftime("%m/%d/%y") %></td>
+                <td width="15%"> Date: </td>
+                <td width="85%"><%= @service_request.created_at.strftime("%m/%d/%y") %></td>
               </tr>
               <tr class="">
                 <td>Status:</td>
@@ -76,32 +76,27 @@
 
       </div>
       <% end %>
-      <!-- write a review user view-->
-      <div class="col m6 s12" id="review">
-        <% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
-          <p>Please leave a review</p>
-          <%= render "reviews/review" %>
-        <% end %>
-      </div>
+
+
       <!-- list reviews -->
-      <div class="center-align" id="reviews">
+      <div class="center-align" >
         <% if @service_request.status == "Completed" && @service_request.review %>
           <!-- <h5 class="center-align">Job Review</h5> -->
-          <table class="striped bordered">
+          <table class="striped bordered left-align" id="reviews">
             <thead>
               <th colspan="2" class="left-align table-title">Reviews</th>
             </thead>
             <tbody>
               <tr>
-                <td>Date</td>
-                <td><%= @service_request.review.created_at.strftime("%m/%d/%y") %></td>
+                <td width="15%">Date:</td>
+                <td width="85%"><%= @service_request.review.created_at.strftime("%m/%d/%y") %></td>
               </tr>
               <tr>
-                <td>Rating</td>
+                <td>Rating:</td>
                 <td> <%= @service_request.review.rating %></td>
               </tr>
               <tr>
-                <td>Comment</td>
+                <td>Comment:</td>
                 <td><%= @service_request.review.comment %></td>
               </tr>
             </tbody>
@@ -113,13 +108,23 @@
 
       <%# only show the review form to the user's service requests, when the service request status is 'Completed
       and the service request does NOT have any reviews.%>
-      <% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
+      <!-- <% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
         <p>Please leave a review</p>
         <%= render "reviews/review" %>
-      <% end %>
+      <% end %> -->
 
-      <%# Let providers mark the service request as 'In Progress' or 'Completed' %>
+      <%if @service_request.status != "Open" && @service_request.status != "Quoted"%>
       <div class="center-align" id="actions">
+        <!-- Customer user review write a review select a rating- -->
+        <%# only show the review form to the user's service requests, when the service request status is 'Completed
+        and the service request does NOT have any reviews.%>
+        <div class="col m6 s12" id="review">
+          <% if @service_request.status == "Completed" &&  @service_request.review.nil? && @service_request.user_id == current_user.id%>
+
+            <%= render "reviews/review" %>
+          <% end %>
+        </div>
+  <%# Let providers mark the service request as 'In Progress' or 'Completed' %>
         <% if current_user.is_provider %>
             <% if  @service_request.status == "Accepted" %>
               <!-- button to set in progress for servicer -->
@@ -139,7 +144,9 @@
             <%= render "charges/charge" %>
           <% end %>
         <%end%>
+
       </div>
+      <%end%>
     </div>
   <!-- Company quotes -->
   <!-- check for quotes or accpeted quotes -->

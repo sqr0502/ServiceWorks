@@ -45,28 +45,28 @@ div {
   background-color: #FF9F1C;
   border-radius: 5px;
 }
-s
+
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid #FF9F1C !important;
+  border-radius: 5px;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #FF9F1C !important;
 
-  h2 {
+  .alert {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
-    font-size: 12px;
+    font-size: 16px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    background-color: #fff !important;
+    color: black !important;
   }
-
-  // ul li {
-  //   font-size: 12px;
-  //   list-style: square;
-  // }
+    ul li {
+      color: white;
+      font-size: 14px;
+    }
 }

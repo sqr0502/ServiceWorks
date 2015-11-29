@@ -17,3 +17,23 @@
 // @import "bootstrap-sprockets";
 // @import "bootstrap";
 @import "materialize";
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid black;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  .alert {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+}

@@ -29,7 +29,7 @@
           </div>
         <% end %>
     </div>
-      
+
     <!-- Address and contact -->
     <div class="col s12">
       <h3 class="center-align">Address &amp; Contact</h3>
@@ -78,6 +78,9 @@
           <%= f.label :password_confirmation, "Confirmation" %>
           <%= f.password_field :password_confirmation%>
         </div>
+    </div>
+    <div class="col s6 valign right-align">
+      <%= f.submit "Submit" , class: "btn btn-primary waves-effect waves-light indigo darken-4" %>
     </div>
   </div>
 </div>

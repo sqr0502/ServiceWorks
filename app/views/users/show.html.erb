@@ -7,7 +7,7 @@
     <div class="col s12 user-form">
       <div class="col s12">
         <h3 class="center-align ">Personal Info</h3>
-        <%= form_for(@user) do |f| %>
+        <%= form_for(@user) url: { controller: "users", action: "update" }, method: :put do |f| %>
           <%= render 'shared/error_messages' %>
           <div class="input-field col m6 s12">
             <%= f.label "First Name" %>
@@ -80,6 +80,9 @@
             <%= f.label :password_confirmation, "Confirmation" %>
             <%= f.password_field :password_confirmation%>
           </div>
+      </div>
+      <div class="col s12 valign right-align">
+        <%= f.submit "Update" , class: "btn btn-primary waves-effect waves-light indigo darken-4" %>
       </div>
     </div>
   </div>

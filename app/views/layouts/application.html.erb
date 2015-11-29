@@ -19,9 +19,9 @@
 
   <div class="container">
     <div class="row">
-      <div class="col s12">
+      <div class="col s6 offset-s3">
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
+          <div class="alert alert-<%= message_type %> card-panel blue">
             <%= message %>
           </div>
           <% end %>

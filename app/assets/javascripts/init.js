@@ -113,8 +113,12 @@ $(document).on("ready page:load", function(){
      // image slider for customer uploaded images
      $('.slider').slider({full_width: true});
 
+     // remmove field error div and add focus to the field on click
      $(".field_with_errors").on("click", function() {
        $(this).find("input").unwrap().focus();
      });
+
+     $(".alert-success").addClass("card-panel blue");
+     $(".alert-danger").addClass("card-panel orange");
 
   });

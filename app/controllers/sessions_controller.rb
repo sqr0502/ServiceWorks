@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     # call log_out method in the SessionHelper
     log_out
-    flash[:success] = 'Succesfully logged out!'
+    # flash[:success] = 'Succesfully logged out!'
     redirect_to root_url
   end
 

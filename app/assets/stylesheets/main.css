@@ -297,6 +297,13 @@ span.badge{
     margin-top:20%;
     margin-bottom:20%;
   }
+  a.btn.signup.light-green {
+    font-size: .8rem;
+  }
+
+  .home-tag {
+    font-size: 1rem;
+  }
 }
 /*tablets*/
 @media screen and (min-width:767px) and (max-width:800px){

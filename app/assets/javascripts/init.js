@@ -28,13 +28,13 @@ $(document).on("ready page:load", function(){
 
         var open = data.filter(function(r) {return r.status == "Open"});
         var quoted = data.filter(function(r){return r.status == "Quoted"});
-        var progress = data.filter(function(r){return r.status == "In Progress"});
-        var completed = data.filter(function(r){return r.status == "Completed"})
+        // var progress = data.filter(function(r){return r.status == "In Progress"});
+        // var completed = data.filter(function(r){return r.status == "Completed"});
 
         // $("#active-orders").append('<span class="badge green black-text">'+completed.length+' Completed</span>');
         $("#active-orders").append('<span class="badge blue black-text">'+open.length+' Open</span>');
         $("#active-orders").append('<span class="badge yellow black-text">'+quoted.length+' Quoted</span>');
-        $("#active-orders").append('<span class="badge orange black-text">'+progress.length+' In Progress</span>');
+        // $("#active-orders").append('<span class="badge orange black-text">'+progress.length+' In Progress</span>');
       })
      }
 

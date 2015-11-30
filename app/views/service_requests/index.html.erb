@@ -117,14 +117,14 @@
                  <th>Date</th>
                  <th>Status</th>
                  <th>Service</th>
-                 <th>Notes</th>
+                 <th class="hide-on-small-only">Notes</th>
                </thead>
                <tbody>
                  <% @service_requests.order(created_at: :desc).each do |sr| %>
                    <% if sr.status == "Completed" %>
                      <tr>
                        <td>
-                         <%= link_to sr.created_at.to_formatted_s(:short),
+                         <%= link_to sr.created_at.strftime("%m/%d/%y"),
                          user_service_request_path(sr.user_id, sr) %>
                        </td>
                        <td>
@@ -137,10 +137,8 @@
                          </ul>
                          <% end %>
                        </td>
-                       <td>
-                         <%= sr.additional_notes %>
-                       </td>
-                        <td class="hidden">
+
+                       <td class="hide-on-small-only"><%= sr.additional_notes %> </td>
                           <!-- <p>
                             <% if sr.status == "Accepted"%>
                               <% sr.quotes.each do |q| %>
@@ -153,7 +151,7 @@
                               user_service_request_path(sr.user_id, sr) %>
                             <% end %>
                           </p> -->
-                        </td>
+
                      </tr>
                    <% end %>
                  <% end %>

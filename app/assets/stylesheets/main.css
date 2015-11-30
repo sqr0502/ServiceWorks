@@ -6,6 +6,13 @@ a#logo {
   margin-left: 2%;
 }
 
+#logo-icon {
+    height: 50px;
+    position: relative;
+    top: 5px;
+    align-content: right;
+    display: inline-block;
+}
 
 /***** HomePage *****/
 /* Section 1 */
@@ -38,7 +45,7 @@ nav{
 }
 .nav-icon{
   display: inline-block !important;
-  height: 50px;
+  height: 75px;
 }
 
 .home-title {

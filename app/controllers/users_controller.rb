@@ -25,8 +25,8 @@ class UsersController < ApplicationController
 
 
       # Send Twilio SMS to the user after signup
-      signup = "Thanks for signing up for Service Works, #{@user.first_name}!"
-      User.send_text_message(@user, signup) if params[:phone]
+      # signup = "Thanks for signing up for Service Works, #{@user.first_name}!"
+      # User.send_text_message(@user, signup) if params[:phone]
     else
       render :action => 'new'
     end

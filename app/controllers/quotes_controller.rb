@@ -55,9 +55,9 @@ class QuotesController < ApplicationController
         redirect_to user_service_request_path(@quote.service_request.user_id, @quote.service_request.id)
 
         # Send Twilio SMS on signup
-          user = User.find(@quote.service_request.user_id)
-          quote = "Hi #{user.first_name}, a company has replied to your service request! Log on to the Service Works website to view the details."
-          User.send_text_message(user, quote) if user.phone
+        # user = User.find(@quote.service_request.user_id)
+        # quote = "Hi #{user.first_name}, a company has replied to your service request! Log on to the Service Works website to view the details."
+        # User.send_text_message(user, quote) if user.phone
 
 
       else

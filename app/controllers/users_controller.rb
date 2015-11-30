@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome #{@user.first_name}! Your account has been succesfully created."
+      flash[:success] = "Welcome #{@user.first_name}!"
 
       redirect_to user_service_requests_path(@user)
 

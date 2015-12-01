@@ -33,69 +33,69 @@
     <div id="company-info">
       <!-- if servicer display company fields  -->
       <div class="input-field col s6" id="company-name">
-        <%= f.label "Company Name" %>
-        <%= f.text_field :company_name %>
+        <%= f.text_field :company_name, id:"company_name" %>
+        <%= f.label "Company Name", for: "company_name" %>
       </div>
 
       <div class="input-field col s6" id="company-description">
-        <%= f.label "Company Description" %>
-        <%= f.text_field :company_desc %>
+        <%= f.text_field :company_desc, id:"company_desc" %>
+        <%= f.label "Company Description", for: "company_desc" %>
       </div>
     </div>
 
     <div class="input-field col s6 ">
-      <%= f.label "First Name" %>
-      <%= f.text_field :first_name %>
+      <%= f.text_field :first_name, id:"first_name" %>
+      <%= f.label "First Name", for: "first_name" %>
     </div>
 
     <div class="input-field col s6">
-      <%= f.label "Last Name" %>
-      <%= f.text_field :last_name %>
+      <%= f.text_field :last_name, id:"last_name"  %>
+      <%= f.label "Last Name", for: "last_name" %>
     </div>
 
     <div class="input-field col m6 s12">
-      <%= f.label "Email" %>
-      <%= f.email_field :email %>
+      <%= f.email_field :email, id:"email" %>
+      <%= f.label "Email", for:"email" %>
     </div>
 
     <div class="input-field col m6 s12">
-      <%= f.label "Phone" %>
-      <%= f.text_field :phone %>
+      <%= f.text_field :phone, id:"phone" %>
+      <%= f.label "Phone", for:"phone" %>
     </div>
 
     <div class="input-field col m6 s12">
-      <%= f.label "Address" %>
-      <%= f.text_field :street_one %>
+      <%= f.text_field :street_one, id:"street_one" %>
+      <%= f.label "Address", for:"street_one" %>
     </div>
 
     <div class="input-field col m6 s12 ">
-      <%= f.label "Address \(cont\) " %>
-      <%= f.text_field :street_two %>
+      <%= f.text_field :street_two, id:"street_two" %>
+      <%= f.label "Address \(cont\) ", for:"street_two" %>
     </div>
 
     <div class="input-field col s12">
-      <%= f.label "City" %>
-      <%= f.text_field :city %>
+      <%= f.text_field :city, id:"city" %>
+      <%= f.label "City", for:"city" %>
     </div>
 
     <div class="input-field col s6">
-      <%= f.label "State" %>
-      <%= f.text_field :state %>
+      <%= f.text_field :state, id:"state" %>
+      <%= f.label "State", for:"state" %>
     </div>
 
     <div class="input-field col s6">
-      <%= f.label "Zip" %>
-      <%= f.text_field :zip %>
+      <%= f.text_field :zip, id:"zip" %>
+      <%= f.label "Zip", for:"zip" %>
     </div>
 
     <div class="input-field col m6 s12">
-      <%= f.label "Password" %>
-      <%= f.password_field :password %>
+      <%= f.password_field :password, id:"password" %>
+      <%= f.label "Password (min. 6 characters)", for:"password" %>
     </div>
 
     <div class="input-field col m6 s12">
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation%>
+      <%= f.password_field :password_confirmation, id:"password_confirmation"%>
+      <%= f.label :password_confirmation, "Confirmation", for:"password_confirmation" %>
     </div>
 
     <div class="valign-wrapper col m6 s12 offset-m6">

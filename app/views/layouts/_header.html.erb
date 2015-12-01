@@ -12,11 +12,13 @@
              <li><%= link_to 'Home', root_path, id: "home-button" %></li>
              <li><%= link_to 'About Us', about_us_path %></li>
 
+
              <!-- Dropdown Trigger -->
              <% if logged_in? %>
+             <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id) %></li>
              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Menu<i class="material-icons right"></i></a></li>
              <ul id="dropdown1" class="dropdown-content">
-                 <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li>
+                 <!-- <li><%= link_to 'Dashboard', user_service_requests_path(current_user.id)%></li> -->
                  <li><%= link_to 'Settings', user_path(current_user.id) %></li>
                  <li class="divider"></li>
                  <li><%= link_to 'Logout', logout_path, method: "delete" %></li>

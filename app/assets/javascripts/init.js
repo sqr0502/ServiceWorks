@@ -80,6 +80,10 @@ $(document).on("ready page:load", function(){
           quote.removeClass('m6');
         }
       }
+      if(!actions && !newQuote) {
+        console.log(newQuote);
+        quote.removeClass('m6');
+      }
 
 
       // if(reviewBox.length > 0){

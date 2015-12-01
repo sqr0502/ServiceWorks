@@ -31,6 +31,11 @@ body {
     font-family: 'Signika', sans-serif;
 }
 
+a.btn.signup.light-green {
+  height: 40px;
+  line-height: 40px;
+}
+
 #about{
   padding:5% 0 5% 0;
 }
@@ -93,7 +98,7 @@ nav{
 .icon-wrapper i{
   margin-top:20%;
   color:white;
-  cursor: pointer;
+  cursor: default;
 }
 .overlay i{
   /*color: white !important;*/
@@ -284,6 +289,7 @@ span.badge{
      border-right: none;
     }
 
+
     a.btn.signup.light-green {
       font-size: 1rem;
     }
@@ -293,7 +299,7 @@ span.badge{
     }
 }
 /*iphone 5 and smaller*/
-@media screen and (max-width:324px){
+@media screen and (max-width:320px){
   #homedoor {
     height: 100vh;
     margin-top: -17.5%;
